@@ -1,4 +1,5 @@
-import type { Metadata } from 'next'
+
+import type { Metadata, Viewport } from 'next'
 import { Syne, DM_Sans, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import ProgressBar from '@/components/ui/ProgressBar'
@@ -51,6 +52,11 @@ export const metadata: Metadata = {
       'Designer & développeur freelance. Sites vitrine à partir de 250€, livrés en 7 ou 15 jours.',
     images: ['/og-image.png'],
   },
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
