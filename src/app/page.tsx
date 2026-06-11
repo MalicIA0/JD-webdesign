@@ -12,9 +12,47 @@ import Testimonials from '@/components/sections/Testimonials'
 import Contact from '@/components/sections/Contact'
 import Chatbot from '@/components/ui/Chatbot'
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'JDesign',
+  description: 'Freelance design & développement web. Création de sites vitrine élégants, uniques et fonctionnels.',
+  url: 'https://jd-webdesign-nine.vercel.app',
+  telephone: '+33782755924',
+  email: 'jdwebdesign64@hotmail.com',
+  address: {
+    '@type': 'PostalAddress',
+    addressCountry: 'FR',
+  },
+  priceRange: '300€–450€',
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Services web',
+    itemListElement: [
+      {
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: 'Site vitrine Économique' },
+        price: '300',
+        priceCurrency: 'EUR',
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: 'Site vitrine Pro' },
+        price: '450',
+        priceCurrency: 'EUR',
+      },
+    ],
+  },
+  sameAs: [],
+}
+
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Toaster
         position="bottom-right"
         toastOptions={{

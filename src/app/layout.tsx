@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from 'next'
 import { Syne, DM_Sans, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import ProgressBar from '@/components/ui/ProgressBar'
+import { Analytics } from '@vercel/analytics/next'
 
 const syne = Syne({
   subsets: ['latin'],
@@ -25,32 +26,36 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: 'JDesign — Freelance Design & Développement Web',
   description:
-    'Designer & développeur freelance. Sites vitrine à partir de 250€, livrés en 7 ou 15 jours. Suivi quotidien, sans engagement.',
+    'Designer & développeur freelance. Sites vitrine à partir de 300€, livrés en 14 jours maximum. Suivi quotidien, réponse garantie en moins de 12h.',
   keywords: [
-    'freelance design',
-    'développement web',
-    'site vitrine',
-    'Next.js',
+    'freelance web designer',
+    'développeur web freelance',
+    'création site vitrine',
+    'site internet pas cher',
     'design UI/UX',
     'identité de marque',
-    'France',
+    'freelance France',
+    'site web 300€',
   ],
-  authors: [{ name: 'Jean-Denis Cuenin', url: 'mailto:jeandenis.cuenin@hotmail.com' }],
+  authors: [{ name: 'Jean-Denis Cuenin', url: 'https://jd-webdesign-nine.vercel.app' }],
+  metadataBase: new URL('https://jd-webdesign-nine.vercel.app'),
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
+    url: 'https://jd-webdesign-nine.vercel.app',
     title: 'JDesign — Freelance Design & Développement Web',
     description:
-      'Designer & développeur freelance. Sites vitrine à partir de 250€, livrés en 7 ou 15 jours.',
+      'Designer & développeur freelance. Sites vitrine à partir de 300€, livrés en 14 jours maximum.',
     siteName: 'JDesign',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'JDesign' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'JDesign — Freelance Design & Développement Web',
     description:
-      'Designer & développeur freelance. Sites vitrine à partir de 250€, livrés en 7 ou 15 jours.',
-    images: ['/og-image.png'],
+      'Designer & développeur freelance. Sites vitrine à partir de 300€, livrés en 14 jours maximum.',
   },
 }
 
@@ -69,6 +74,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div id="progress-bar" />
         <ProgressBar />
         {children}
+        <Analytics />
       </body>
     </html>
   )
