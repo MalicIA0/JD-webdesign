@@ -61,8 +61,7 @@ export default function Nav() {
               alt="JD Web Design"
               width={600}
               height={400}
-              className="w-auto"
-              style={{ height: '96px', width: '288px', objectFit: 'contain', objectPosition: 'left center' }}
+              className="object-contain object-left h-10 w-auto md:h-16"
               priority
             />
           </Link>

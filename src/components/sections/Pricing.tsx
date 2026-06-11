@@ -107,7 +107,7 @@ function PlanCard({ plan }: { plan: (typeof PLANS)[0] }) {
         style={{ backgroundColor: '#1A1A20', border: '1px solid var(--border-subtle)' }}
       >
         <p className="text-xs text-muted mb-1">Création</p>
-        <div className="flex items-baseline gap-2">
+        <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
           <span className="font-display font-bold text-3xl text-off-white">{plan.creation}€</span>
           <span className="text-muted text-sm">· Livraison en {plan.delivery}</span>
         </div>

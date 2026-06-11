@@ -100,11 +100,11 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.45, ease: EASE }}
-            className="flex flex-wrap items-center gap-4"
+            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4"
           >
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 px-7 py-3.5 bg-lime text-black font-semibold rounded-sm hover:bg-[#d4ff3a] transition-colors duration-200 active:scale-[0.98]"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-lime text-black font-semibold rounded-sm hover:bg-[#d4ff3a] transition-colors duration-200 active:scale-[0.98]"
             >
               Démarrer un projet (devis gratuit)
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -113,7 +113,7 @@ export default function Hero() {
             </a>
             <a
               href="#services"
-              className="inline-flex items-center gap-2 px-7 py-3.5 border text-off-white font-medium rounded-sm hover:bg-white/5 transition-colors duration-200"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 border text-off-white font-medium rounded-sm hover:bg-white/5 transition-colors duration-200"
               style={{ borderColor: 'var(--border-subtle)' }}
             >
               Voir mes services
@@ -126,7 +126,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.8 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+          className="hidden sm:flex absolute bottom-10 left-1/2 -translate-x-1/2 flex-col items-center gap-2"
         >
           <span className="font-mono text-xs text-muted tracking-widest uppercase">Scroll</span>
           <div className="w-px h-8 bg-gradient-to-b from-muted to-transparent" />

@@ -17,16 +17,16 @@ export default function Footer() {
               alt="JD Web Design"
               width={600}
               height={400}
-              style={{ height: '80px', width: '240px', objectFit: 'contain', objectPosition: 'left center' }}
+              className="h-12 w-auto object-contain"
             />
           </Link>
 
           {/* Links */}
-          <div className="flex items-center gap-6 text-sm text-muted">
+          <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 text-sm text-muted">
             <a href={PHONE_HREF} className="hover:text-off-white transition-colors">
               {PHONE}
             </a>
-            <a href={EMAIL_HREF} className="hover:text-off-white transition-colors">
+            <a href={EMAIL_HREF} className="hover:text-off-white transition-colors break-all text-center">
               {EMAIL}
             </a>
           </div>
