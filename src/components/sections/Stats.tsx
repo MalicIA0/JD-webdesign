@@ -36,11 +36,17 @@ function StatItem({ stat, delay }: { stat: (typeof STATS)[0]; delay: number }) {
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7, delay, ease: EASE }}
-      className="text-center md:text-left"
+      className="text-center md:text-left min-w-0"
     >
-      <div className="font-display font-extrabold text-off-white leading-none mb-2" style={{ fontSize: 'clamp(48px, 6vw, 80px)' }}>
-        {count}
-        <span className="text-lime">{stat.suffix}</span>
+      <div className="flex items-baseline gap-1 flex-wrap justify-center md:justify-start leading-none mb-2">
+        <span className="font-display font-extrabold text-off-white" style={{ fontSize: 'clamp(32px, 3.5vw, 52px)' }}>
+          {count}
+        </span>
+        {stat.suffix && (
+          <span className="font-display font-extrabold text-lime" style={{ fontSize: 'clamp(14px, 1.8vw, 24px)' }}>
+            {stat.suffix.trim()}
+          </span>
+        )}
       </div>
       <p className="text-muted text-sm font-light tracking-wide">{stat.label}</p>
     </motion.div>

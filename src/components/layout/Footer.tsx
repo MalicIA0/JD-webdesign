@@ -15,9 +15,9 @@ export default function Footer() {
             <Image
               src="/logo.png"
               alt="JD Web Design"
-              width={120}
-              height={120}
-              className="h-10 w-auto"
+              width={600}
+              height={400}
+              style={{ height: '80px', width: '240px', objectFit: 'contain', objectPosition: 'left center' }}
             />
           </Link>
 

@@ -47,7 +47,7 @@ export default function Hero() {
             style={{ animation: 'pulse-lime 2s ease-in-out infinite' }}
           />
           <span className="font-mono text-xs text-muted tracking-widest uppercase">
-            JDesign · Freelance Digital · Disponible
+            Freelance en design &amp; développement web
           </span>
         </motion.div>
 
@@ -60,8 +60,8 @@ export default function Hero() {
             className="font-display font-extrabold leading-[0.92] tracking-tight mb-6"
             style={{ fontSize: 'clamp(52px, 9vw, 112px)' }}
           >
-            <span className="text-off-white block">Je crée des</span>
-            <span className="text-off-white block">expériences</span>
+            <span className="text-off-white block">Et si on vous reconnaissait,</span>
+            <span className="text-off-white block">par votre site ?</span>
             <span className="flex items-baseline gap-4">
               <span
                 className="text-lime inline-block overflow-hidden"
@@ -91,8 +91,8 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.3, ease: EASE }}
             className="text-muted text-lg lg:text-xl max-w-xl mb-10 leading-relaxed font-light"
           >
-            Designer & développeur freelance basé en France. Je transforme vos idées en
-            produits digitaux dont vos clients tombent amoureux.
+            Freelance spécialisé en design et développement web. Création
+            de sites internets — élégants, uniques, fonctionnels, une seconde vitrine accessible en un clic.
           </motion.p>
 
           {/* CTAs */}
@@ -103,20 +103,20 @@ export default function Hero() {
             className="flex flex-wrap items-center gap-4"
           >
             <a
-              href="#tarifs"
+              href="#contact"
               className="inline-flex items-center gap-2 px-7 py-3.5 bg-lime text-black font-semibold rounded-sm hover:bg-[#d4ff3a] transition-colors duration-200 active:scale-[0.98]"
             >
-              Voir les tarifs
+              Démarrer un projet (devis gratuit)
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </a>
             <a
-              href="#projets"
+              href="#services"
               className="inline-flex items-center gap-2 px-7 py-3.5 border text-off-white font-medium rounded-sm hover:bg-white/5 transition-colors duration-200"
               style={{ borderColor: 'var(--border-subtle)' }}
             >
-              Voir mes projets
+              Voir mes services
             </a>
           </motion.div>
         </div>

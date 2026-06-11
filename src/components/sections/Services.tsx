@@ -56,9 +56,7 @@ export default function Services() {
             className="font-display font-extrabold leading-tight"
             style={{ fontSize: 'clamp(32px, 5vw, 64px)' }}
           >
-            Des services pensés
-            <br />
-            <span className="text-muted">pour convertir.</span>
+            Ce que je propose :
           </motion.h2>
         </motion.div>
 

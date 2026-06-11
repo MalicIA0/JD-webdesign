@@ -59,9 +59,10 @@ export default function Nav() {
             <Image
               src="/logo.png"
               alt="JD Web Design"
-              width={120}
-              height={120}
-              className="h-11 w-auto"
+              width={600}
+              height={400}
+              className="w-auto"
+              style={{ height: '96px', width: '288px', objectFit: 'contain', objectPosition: 'left center' }}
               priority
             />
           </Link>

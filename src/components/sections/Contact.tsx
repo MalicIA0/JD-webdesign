@@ -10,7 +10,7 @@ import { EMAIL, EMAIL_HREF, PHONE, PHONE_HREF } from '@/lib/constants'
 type FormData = {
   name: string
   email: string
-  budget: '250€' | '350€' | 'Autre'
+  budget: '300€' | '450€' | 'Autre'
   message: string
   honeypot: string
 }
@@ -78,7 +78,7 @@ export default function Contact() {
             </motion.h2>
             <motion.p variants={fadeUp} className="text-muted leading-relaxed mb-10 font-light">
               Vous avez une idée ? Je suis disponible pour de nouveaux projets.
-              Réponse garantie en moins de 24h.
+              Réponse garantie en moins de 12h.
             </motion.p>
 
             {/* Direct contact */}
@@ -177,7 +177,7 @@ export default function Contact() {
               </label>
               <input type="hidden" {...register('budget', { required: true })} />
               <div className="flex flex-wrap gap-3">
-                {(['250€', '350€', 'Autre'] as const).map((opt) => (
+                {(['300€', '450€', 'Autre'] as const).map((opt) => (
                   <button
                     key={opt}
                     type="button"

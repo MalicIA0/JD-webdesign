@@ -14,7 +14,6 @@ export const MARQUEE_ITEMS = [
 
 export const NAV_LINKS = [
   { label: 'Services', href: '#services' },
-  { label: 'Projets', href: '#projets' },
   { label: 'Tarifs', href: '#tarifs' },
   { label: 'Contact', href: '#contact' },
 ]
@@ -22,31 +21,31 @@ export const NAV_LINKS = [
 export const SERVICES = [
   {
     icon: '◈',
-    title: 'Design UI/UX',
+    title: 'Premiere étape : analyse',
     description:
-      'Interfaces élégantes et intuitives qui convertissent les visiteurs. Chaque pixel est une décision.',
-    tags: ['Figma', 'Prototypage', 'UX Research'],
+      'Comprendre vos besoins, vos objectifs et votre public cible pour créer une solution sur mesure.',
+    tags: ['écoute', 'photos', 'étude du projet'],
   },
   {
     icon: '⬡',
     title: 'Développement Web',
     description:
-      'Code propre, rapide, scalable. Sites vitrine, apps web, e-commerce.',
-    tags: ['React', 'Next.js', 'TypeScript'],
+      "J'applique vos attentes, fais une maquette pour mettre en place la suite de la premiere étape.",
+    tags: ['codage du site en local', 'maquette', 'présentation du prototype'],
   },
   {
     icon: '◎',
     title: 'Identité de Marque',
     description:
       "Identité visuelle cohérente qui parle avant même qu'on lise un mot.",
-    tags: ['Logo', 'Charte graphique', 'Motion'],
+    tags: ['Logo', 'véritable cohérence entre votre boutique et votre identité', 'présentation complete du site'],
   },
 ]
 
 export const STATS = [
-  { value: 5, suffix: '', label: 'Projets livrés' },
-  { value: 100, suffix: '%', label: 'Clients satisfaits' },
-  { value: 12, suffix: ' mois', label: "D'expérience" },
+  { value: 14, suffix: '', label: 'Jours max pour livrer le site' },
+  { value: 100, suffix: '%', label: 'Personnalisable' },
+  { value: 12, suffix: ' H', label: 'Temps de réponse' },
 ]
 
 export const PROJECTS = [
@@ -90,15 +89,15 @@ export const COMMITMENTS = [
   },
   {
     icon: '◎',
-    badge: 'Réponse < 24h',
+    badge: 'Réponse < 12h',
     title: 'À votre écoute',
     description:
-      'Vos retours sont intégrés sous 24h. Communication directe, humaine, réactive.',
+      'Vos retours sont intégrés sous 12h. Communication directe, humaine, réactive.',
   },
 ]
 
 export const TRUST_BADGES = [
-  'Réponse garantie en moins de 24 heures',
+  'Réponse garantie en moins de 12 heures',
   "Point quotidien sur l'avancement",
   'Modifications illimitées pendant le projet',
 ]
@@ -106,41 +105,41 @@ export const TRUST_BADGES = [
 export const PLANS = [
   {
     id: 'vitrine',
-    name: 'Vitrine',
+    name: 'Économique',
     recommended: false,
-    creation: 250,
-    monthly: 100,
-    annualMonthly: 80,
+    creation: 300,
+    monthly: 130,
+    annualMonthly: 104,
     delivery: '15 jours',
     features: [
-      "Site jusqu'à 5 pages",
-      'Design sur-mesure responsive',
+      'Site vitrine',
+      'Design sur-mesure ensemble',
       'SEO de base',
-      'Formulaire de contact',
+      'Nom de domaine',
       'Hébergement',
       'Mises à jour de contenu',
-      'Support prioritaire',
-      'Rapport mensuel',
+      'Débrief mensuel',
     ],
   },
   {
     id: 'pro',
     name: 'Pro',
     recommended: true,
-    creation: 350,
-    monthly: 175,
-    annualMonthly: 140,
+    creation: 450,
+    monthly: 200,
+    annualMonthly: 160,
     delivery: '7 jours',
     features: [
-      "Site jusqu'à 8 pages",
-      'Design premium',
-      'SEO avancé',
+      'Inclut tous les services du plan Économique',
+      'Référencement (SEO) premium',
+      'Stratégie de contenu',
       'Chatbot IA personnalisé',
-      'Formulaires & animations',
-      'Hébergement',
+      'Animations du site',
+      "Création d'un logo",
       'Mises à jour illimitées',
       'Support 7j/7',
-      'Analytics dashboard',
+      'Dashboard que vous contrôlez',
+      'Choix entre deux maquettes',
     ],
   },
 ]
@@ -149,47 +148,43 @@ export const PROCESS_STEPS = [
   {
     step: '01',
     title: 'Découverte',
-    description:
-      "Appel 30 min pour comprendre vos objectifs, votre audience et ce qui vous différencie.",
+    description: 'Entretien physique, prises de notes sur vos attentes.',
   },
   {
     step: '02',
     title: 'Conception',
-    description:
-      "Maquettes et prototypes. Vous voyez le résultat avant la moindre ligne de code.",
+    description: "Maquettes et prototypes. Vous voyez le résultat avant la moindre ligne de code.",
   },
   {
     step: '03',
     title: 'Production',
-    description:
-      "Développement itératif avec check-ins réguliers. Aucune surprise en fin de projet.",
+    description: "Je vous montre le résultat. Aucune surprise en fin de projet.",
   },
   {
     step: '04',
     title: 'Livraison',
-    description:
-      "Mise en ligne, formation et support post-lancement inclus. Vous repartez avec les clés.",
+    description: "Mise en ligne, formation et support post-lancement inclus. Vous repartez avec les clés.",
   },
 ]
 
 export const TESTIMONIALS = [
   {
-    name: 'Sophie M.',
-    role: 'CEO, Maison Éclat',
+    name: 'Laetitia L.',
+    role: 'Laetitia Hypnothérapeute',
     quote:
-      "Une vision claire dès le premier appel. Le résultat final a dépassé mes attentes — et nos ventes avec.",
+      "Encadrement complet, a su être à mon écoute pour valoriser mon activité.",
     rating: 5,
   },
   {
     name: 'Lucas B.',
-    role: 'Fondateur, Pulse',
+    role: '',
     quote:
       "Livré en avance, sans un seul bug. Rare. L'interface est devenue notre meilleur argument de vente.",
     rating: 5,
   },
   {
     name: 'Camille V.',
-    role: 'Directrice, Studio Forma',
+    role: '',
     quote:
       "L'identité qu'on a créée ensemble parle mieux de nous que n'importe quel discours commercial.",
     rating: 5,

@@ -5,7 +5,6 @@ import Hero from '@/components/sections/Hero'
 import MarqueeBand from '@/components/ui/MarqueeBand'
 import Services from '@/components/sections/Services'
 import Stats from '@/components/sections/Stats'
-import Projects from '@/components/sections/Projects'
 import Commitments from '@/components/sections/Commitments'
 import Pricing from '@/components/sections/Pricing'
 import Process from '@/components/sections/Process'
@@ -32,7 +31,6 @@ export default function Home() {
         <MarqueeBand />
         <Services />
         <Stats />
-        <Projects />
         <Commitments />
         <Pricing />
         <Process />
