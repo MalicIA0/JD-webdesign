@@ -65,7 +65,7 @@ export async function POST(request: Request) {
 
     await resend.emails.send({
       from: 'JDesign Contact <onboarding@resend.dev>',
-      to: 'jeandenis.cuenin@hotmail.com',
+      to: 'jdwebdesign64@hotmail.com',
       replyTo: email,
       subject: `[JDesign] Nouveau message de ${esc(name)} — Budget: ${esc(budget)}`,
       html: `
