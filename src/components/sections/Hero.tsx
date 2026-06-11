@@ -52,13 +52,13 @@ export default function Hero() {
         </motion.div>
 
         {/* Heading */}
-        <div className="max-w-4xl">
+        <div className="max-w-4xl w-full">
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
             className="font-display font-extrabold leading-[0.92] tracking-tight mb-6"
-            style={{ fontSize: 'clamp(52px, 9vw, 112px)' }}
+            style={{ fontSize: 'clamp(28px, 7vw, 112px)' }}
           >
             <span className="text-off-white block">Et si on vous reconnaissait,</span>
             <span className="text-off-white block">par votre site ?</span>
