@@ -23,7 +23,7 @@ function esc(str: string): string {
 }
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
-const ALLOWED_BUDGETS = ['300€', '450€', 'Autre']
+const ALLOWED_BUDGETS = ['500€', '800€', 'Autre']
 
 export async function POST(request: Request) {
   // Rate limiting

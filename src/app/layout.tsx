@@ -26,7 +26,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: 'JDesign — Freelance Design & Développement Web',
   description:
-    'Designer & développeur freelance. Sites vitrine à partir de 300€, livrés en 14 jours maximum. Suivi quotidien, réponse garantie en moins de 12h.',
+    'Designer & développeur freelance. Sites vitrine à partir de 500€, livrés en 14 jours maximum. Suivi quotidien, réponse garantie en moins de 12h.',
   keywords: [
     'freelance web designer',
     'développeur web freelance',
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     'design UI/UX',
     'identité de marque',
     'freelance France',
-    'site web 300€',
+    'site web 500€',
   ],
   authors: [{ name: 'Jean-Denis Cuenin', url: 'https://jd-webdesign-nine.vercel.app' }],
   metadataBase: new URL('https://jd-webdesign-nine.vercel.app'),
@@ -48,14 +48,14 @@ export const metadata: Metadata = {
     url: 'https://jd-webdesign-nine.vercel.app',
     title: 'JDesign — Freelance Design & Développement Web',
     description:
-      'Designer & développeur freelance. Sites vitrine à partir de 300€, livrés en 14 jours maximum.',
+      'Designer & développeur freelance. Sites vitrine à partir de 500€, livrés en 14 jours maximum.',
     siteName: 'JDesign',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'JDesign — Freelance Design & Développement Web',
     description:
-      'Designer & développeur freelance. Sites vitrine à partir de 300€, livrés en 14 jours maximum.',
+      'Designer & développeur freelance. Sites vitrine à partir de 500€, livrés en 14 jours maximum.',
   },
 }
 

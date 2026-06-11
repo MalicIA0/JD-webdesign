@@ -10,7 +10,7 @@ import { EMAIL, EMAIL_HREF, PHONE, PHONE_HREF } from '@/lib/constants'
 type FormData = {
   name: string
   email: string
-  budget: '300€' | '450€' | 'Autre'
+  budget: '500€' | '800€' | 'Autre'
   message: string
   honeypot: string
 }
@@ -177,7 +177,7 @@ export default function Contact() {
               </label>
               <input type="hidden" {...register('budget', { required: true })} />
               <div className="flex flex-wrap gap-3">
-                {(['300€', '450€', 'Autre'] as const).map((opt) => (
+                {(['500€', '800€', 'Autre'] as const).map((opt) => (
                   <button
                     key={opt}
                     type="button"

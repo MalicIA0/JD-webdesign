@@ -107,10 +107,10 @@ export const PLANS = [
     id: 'vitrine',
     name: 'Économique',
     recommended: false,
-    creation: 300,
-    monthly: 130,
-    annualMonthly: 104,
-    delivery: '15 jours',
+    creation: 500,
+    monthly: 90,
+    annualMonthly: 72,
+    delivery: '14 jours',
     features: [
       'Site vitrine',
       'Design sur-mesure ensemble',
@@ -125,10 +125,10 @@ export const PLANS = [
     id: 'pro',
     name: 'Pro',
     recommended: true,
-    creation: 450,
-    monthly: 200,
-    annualMonthly: 160,
-    delivery: '7 jours',
+    creation: 800,
+    monthly: 130,
+    annualMonthly: 104,
+    delivery: '14 jours',
     features: [
       'Inclut tous les services du plan Économique',
       'Référencement (SEO) premium',
@@ -199,8 +199,8 @@ Informations JDesign :
 - Email : jdwebdesign64@hotmail.com
 - Téléphone : 07 82 75 59 24
 - Services : Design UI/UX, Développement web (Next.js), Identité de marque
-- Plan Économique : 300€ création (14 jours max) puis 130€/mois sans engagement
-- Plan Pro : 450€ création (14 jours max) puis 200€/mois sans engagement
+- Plan Économique : 500€ création (14 jours max) puis 90€/mois sans engagement
+- Plan Pro : 800€ création (14 jours max) puis 130€/mois sans engagement
 - Les deux plans incluent : hébergement + domaine 1ère année, modifications illimitées, suivi quotidien
 - Réponse garantie en moins de 12h
 - Devis gratuit, sans engagement
