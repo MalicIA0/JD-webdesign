@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer
       className="py-12 mt-0"
-      style={{ borderTop: '1px solid var(--border-subtle)' }}
+      style={{ backgroundColor: '#171410', color: '#EFE9DC', borderTop: '1px solid var(--border-ink)' }}
     >
       <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
@@ -22,11 +22,11 @@ export default function Footer() {
           </Link>
 
           {/* Links */}
-          <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 text-sm text-muted">
-            <a href={PHONE_HREF} className="hover:text-off-white transition-colors">
+          <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 text-sm text-muted-dark">
+            <a href={PHONE_HREF} className="hover:text-cream transition-colors">
               {PHONE}
             </a>
-            <a href={EMAIL_HREF} className="hover:text-off-white transition-colors break-all text-center">
+            <a href={EMAIL_HREF} className="hover:text-cream transition-colors break-all text-center">
               {EMAIL}
             </a>
           </div>
@@ -38,7 +38,7 @@ export default function Footer() {
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted hover:text-lime transition-colors"
+                className="text-muted-dark hover:text-lime-bright transition-colors"
                 aria-label="LinkedIn"
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -50,7 +50,7 @@ export default function Footer() {
                 href="https://github.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted hover:text-lime transition-colors"
+                className="text-muted-dark hover:text-lime-bright transition-colors"
                 aria-label="GitHub"
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -61,7 +61,7 @@ export default function Footer() {
                 href="https://behance.net"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted hover:text-lime transition-colors"
+                className="text-muted-dark hover:text-lime-bright transition-colors"
                 aria-label="Behance"
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -69,7 +69,7 @@ export default function Footer() {
                 </svg>
               </a>
             </div>
-            <p className="text-xs text-muted text-center">
+            <p className="text-xs text-muted-dark text-center">
               © 2025 {BRAND} · Jean-Denis Cuenin · Fait avec précision en France
             </p>
           </div>

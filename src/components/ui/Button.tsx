@@ -12,9 +12,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       'inline-flex items-center justify-center font-medium transition-all duration-300 rounded-sm cursor-pointer select-none'
 
     const variants = {
-      lime: 'bg-lime text-black hover:bg-[#d4ff3a] active:scale-[0.98]',
+      lime: 'bg-lime text-[#FFF8EE] hover:bg-[#9E3C1B] active:scale-[0.98]',
       outline:
-        'border text-off-white hover:bg-white/5 active:scale-[0.98]',
+        'border text-off-white hover:bg-black/5 active:scale-[0.98]',
       ghost: 'text-muted hover:text-off-white active:scale-[0.98]',
     }
 

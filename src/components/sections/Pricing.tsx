@@ -5,8 +5,8 @@ import { motion, useInView } from 'framer-motion'
 import { PLANS } from '@/lib/constants'
 import { fadeUp, staggerContainer, EASE } from '@/lib/animations'
 
-const CHECK = (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="text-lime flex-shrink-0 mt-0.5">
+const Check = ({ bright = false }: { bright?: boolean }) => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className={`${bright ? 'text-lime-bright' : 'text-lime'} flex-shrink-0 mt-0.5`}>
     <path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 )
@@ -16,7 +16,11 @@ export default function Pricing() {
   const inView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section id="tarifs" className="py-28 lg:py-40">
+    <section
+      id="tarifs"
+      className="py-28 lg:py-40 relative"
+      style={{ backgroundColor: '#ECE5D6', borderRadius: '40px 40px 0 0', marginTop: '-40px' }}
+    >
       <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
         {/* Header */}
         <motion.div
@@ -31,10 +35,10 @@ export default function Pricing() {
           </motion.p>
           <motion.h2
             variants={fadeUp}
-            className="font-display font-extrabold leading-tight mb-4"
+            className="font-display font-semibold leading-tight mb-4"
             style={{ fontSize: 'clamp(32px, 5vw, 64px)' }}
           >
-            Simple & transparent.
+            Simple & <em className="text-lime font-medium">transparent</em>.
           </motion.h2>
           <motion.p variants={fadeUp} className="text-muted max-w-lg mx-auto font-light">
             Sans engagement. Résiliation à tout moment. Hébergement & domaine inclus la 1ère année.
@@ -68,48 +72,57 @@ export default function Pricing() {
 }
 
 function PlanCard({ plan }: { plan: (typeof PLANS)[0] }) {
+  const dark = plan.recommended // la carte recommandée passe en encre sombre
   return (
     <motion.div
       variants={fadeUp}
-      className="relative p-8 rounded-sm overflow-hidden flex flex-col"
+      className="relative p-8 rounded-2xl overflow-hidden flex flex-col"
       style={{
-        backgroundColor: plan.recommended ? '#111115' : '#0D0D10',
-        border: plan.recommended ? '1px solid rgba(197,241,53,0.3)' : '1px solid var(--border-subtle)',
+        backgroundColor: dark ? '#171410' : '#FAF7F0',
+        color: dark ? '#EFE9DC' : undefined,
+        border: dark ? '1px solid #171410' : '1px solid var(--border-subtle)',
+        boxShadow: dark
+          ? '0 30px 80px -30px rgba(23,20,16,0.5)'
+          : '0 2px 6px rgba(23,20,16,0.05)',
       }}
     >
       {/* Recommended badge */}
       {plan.recommended && (
         <div
-          className="absolute top-0 right-8 px-4 py-1.5 font-mono text-xs text-black font-medium"
-          style={{ backgroundColor: '#C5F135', borderRadius: '0 0 4px 4px' }}
+          className="absolute top-0 right-8 px-4 py-1.5 font-mono text-xs text-[#FFF8EE] font-medium"
+          style={{ backgroundColor: '#BC4A24', borderRadius: '0 0 10px 10px' }}
         >
           ⭐ Recommandé
         </div>
       )}
 
-      {/* Top lime glow for recommended */}
+      {/* Top accent glow for recommended */}
       {plan.recommended && (
         <div
           className="absolute top-0 inset-x-0 h-px"
-          style={{ background: 'linear-gradient(to right, transparent, rgba(197,241,53,0.5), transparent)' }}
+          style={{ background: 'linear-gradient(to right, transparent, rgba(224,123,79,0.6), transparent)' }}
         />
       )}
 
       {/* Plan name */}
       <div className="mb-6 mt-2">
-        <p className="font-mono text-xs text-muted tracking-widest uppercase mb-2">Plan</p>
-        <h3 className="font-display font-bold text-2xl text-off-white">{plan.name}</h3>
+        <p className={`font-mono text-xs tracking-widest uppercase mb-2 ${dark ? 'text-muted-dark' : 'text-muted'}`}>Plan</p>
+        <h3 className={`font-display font-semibold text-2xl ${dark ? 'text-cream' : 'text-off-white'}`}>{plan.name}</h3>
       </div>
 
       {/* Creation price */}
       <div
-        className="p-4 rounded-sm mb-6"
-        style={{ backgroundColor: '#1A1A20', border: '1px solid var(--border-subtle)' }}
+        className="p-4 rounded-xl mb-6"
+        style={
+          dark
+            ? { backgroundColor: 'rgba(239,233,220,0.06)', border: '1px solid var(--border-ink)' }
+            : { backgroundColor: 'rgba(23,20,16,0.04)', border: '1px solid var(--border-subtle)' }
+        }
       >
-        <p className="text-xs text-muted mb-1">Création</p>
+        <p className={`text-xs mb-1 ${dark ? 'text-muted-dark' : 'text-muted'}`}>Création</p>
         <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
-          <span className="font-display font-bold text-3xl text-off-white">{plan.creation}€</span>
-          <span className="text-muted text-sm">· Livraison en {plan.delivery}</span>
+          <span className={`font-display font-semibold text-3xl ${dark ? 'text-cream' : 'text-off-white'}`}>{plan.creation}€</span>
+          <span className={`text-sm ${dark ? 'text-muted-dark' : 'text-muted'}`}>· Livraison en {plan.delivery}</span>
         </div>
       </div>
 
@@ -117,21 +130,21 @@ function PlanCard({ plan }: { plan: (typeof PLANS)[0] }) {
       <div className="mb-8">
         <div className="flex items-baseline gap-2 mb-1">
           <span
-            className="font-display font-bold text-off-white"
+            className={`font-display font-semibold ${dark ? 'text-cream' : 'text-off-white'}`}
             style={{ fontSize: 'clamp(36px, 4vw, 52px)' }}
           >
             {plan.monthly}€
           </span>
-          <span className="text-muted text-sm">/ mois</span>
+          <span className={`text-sm ${dark ? 'text-muted-dark' : 'text-muted'}`}>/ mois</span>
         </div>
-        <p className="text-xs text-muted">sans engagement</p>
+        <p className={`text-xs ${dark ? 'text-muted-dark' : 'text-muted'}`}>sans engagement</p>
       </div>
 
       {/* Features */}
       <ul className="flex flex-col gap-3 mb-8 flex-1">
         {plan.features.map((feat) => (
-          <li key={feat} className="flex items-start gap-2.5 text-sm text-muted">
-            {CHECK}
+          <li key={feat} className={`flex items-start gap-2.5 text-sm ${dark ? 'text-muted-dark' : 'text-muted'}`}>
+            <Check bright={dark} />
             <span>{feat}</span>
           </li>
         ))}
@@ -140,10 +153,10 @@ function PlanCard({ plan }: { plan: (typeof PLANS)[0] }) {
       {/* CTA */}
       <a
         href="#contact"
-        className={`block text-center py-3.5 rounded-sm font-semibold text-sm transition-all duration-300 ${
+        className={`block text-center py-3.5 rounded-full font-semibold text-sm transition-all duration-300 ${
           plan.recommended
-            ? 'bg-lime text-black hover:bg-[#d4ff3a]'
-            : 'border text-off-white hover:bg-white/5'
+            ? 'bg-lime text-[#FFF8EE] hover:bg-[#9E3C1B]'
+            : 'border text-off-white hover:bg-black/5'
         }`}
         style={!plan.recommended ? { borderColor: 'var(--border-subtle)' } : {}}
       >

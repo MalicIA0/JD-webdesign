@@ -69,15 +69,15 @@ export async function POST(request: Request) {
       replyTo: email,
       subject: `[JDesign] Nouveau message de ${esc(name)} — Budget: ${esc(budget)}`,
       html: `
-        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 32px; background: #09090B; color: #FAFAF8; border-radius: 8px;">
-          <h2 style="color: #C5F135; margin-top: 0;">Nouveau message de contact</h2>
+        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 32px; background: #171410; color: #EFE9DC; border-radius: 8px;">
+          <h2 style="color: #E07B4F; margin-top: 0;">Nouveau message de contact</h2>
           <table style="width: 100%; border-collapse: collapse;">
-            <tr><td style="padding: 8px 0; color: #71717A; width: 120px;">Nom</td><td style="padding: 8px 0;">${esc(name)}</td></tr>
-            <tr><td style="padding: 8px 0; color: #71717A;">Email</td><td style="padding: 8px 0;"><a href="mailto:${esc(email)}" style="color: #C5F135;">${esc(email)}</a></td></tr>
-            <tr><td style="padding: 8px 0; color: #71717A;">Budget</td><td style="padding: 8px 0;">${esc(budget)}</td></tr>
+            <tr><td style="padding: 8px 0; color: #A29A88; width: 120px;">Nom</td><td style="padding: 8px 0;">${esc(name)}</td></tr>
+            <tr><td style="padding: 8px 0; color: #A29A88;">Email</td><td style="padding: 8px 0;"><a href="mailto:${esc(email)}" style="color: #E07B4F;">${esc(email)}</a></td></tr>
+            <tr><td style="padding: 8px 0; color: #A29A88;">Budget</td><td style="padding: 8px 0;">${esc(budget)}</td></tr>
           </table>
           <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 20px 0;" />
-          <p style="color: #71717A; margin-bottom: 8px;">Message :</p>
+          <p style="color: #A29A88; margin-bottom: 8px;">Message :</p>
           <p style="white-space: pre-wrap; line-height: 1.6;">${esc(message)}</p>
         </div>
       `,

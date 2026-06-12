@@ -23,21 +23,24 @@ export default function HeroScene() {
     const camera = new THREE.PerspectiveCamera(60, mount.clientWidth / mount.clientHeight, 0.1, 100)
     camera.position.set(0, 0, 8)
 
-    // — Particle cloud (2k points, lime-tinted) —
+    // — Particle cloud (2k points, encre + terracotta sur fond crème) —
     const count = 2000
     const positions = new Float32Array(count * 3)
     const colors = new Float32Array(count * 3)
-    const limeR = 197 / 255, limeG = 241 / 255, limeB = 53 / 255
+    const inkR = 23 / 255, inkG = 20 / 255, inkB = 16 / 255
+    const terraR = 188 / 255, terraG = 74 / 255, terraB = 36 / 255
 
     for (let i = 0; i < count; i++) {
       positions[i * 3]     = (Math.random() - 0.5) * 26
       positions[i * 3 + 1] = (Math.random() - 0.5) * 16
       positions[i * 3 + 2] = (Math.random() - 0.5) * 12 - 3
 
-      const bright = 0.2 + Math.random() * 0.5
-      colors[i * 3]     = limeR * bright
-      colors[i * 3 + 1] = limeG * bright
-      colors[i * 3 + 2] = limeB * bright
+      // ~18% de points terracotta pour réchauffer le nuage d'encre
+      const warm = Math.random() < 0.18
+      const bright = 0.5 + Math.random() * 0.5
+      colors[i * 3]     = (warm ? terraR : inkR) * bright
+      colors[i * 3 + 1] = (warm ? terraG : inkG) * bright
+      colors[i * 3 + 2] = (warm ? terraB : inkB) * bright
     }
     const ptGeo = new THREE.BufferGeometry()
     ptGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3))
@@ -52,13 +55,13 @@ export default function HeroScene() {
     const particles = new THREE.Points(ptGeo, ptMat)
     scene.add(particles)
 
-    // — Wireframe torus (very faint lime) —
+    // — Wireframe torus (terracotta très léger) —
     const torusGeo = new THREE.TorusGeometry(4, 1.2, 20, 120)
     const torusMat = new THREE.MeshBasicMaterial({
-      color: 0xC5F135,
+      color: 0xBC4A24,
       wireframe: true,
       transparent: true,
-      opacity: 0.035,
+      opacity: 0.07,
     })
     const torus = new THREE.Mesh(torusGeo, torusMat)
     torus.rotation.x = Math.PI / 5
@@ -80,9 +83,9 @@ export default function HeroScene() {
     const lineGeo = new THREE.BufferGeometry()
     lineGeo.setAttribute('position', new THREE.BufferAttribute(linePositions, 3))
     const lineMat = new THREE.LineBasicMaterial({
-      color: 0xC5F135,
+      color: 0x171410,
       transparent: true,
-      opacity: 0.06,
+      opacity: 0.08,
     })
     const lines = new THREE.LineSegments(lineGeo, lineMat)
     scene.add(lines)

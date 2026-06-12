@@ -19,7 +19,6 @@ export default function Process() {
   return (
     <section
       className="py-28 lg:py-40"
-      style={{ backgroundColor: '#0D0D10' }}
       ref={containerRef}
     >
       <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
@@ -36,12 +35,12 @@ export default function Process() {
           </motion.p>
           <motion.h2
             variants={fadeUp}
-            className="font-display font-extrabold leading-tight"
+            className="font-display font-semibold leading-tight"
             style={{ fontSize: 'clamp(32px, 5vw, 64px)' }}
           >
             Votre projet,
             <br />
-            <span className="text-muted">étape par étape.</span>
+            <em className="text-muted font-medium">étape par étape.</em>
           </motion.h2>
         </motion.div>
 
@@ -67,9 +66,9 @@ export default function Process() {
                 <div
                   className="w-10 h-10 rounded-full flex items-center justify-center font-mono text-xs font-bold z-10"
                   style={{
-                    backgroundColor: '#C5F135',
-                    color: '#000',
-                    border: '2px solid #C5F135',
+                    backgroundColor: '#BC4A24',
+                    color: '#FFF8EE',
+                    border: '2px solid #BC4A24',
                   }}
                 >
                   {step.step}
@@ -92,7 +91,7 @@ export default function Process() {
               <div className="lg:hidden flex items-center gap-3 mb-4">
                 <div
                   className="w-8 h-8 rounded-full flex items-center justify-center font-mono text-xs font-bold flex-shrink-0"
-                  style={{ backgroundColor: 'var(--lime-dim)', color: '#C5F135', border: '1px solid rgba(197,241,53,0.3)' }}
+                  style={{ backgroundColor: 'var(--lime-dim)', color: '#BC4A24', border: '1px solid rgba(188,74,36,0.3)' }}
                 >
                   {step.step}
                 </div>
@@ -102,7 +101,7 @@ export default function Process() {
               <p className="font-mono text-xs text-muted mb-2 tracking-wider hidden lg:block">
                 {step.step}
               </p>
-              <h3 className="font-display font-bold text-xl text-off-white mb-3">
+              <h3 className="font-display font-semibold text-xl text-off-white mb-3">
                 {step.title}
               </h3>
               <p className="text-muted text-sm leading-relaxed font-light">

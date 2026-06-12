@@ -9,7 +9,7 @@ export default function Image() {
     (
       <div
         style={{
-          background: '#09090B',
+          background: '#F3EEE4',
           width: '100%',
           height: '100%',
           display: 'flex',
@@ -26,7 +26,7 @@ export default function Image() {
             width: 14,
             height: 14,
             borderRadius: '50%',
-            background: '#C5F135',
+            background: '#BC4A24',
             marginBottom: 32,
           }}
         />
@@ -34,7 +34,7 @@ export default function Image() {
         {/* Title */}
         <div
           style={{
-            color: '#FAFAF8',
+            color: '#171410',
             fontSize: 72,
             fontWeight: 800,
             lineHeight: 1,
@@ -46,7 +46,7 @@ export default function Image() {
         </div>
         <div
           style={{
-            color: '#C5F135',
+            color: '#BC4A24',
             fontSize: 72,
             fontWeight: 800,
             lineHeight: 1,
@@ -60,14 +60,14 @@ export default function Image() {
         {/* Subtitle */}
         <div
           style={{
-            color: '#71717A',
+            color: '#6F6A5D',
             fontSize: 28,
             lineHeight: 1.5,
             maxWidth: 800,
             marginBottom: 56,
           }}
         >
-          Freelance design & développement web — Sites à partir de 300€, livrés en 14 jours max.
+          Freelance design & développement web — Sites à partir de 500€, livrés en 14 jours max.
         </div>
 
         {/* Footer */}
@@ -80,7 +80,7 @@ export default function Image() {
         >
           <div
             style={{
-              color: '#C5F135',
+              color: '#BC4A24',
               fontSize: 32,
               fontWeight: 800,
               letterSpacing: '-1px',
@@ -88,8 +88,8 @@ export default function Image() {
           >
             JDesign
           </div>
-          <div style={{ color: '#3F3F46', fontSize: 28 }}>—</div>
-          <div style={{ color: '#71717A', fontSize: 24 }}>
+          <div style={{ color: '#B8B0A0', fontSize: 28 }}>—</div>
+          <div style={{ color: '#6F6A5D', fontSize: 24 }}>
             jd-webdesign-nine.vercel.app
           </div>
         </div>

@@ -30,7 +30,7 @@ export default function Hero() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse 80% 60% at 50% 50%, transparent 30%, #09090B 100%)',
+            'radial-gradient(ellipse 80% 60% at 50% 50%, transparent 30%, #F3EEE4 100%)',
         }}
       />
 
@@ -57,16 +57,13 @@ export default function Hero() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
-            className="font-display font-extrabold leading-[0.92] tracking-tight mb-6"
+            className="font-display font-semibold leading-[0.98] tracking-tight mb-6"
             style={{ fontSize: 'clamp(28px, 7vw, 112px)' }}
           >
-            <span className="text-off-white block">Et si on vous reconnaissait,</span>
-            <span className="text-off-white block">par votre site ?</span>
-            <span className="flex items-baseline gap-4">
-              <span
-                className="text-lime inline-block overflow-hidden"
-                style={{ minWidth: '4ch' }}
-              >
+            <span className="text-off-white block">Et si on vous <em className="font-medium">reconnaissait</em>,</span>
+            <span className="text-off-white block">par votre <em className="font-medium">site</em> ?</span>
+            <span className="flex items-baseline">
+              <em className="text-lime inline-block overflow-hidden font-medium">
                 <AnimatePresence mode="wait">
                   <motion.span
                     key={WORDS[wordIndex]}
@@ -76,11 +73,10 @@ export default function Hero() {
                     transition={{ duration: 0.4, ease: EASE }}
                     className="inline-block"
                   >
-                    {WORDS[wordIndex]}
+                    {WORDS[wordIndex]}.
                   </motion.span>
                 </AnimatePresence>
-              </span>
-              <span className="text-lime">.</span>
+              </em>
             </span>
           </motion.h1>
 
@@ -104,7 +100,7 @@ export default function Hero() {
           >
             <a
               href="#contact"
-              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-lime text-black font-semibold rounded-sm hover:bg-[#d4ff3a] transition-colors duration-200 active:scale-[0.98]"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-lime text-[#FFF8EE] font-semibold rounded-full hover:bg-[#9E3C1B] transition-colors duration-200 active:scale-[0.98]"
             >
               Démarrer un projet (devis gratuit)
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -113,7 +109,7 @@ export default function Hero() {
             </a>
             <a
               href="#services"
-              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 border text-off-white font-medium rounded-sm hover:bg-white/5 transition-colors duration-200"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 border text-off-white font-medium rounded-full hover:bg-black/5 transition-colors duration-200"
               style={{ borderColor: 'var(--border-subtle)' }}
             >
               Voir mes services

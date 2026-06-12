@@ -76,8 +76,9 @@ export default function Chatbot() {
             style={{
               width: 340,
               maxHeight: 520,
-              backgroundColor: '#111115',
+              backgroundColor: '#FAF7F0',
               border: '1px solid var(--border-subtle)',
+              boxShadow: '0 24px 60px -20px rgba(23,20,16,0.3)',
             }}
           >
             {/* Header */}
@@ -88,14 +89,14 @@ export default function Chatbot() {
               <div className="flex items-center gap-2.5">
                 <div className="relative">
                   <div
-                    className="w-8 h-8 rounded-full flex items-center justify-center font-display font-bold text-xs text-black"
-                    style={{ backgroundColor: '#C5F135' }}
+                    className="w-8 h-8 rounded-full flex items-center justify-center font-display font-bold text-xs text-[#FFF8EE]"
+                    style={{ backgroundColor: '#BC4A24' }}
                   >
                     JD
                   </div>
                   <span
                     className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-green-400 border-2"
-                    style={{ borderColor: '#111115' }}
+                    style={{ borderColor: '#FAF7F0' }}
                   />
                 </div>
                 <div>
@@ -127,8 +128,8 @@ export default function Chatbot() {
                     className="max-w-[82%] px-3 py-2 rounded-sm text-sm leading-relaxed"
                     style={
                       msg.role === 'user'
-                        ? { backgroundColor: '#C5F135', color: '#000' }
-                        : { backgroundColor: '#1A1A20', color: '#FAFAF8', border: '1px solid var(--border-subtle)' }
+                        ? { backgroundColor: '#BC4A24', color: '#FFF8EE' }
+                        : { backgroundColor: '#ECE5D6', color: '#171410', border: '1px solid var(--border-subtle)' }
                     }
                   >
                     {msg.content}
@@ -140,7 +141,7 @@ export default function Chatbot() {
                 <div className="flex justify-start">
                   <div
                     className="px-4 py-3 rounded-sm"
-                    style={{ backgroundColor: '#1A1A20', border: '1px solid var(--border-subtle)' }}
+                    style={{ backgroundColor: '#ECE5D6', border: '1px solid var(--border-subtle)' }}
                   >
                     <div className="flex gap-1 items-center h-3">
                       {[0, 1, 2].map((i) => (
@@ -191,7 +192,7 @@ export default function Chatbot() {
               <button
                 onClick={() => send(input)}
                 disabled={!input.trim() || loading}
-                className="flex items-center justify-center w-8 h-8 rounded-sm bg-lime text-black disabled:opacity-40 transition-opacity flex-shrink-0"
+                className="flex items-center justify-center w-8 h-8 rounded-full bg-lime text-[#FFF8EE] disabled:opacity-40 transition-opacity flex-shrink-0"
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <path d="M5 12h14M12 5l7 7-7 7" />
@@ -207,7 +208,7 @@ export default function Chatbot() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setOpen(!open)}
-        className="relative w-14 h-14 rounded-full bg-lime text-black flex items-center justify-center shadow-lg"
+        className="relative w-14 h-14 rounded-full bg-lime text-[#FFF8EE] flex items-center justify-center shadow-lg"
         aria-label={open ? 'Fermer le chat' : 'Ouvrir le chat'}
       >
         {/* Online badge */}

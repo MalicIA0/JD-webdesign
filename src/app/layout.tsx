@@ -1,20 +1,21 @@
 
 import type { Metadata, Viewport } from 'next'
-import { Syne, DM_Sans, JetBrains_Mono } from 'next/font/google'
+import { Fraunces, Manrope, JetBrains_Mono } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
 import ProgressBar from '@/components/ui/ProgressBar'
 
-const syne = Syne({
+const fraunces = Fraunces({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
-  variable: '--font-syne',
+  weight: ['400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-fraunces',
 })
 
-const dmSans = DM_Sans({
+const manrope = Manrope({
   subsets: ['latin'],
-  weight: ['300', '400', '500'],
-  variable: '--font-dm-sans',
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-manrope',
 })
 
 const jetbrainsMono = JetBrains_Mono({
@@ -68,7 +69,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="fr"
-      className={`${syne.variable} ${dmSans.variable} ${jetbrainsMono.variable}`}
+      className={`${fraunces.variable} ${manrope.variable} ${jetbrainsMono.variable}`}
     >
       <body className="bg-bg-base text-off-white font-sans antialiased overflow-x-hidden">
         {process.env.NEXT_PUBLIC_GA_ID && (

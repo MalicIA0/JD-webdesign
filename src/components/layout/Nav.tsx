@@ -49,7 +49,7 @@ export default function Nav() {
         }`}
         style={{
           backdropFilter: scrolled ? 'blur(20px)' : 'none',
-          backgroundColor: scrolled ? 'rgba(9, 9, 11, 0.85)' : 'transparent',
+          backgroundColor: scrolled ? 'rgba(243, 238, 228, 0.85)' : 'transparent',
           borderBottom: scrolled ? '1px solid var(--border-subtle)' : '1px solid transparent',
         }}
       >
@@ -93,8 +93,8 @@ export default function Nav() {
           <div className="hidden md:flex items-center gap-3">
             <a
               href={PHONE_HREF}
-              className="flex items-center gap-2 px-4 py-2 rounded-sm border text-sm font-medium transition-all duration-300 hover:bg-lime hover:text-black hover:border-lime"
-              style={{ borderColor: 'var(--border-subtle)', color: '#FAFAF8' }}
+              className="flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-medium transition-all duration-300 hover:bg-lime hover:text-[#FFF8EE] hover:border-lime"
+              style={{ borderColor: 'var(--border-subtle)', color: '#171410' }}
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
@@ -125,7 +125,7 @@ export default function Nav() {
             exit={{ x: '100%' }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="fixed inset-0 z-40 flex flex-col pt-20 px-6 pb-8"
-            style={{ backgroundColor: '#09090B' }}
+            style={{ backgroundColor: '#F3EEE4' }}
           >
             <nav className="flex flex-col gap-6 mt-8">
               {NAV_LINKS.map((link, i) => (
@@ -145,7 +145,7 @@ export default function Nav() {
             <div className="mt-auto">
               <a
                 href={PHONE_HREF}
-                className="flex items-center justify-center gap-2 w-full py-4 bg-lime text-black font-semibold rounded-sm"
+                className="flex items-center justify-center gap-2 w-full py-4 bg-lime text-[#FFF8EE] font-semibold rounded-full"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />

@@ -47,10 +47,10 @@ export default function Testimonials() {
           </motion.p>
           <motion.h2
             variants={fadeUp}
-            className="font-display font-extrabold leading-tight"
+            className="font-display font-semibold leading-tight"
             style={{ fontSize: 'clamp(32px, 5vw, 64px)' }}
           >
-            Ce qu'ils en disent.
+            Ce qu'ils en <em className="text-lime font-medium">disent</em>.
           </motion.h2>
         </motion.div>
 
@@ -68,10 +68,11 @@ export default function Testimonials() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -40 }}
                 transition={{ duration: 0.4, ease: EASE }}
-                className="p-8 rounded-sm text-center"
+                className="p-8 rounded-2xl text-center"
                 style={{
-                  backgroundColor: '#111115',
+                  backgroundColor: '#FAF7F0',
                   border: '1px solid var(--border-subtle)',
+                  boxShadow: '0 2px 6px rgba(23,20,16,0.05)',
                 }}
               >
                 <Stars count={TESTIMONIALS[active].rating} />
@@ -83,8 +84,8 @@ export default function Testimonials() {
                 <div className="flex flex-col items-center gap-1">
                   {/* Avatar placeholder */}
                   <div
-                    className="w-10 h-10 rounded-full flex items-center justify-center font-display font-bold text-sm text-black mb-2"
-                    style={{ backgroundColor: '#C5F135' }}
+                    className="w-10 h-10 rounded-full flex items-center justify-center font-display font-bold text-sm text-[#FFF8EE] mb-2"
+                    style={{ backgroundColor: '#BC4A24' }}
                   >
                     {TESTIMONIALS[active].name[0]}
                   </div>

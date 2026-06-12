@@ -53,10 +53,10 @@ export default function Services() {
           </motion.p>
           <motion.h2
             variants={fadeUp}
-            className="font-display font-extrabold leading-tight"
+            className="font-display font-semibold leading-tight"
             style={{ fontSize: 'clamp(32px, 5vw, 64px)' }}
           >
-            Ce que je propose :
+            Ce que je <em className="text-lime font-medium">propose</em> :
           </motion.h2>
         </motion.div>
 
@@ -89,10 +89,11 @@ function ServiceCard({
       whileHover="hover"
       initial="rest"
       animate="rest"
-      className="group relative p-8 rounded-sm overflow-hidden cursor-default"
+      className="group relative p-8 rounded-2xl overflow-hidden cursor-default"
       style={{
-        backgroundColor: '#111115',
+        backgroundColor: '#FAF7F0',
         border: '1px solid var(--border-subtle)',
+        boxShadow: '0 1px 2px rgba(23,20,16,0.04)',
       }}
     >
       {/* Lime glow on hover */}
@@ -103,8 +104,8 @@ function ServiceCard({
 
       {/* Icon */}
       <div
-        className="w-12 h-12 rounded-sm flex items-center justify-center mb-6 text-muted group-hover:text-lime transition-colors duration-300"
-        style={{ backgroundColor: '#1A1A20' }}
+        className="w-12 h-12 rounded-xl flex items-center justify-center mb-6 text-muted group-hover:text-lime transition-colors duration-300"
+        style={{ backgroundColor: '#ECE5D6' }}
       >
         {icon}
       </div>
@@ -131,7 +132,7 @@ function ServiceCard({
             key={tag}
             className="font-mono text-xs px-2 py-1 rounded-full text-muted"
             style={{
-              backgroundColor: '#1A1A20',
+              backgroundColor: '#ECE5D6',
               border: '1px solid var(--border-subtle)',
             }}
           >
@@ -144,7 +145,7 @@ function ServiceCard({
       <motion.div
         className="absolute bottom-0 right-0 w-16 h-16 pointer-events-none"
         style={{
-          background: 'linear-gradient(135deg, transparent 60%, rgba(197,241,53,0.08) 100%)',
+          background: 'linear-gradient(135deg, transparent 60%, rgba(188,74,36,0.10) 100%)',
         }}
       />
     </motion.div>

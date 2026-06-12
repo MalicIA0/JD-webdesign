@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { MARQUEE_ITEMS } from '@/lib/constants'
 
 export default function MarqueeBand() {
@@ -9,38 +9,35 @@ export default function MarqueeBand() {
 
   return (
     <section
-      className="py-6 overflow-hidden relative"
-      style={{ borderTop: '1px solid var(--border-subtle)', borderBottom: '1px solid var(--border-subtle)' }}
+      className="py-8 overflow-hidden"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      {/* Left fade */}
+      {/* Bandeau encre légèrement incliné */}
       <div
-        className="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
-        style={{ background: 'linear-gradient(to right, #09090B, transparent)' }}
-      />
-      {/* Right fade */}
-      <div
-        className="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
-        style={{ background: 'linear-gradient(to left, #09090B, transparent)' }}
-      />
-
-      <div
-        className="flex items-center gap-12 whitespace-nowrap"
+        className="py-4 overflow-hidden"
         style={{
-          animation: `marquee 24s linear infinite`,
-          animationPlayState: paused ? 'paused' : 'running',
-          width: 'max-content',
+          backgroundColor: '#171410',
+          transform: 'rotate(-1.6deg) scale(1.02)',
         }}
       >
-        {items.map((tech, i) => (
-          <span key={i} className="flex items-center gap-12">
-            <span className="font-sans text-sm text-muted">
-              {tech}
+        <div
+          className="flex items-center gap-10 whitespace-nowrap"
+          style={{
+            animation: `marquee 28s linear infinite`,
+            animationPlayState: paused ? 'paused' : 'running',
+            width: 'max-content',
+          }}
+        >
+          {items.map((tech, i) => (
+            <span key={i} className="flex items-center gap-10">
+              <span className="font-display italic font-medium text-lg text-cream">
+                {tech}
+              </span>
+              <span className="text-lime-bright text-sm">✦</span>
             </span>
-            <span className="text-lime text-xs opacity-40">·</span>
-          </span>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   )

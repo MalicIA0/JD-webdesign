@@ -39,11 +39,11 @@ function StatItem({ stat, delay }: { stat: (typeof STATS)[0]; delay: number }) {
       className="text-center md:text-left min-w-0"
     >
       <div className="flex items-baseline gap-1 flex-wrap justify-center md:justify-start leading-none mb-2">
-        <span className="font-display font-extrabold text-off-white" style={{ fontSize: 'clamp(32px, 3.5vw, 52px)' }}>
+        <span className="font-display font-semibold text-off-white" style={{ fontSize: 'clamp(32px, 3.5vw, 52px)' }}>
           {count}
         </span>
         {stat.suffix && (
-          <span className="font-display font-extrabold text-lime" style={{ fontSize: 'clamp(14px, 1.8vw, 24px)' }}>
+          <span className="font-display font-semibold text-lime" style={{ fontSize: 'clamp(14px, 1.8vw, 24px)' }}>
             {stat.suffix.trim()}
           </span>
         )}

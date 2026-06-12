@@ -24,7 +24,7 @@ const jsonLd = {
     '@type': 'PostalAddress',
     addressCountry: 'FR',
   },
-  priceRange: '300€–450€',
+  priceRange: '500€–800€',
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'Services web',
@@ -32,13 +32,13 @@ const jsonLd = {
       {
         '@type': 'Offer',
         itemOffered: { '@type': 'Service', name: 'Site vitrine Économique' },
-        price: '300',
+        price: '500',
         priceCurrency: 'EUR',
       },
       {
         '@type': 'Offer',
         itemOffered: { '@type': 'Service', name: 'Site vitrine Pro' },
-        price: '450',
+        price: '800',
         priceCurrency: 'EUR',
       },
     ],
@@ -57,9 +57,9 @@ export default function Home() {
         position="bottom-right"
         toastOptions={{
           style: {
-            backgroundColor: '#111115',
-            border: '1px solid rgba(255,255,255,0.08)',
-            color: '#FAFAF8',
+            backgroundColor: '#FAF7F0',
+            border: '1px solid rgba(23,20,16,0.10)',
+            color: '#171410',
           },
         }}
       />

@@ -54,7 +54,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="py-28 lg:py-40" style={{ backgroundColor: '#0D0D10' }}>
+    <section id="contact" className="py-28 lg:py-40" style={{ backgroundColor: '#171410', color: '#EFE9DC', borderRadius: '40px 40px 0 0' }}>
       <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           {/* Left column */}
@@ -64,19 +64,19 @@ export default function Contact() {
             initial="hidden"
             animate={inView ? 'visible' : 'hidden'}
           >
-            <motion.p variants={fadeUp} className="font-mono text-xs text-lime tracking-widest uppercase mb-4">
+            <motion.p variants={fadeUp} className="font-mono text-xs text-lime-bright tracking-widest uppercase mb-4">
               Contact
             </motion.p>
             <motion.h2
               variants={fadeUp}
-              className="font-display font-extrabold leading-tight mb-6"
+              className="font-display font-semibold leading-tight mb-6"
               style={{ fontSize: 'clamp(32px, 5vw, 64px)' }}
             >
               Votre prochain
               <br />
-              projet part d'ici.
+              projet <em className="text-lime-bright font-medium">part d'ici</em>.
             </motion.h2>
-            <motion.p variants={fadeUp} className="text-muted leading-relaxed mb-10 font-light">
+            <motion.p variants={fadeUp} className="text-muted-dark leading-relaxed mb-10 font-light">
               Vous avez une idée ? Je suis disponible pour de nouveaux projets.
               Réponse garantie en moins de 12h.
             </motion.p>
@@ -87,29 +87,29 @@ export default function Contact() {
                 href={EMAIL_HREF}
                 className="flex items-center gap-3 group"
               >
-                <div className="w-10 h-10 rounded-sm flex items-center justify-center flex-shrink-0 transition-colors duration-200 group-hover:bg-lime/10"
-                  style={{ backgroundColor: '#1A1A20', border: '1px solid var(--border-subtle)' }}
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors duration-200 group-hover:bg-lime-bright/10"
+                  style={{ backgroundColor: 'rgba(239,233,220,0.05)', border: '1px solid var(--border-ink)' }}
                 >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717A" strokeWidth="1.5" className="group-hover:stroke-lime transition-colors">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#A29A88" strokeWidth="1.5" className="group-hover:stroke-lime-bright transition-colors">
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                     <polyline points="22,6 12,13 2,6" />
                   </svg>
                 </div>
-                <span className="text-muted text-sm group-hover:text-off-white transition-colors">{EMAIL}</span>
+                <span className="text-muted-dark text-sm group-hover:text-cream transition-colors">{EMAIL}</span>
               </a>
 
               <a
                 href={PHONE_HREF}
                 className="flex items-center gap-3 group"
               >
-                <div className="w-10 h-10 rounded-sm flex items-center justify-center flex-shrink-0 transition-colors duration-200 group-hover:bg-lime/10"
-                  style={{ backgroundColor: '#1A1A20', border: '1px solid var(--border-subtle)' }}
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors duration-200 group-hover:bg-lime-bright/10"
+                  style={{ backgroundColor: 'rgba(239,233,220,0.05)', border: '1px solid var(--border-ink)' }}
                 >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717A" strokeWidth="1.5" className="group-hover:stroke-lime transition-colors">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#A29A88" strokeWidth="1.5" className="group-hover:stroke-lime-bright transition-colors">
                     <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
                   </svg>
                 </div>
-                <span className="text-muted text-sm group-hover:text-off-white transition-colors">{PHONE}</span>
+                <span className="text-muted-dark text-sm group-hover:text-cream transition-colors">{PHONE}</span>
               </a>
             </motion.div>
           </motion.div>
@@ -133,16 +133,16 @@ export default function Contact() {
 
             {/* Name */}
             <div>
-              <label className="block font-mono text-xs text-muted uppercase tracking-wider mb-2">
+              <label className="block font-mono text-xs text-muted-dark uppercase tracking-wider mb-2">
                 Nom *
               </label>
               <input
                 type="text"
                 placeholder="Jean Dupont"
-                className="w-full px-4 py-3 rounded-sm text-sm text-off-white bg-transparent placeholder-muted outline-none transition-colors focus:border-lime"
+                className="w-full px-4 py-3 rounded-sm text-sm text-cream bg-transparent placeholder-muted-dark outline-none transition-colors focus:border-lime-bright"
                 style={{
-                  backgroundColor: '#111115',
-                  border: `1px solid ${errors.name ? 'rgba(239,68,68,0.5)' : 'var(--border-subtle)'}`,
+                  backgroundColor: 'rgba(239,233,220,0.06)',
+                  border: `1px solid ${errors.name ? 'rgba(239,68,68,0.5)' : 'var(--border-ink)'}`,
                 }}
                 {...register('name', { required: 'Votre nom est requis' })}
               />
@@ -151,16 +151,16 @@ export default function Contact() {
 
             {/* Email */}
             <div>
-              <label className="block font-mono text-xs text-muted uppercase tracking-wider mb-2">
+              <label className="block font-mono text-xs text-muted-dark uppercase tracking-wider mb-2">
                 Email *
               </label>
               <input
                 type="email"
                 placeholder="jean@exemple.fr"
-                className="w-full px-4 py-3 rounded-sm text-sm text-off-white bg-transparent placeholder-muted outline-none transition-colors focus:border-lime"
+                className="w-full px-4 py-3 rounded-sm text-sm text-cream bg-transparent placeholder-muted-dark outline-none transition-colors focus:border-lime-bright"
                 style={{
-                  backgroundColor: '#111115',
-                  border: `1px solid ${errors.email ? 'rgba(239,68,68,0.5)' : 'var(--border-subtle)'}`,
+                  backgroundColor: 'rgba(239,233,220,0.06)',
+                  border: `1px solid ${errors.email ? 'rgba(239,68,68,0.5)' : 'var(--border-ink)'}`,
                 }}
                 {...register('email', {
                   required: 'Votre email est requis',
@@ -172,7 +172,7 @@ export default function Contact() {
 
             {/* Budget */}
             <div>
-              <label className="block font-mono text-xs text-muted uppercase tracking-wider mb-3">
+              <label className="block font-mono text-xs text-muted-dark uppercase tracking-wider mb-3">
                 Budget *
               </label>
               <input type="hidden" {...register('budget', { required: true })} />
@@ -185,8 +185,8 @@ export default function Contact() {
                     className="font-mono text-sm px-4 py-2 rounded-full border transition-all duration-200"
                     style={
                       selectedBudget === opt
-                        ? { backgroundColor: '#C5F135', color: '#000', borderColor: '#C5F135' }
-                        : { color: '#71717A', borderColor: 'var(--border-subtle)', backgroundColor: 'transparent' }
+                        ? { backgroundColor: '#BC4A24', color: '#FFF8EE', borderColor: '#BC4A24' }
+                        : { color: '#A29A88', borderColor: 'var(--border-ink)', backgroundColor: 'transparent' }
                     }
                   >
                     {opt}
@@ -197,16 +197,16 @@ export default function Contact() {
 
             {/* Message */}
             <div>
-              <label className="block font-mono text-xs text-muted uppercase tracking-wider mb-2">
+              <label className="block font-mono text-xs text-muted-dark uppercase tracking-wider mb-2">
                 Message *
               </label>
               <textarea
                 rows={4}
                 placeholder="Décrivez votre projet en quelques mots..."
-                className="w-full px-4 py-3 rounded-sm text-sm text-off-white bg-transparent placeholder-muted outline-none resize-none transition-colors focus:border-lime"
+                className="w-full px-4 py-3 rounded-sm text-sm text-cream bg-transparent placeholder-muted-dark outline-none resize-none transition-colors focus:border-lime-bright"
                 style={{
-                  backgroundColor: '#111115',
-                  border: `1px solid ${errors.message ? 'rgba(239,68,68,0.5)' : 'var(--border-subtle)'}`,
+                  backgroundColor: 'rgba(239,233,220,0.06)',
+                  border: `1px solid ${errors.message ? 'rgba(239,68,68,0.5)' : 'var(--border-ink)'}`,
                 }}
                 {...register('message', {
                   required: 'Un message est requis',
@@ -220,7 +220,7 @@ export default function Contact() {
             <button
               type="submit"
               disabled={loading}
-              className="flex items-center justify-center gap-2 py-4 bg-lime text-black font-semibold rounded-sm hover:bg-[#d4ff3a] transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
+              className="flex items-center justify-center gap-2 py-4 bg-lime text-[#FFF8EE] font-semibold rounded-full hover:bg-[#9E3C1B] transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {loading ? (
                 <>
