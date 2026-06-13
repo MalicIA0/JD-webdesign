@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" font-family="'JetBrains Mono', monospace" font-size="22">
+  <rect width="1200" height="750" fill="#070708"/>
+  <g>
+    <text x="40" y="60" fill="#ff4db8">&lt;tr <tspan fill="#5ee68a">class</tspan>=<tspan fill="#fff">"row-1 row-first"</tspan>&gt;</text>
+    <text x="80" y="105" fill="#ff4db8">&lt;td <tspan fill="#5ee68a">class</tspan>=<tspan fill="#fff">"col-1 col-first"</tspan>&gt;</text>
+    <text x="120" y="150" fill="#5ee68a">&lt;div <tspan fill="#ff4db8">class</tspan>=<tspan fill="#cfcf6a">"views-field-title"</tspan>&gt;</text>
+    <text x="160" y="195" fill="#5ee68a">&lt;div <tspan fill="#ff4db8">class</tspan>=<tspan fill="#cfcf6a">"field-content"</tspan>&gt;</text>
+    <text x="200" y="240" fill="#5ee68a">&lt;a <tspan fill="#ff4db8">href</tspan>=<tspan fill="#cfcf6a">"/products/shoes/comfy-leather"</tspan>&gt;</text>
+    <text x="160" y="285" fill="#5ee68a">&lt;/div&gt;</text>
+    <text x="120" y="330" fill="#5ee68a">&lt;div <tspan fill="#ff4db8">class</tspan>=<tspan fill="#cfcf6a">"views-field-display-price"</tspan>&gt;</text>
+    <text x="120" y="375" fill="#5ee68a">&lt;/div&gt;</text>
+    <text x="80" y="420" fill="#ff4db8">&lt;/td&gt;</text>
+    <text x="80" y="465" fill="#ff4db8">&lt;td <tspan fill="#5ee68a">class</tspan>=<tspan fill="#fff">"col-2"</tspan>&gt;</text>
+    <text x="120" y="510" fill="#5ee68a">&lt;div <tspan fill="#ff4db8">class</tspan>=<tspan fill="#cfcf6a">"views-field-title"</tspan>&gt;</text>
+    <text x="160" y="555" fill="#5ee68a">&lt;a <tspan fill="#ff4db8">href</tspan>=<tspan fill="#cfcf6a">"/products/belts/eagle-belt"</tspan>&gt;</text>
+    <text x="120" y="600" fill="#5ee68a">&lt;/div&gt;</text>
+    <text x="80" y="645" fill="#ff4db8">&lt;/td&gt;</text>
+    <text x="80" y="690" fill="#ff4db8">&lt;td <tspan fill="#5ee68a">class</tspan>=<tspan fill="#fff">"col-3 col-last"</tspan>&gt;</text>
+    <text x="120" y="735" fill="#5ee68a">&lt;a <tspan fill="#ff4db8">href</tspan>=<tspan fill="#cfcf6a">"/products/hats/leather-hat"</tspan>&gt;</text>
+  </g>
+</svg>

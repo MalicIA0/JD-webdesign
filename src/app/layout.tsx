@@ -1,27 +1,34 @@
-
 import type { Metadata, Viewport } from 'next'
-import { Fraunces, Manrope, JetBrains_Mono } from 'next/font/google'
+import { Sora, Inter, JetBrains_Mono, Dancing_Script } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
-import ProgressBar from '@/components/ui/ProgressBar'
 
-const fraunces = Fraunces({
+const sora = Sora({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  style: ['normal', 'italic'],
-  variable: '--font-fraunces',
+  weight: ['300', '400', '500', '600', '700', '800'],
+  variable: '--font-sora',
+  display: 'swap',
 })
 
-const manrope = Manrope({
+const inter = Inter({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-manrope',
+  variable: '--font-inter',
+  display: 'swap',
 })
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
   weight: ['400', '500'],
-  variable: '--font-jetbrains-mono',
+  variable: '--font-jetbrains',
+  display: 'swap',
+})
+
+const dancingScript = Dancing_Script({
+  subsets: ['latin'],
+  weight: ['600', '700'],
+  variable: '--font-dancing',
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
@@ -47,9 +54,9 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'fr_FR',
     url: 'https://jd-webdesign-nine.vercel.app',
-    title: 'JDesign — Freelance Design & Développement Web',
+    title: 'JDesign — Et si on vous reconnaissait, par votre site ?',
     description:
-      'Designer & développeur freelance. Sites vitrine à partir de 500€, livrés en 14 jours maximum.',
+      'Freelance spécialisé en design et développement web. Création de sites internets élégants, uniques, fonctionnels.',
     siteName: 'JDesign',
   },
   twitter: {
@@ -63,15 +70,16 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
+  themeColor: '#05060D',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="fr"
-      className={`${fraunces.variable} ${manrope.variable} ${jetbrainsMono.variable}`}
+      className={`${sora.variable} ${inter.variable} ${jetbrainsMono.variable} ${dancingScript.variable}`}
     >
-      <body className="bg-bg-base text-off-white font-sans antialiased overflow-x-hidden">
+      <body className="antialiased">
         {process.env.NEXT_PUBLIC_GA_ID && (
           <>
             <Script src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`} strategy="afterInteractive" />
@@ -83,8 +91,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             `}</Script>
           </>
         )}
-        <div id="progress-bar" />
-        <ProgressBar />
         {children}
       </body>
     </html>

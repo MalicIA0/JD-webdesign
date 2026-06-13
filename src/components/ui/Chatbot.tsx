@@ -76,7 +76,7 @@ export default function Chatbot() {
             style={{
               width: 340,
               maxHeight: 520,
-              backgroundColor: '#FAF7F0',
+              backgroundColor: '#0B0E20',
               border: '1px solid var(--border-subtle)',
               boxShadow: '0 24px 60px -20px rgba(23,20,16,0.3)',
             }}
@@ -90,13 +90,13 @@ export default function Chatbot() {
                 <div className="relative">
                   <div
                     className="w-8 h-8 rounded-full flex items-center justify-center font-display font-bold text-xs text-[#FFF8EE]"
-                    style={{ backgroundColor: '#BC4A24' }}
+                    style={{ backgroundColor: '#8B7CFF' }}
                   >
                     JD
                   </div>
                   <span
                     className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-green-400 border-2"
-                    style={{ borderColor: '#FAF7F0' }}
+                    style={{ borderColor: '#0B0E20' }}
                   />
                 </div>
                 <div>
@@ -128,8 +128,8 @@ export default function Chatbot() {
                     className="max-w-[82%] px-3 py-2 rounded-sm text-sm leading-relaxed"
                     style={
                       msg.role === 'user'
-                        ? { backgroundColor: '#BC4A24', color: '#FFF8EE' }
-                        : { backgroundColor: '#ECE5D6', color: '#171410', border: '1px solid var(--border-subtle)' }
+                        ? { backgroundColor: '#8B7CFF', color: '#FFF8EE' }
+                        : { backgroundColor: '#131A2E', color: '#EDF0FF', border: '1px solid var(--border-subtle)' }
                     }
                   >
                     {msg.content}
@@ -141,7 +141,7 @@ export default function Chatbot() {
                 <div className="flex justify-start">
                   <div
                     className="px-4 py-3 rounded-sm"
-                    style={{ backgroundColor: '#ECE5D6', border: '1px solid var(--border-subtle)' }}
+                    style={{ backgroundColor: '#131A2E', border: '1px solid var(--border-subtle)' }}
                   >
                     <div className="flex gap-1 items-center h-3">
                       {[0, 1, 2].map((i) => (

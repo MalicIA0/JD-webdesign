@@ -1,15 +1,4 @@
-import { Toaster } from 'sonner'
-import Nav from '@/components/layout/Nav'
-import Footer from '@/components/layout/Footer'
-import Hero from '@/components/sections/Hero'
-import MarqueeBand from '@/components/ui/MarqueeBand'
-import Services from '@/components/sections/Services'
-import Stats from '@/components/sections/Stats'
-import Commitments from '@/components/sections/Commitments'
-import Pricing from '@/components/sections/Pricing'
-import Process from '@/components/sections/Process'
-import Testimonials from '@/components/sections/Testimonials'
-import Contact from '@/components/sections/Contact'
+import AuroraSite from '@/components/AuroraSite'
 import Chatbot from '@/components/ui/Chatbot'
 
 const jsonLd = {
@@ -20,6 +9,7 @@ const jsonLd = {
   url: 'https://jd-webdesign-nine.vercel.app',
   telephone: '+33782755924',
   email: 'jdwebdesign64@hotmail.com',
+  founder: { '@type': 'Person', name: 'Jean-Denis Cuenin' },
   address: {
     '@type': 'PostalAddress',
     addressCountry: 'FR',
@@ -53,29 +43,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Toaster
-        position="bottom-right"
-        toastOptions={{
-          style: {
-            backgroundColor: '#FAF7F0',
-            border: '1px solid rgba(23,20,16,0.10)',
-            color: '#171410',
-          },
-        }}
-      />
-      <Nav />
-      <main>
-        <Hero />
-        <MarqueeBand />
-        <Services />
-        <Stats />
-        <Commitments />
-        <Pricing />
-        <Process />
-        <Testimonials />
-        <Contact />
-      </main>
-      <Footer />
+      <AuroraSite />
       <Chatbot />
     </>
   )
