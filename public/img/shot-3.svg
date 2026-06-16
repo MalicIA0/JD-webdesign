@@ -1,19 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" font-family="'JetBrains Mono', monospace" font-size="24">
-  <rect width="1200" height="750" fill="#0c0c0d"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" font-family="'JetBrains Mono', monospace" font-size="26">
+  <rect width="1200" height="750" fill="#081633"/>
+  <rect width="1200" height="750" fill="url(#g1)"/>
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a1c44" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#06102a" stop-opacity="0.9"/>
+    </linearGradient>
+  </defs>
   <g>
-    <text x="40" y="70" fill="#5ee68a">&lt;div <tspan fill="#ff4db8">class</tspan>=<tspan fill="#cfcf6a">"container"</tspan>&gt;</text>
-    <text x="80" y="120" fill="#5ee68a">&lt;div <tspan fill="#ff4db8">class</tspan>=<tspan fill="#cfcf6a">"row"</tspan>&gt;</text>
-    <text x="120" y="170" fill="#5ee68a">&lt;div <tspan fill="#ff4db8">class</tspan>=<tspan fill="#cfcf6a">"col-md-6 col-lg-8"</tspan>&gt; <tspan fill="#555">&lt;!-- NAV --&gt;</tspan></text>
-    <text x="160" y="220" fill="#5ee68a">&lt;nav <tspan fill="#ff4db8">id</tspan>=<tspan fill="#cfcf6a">"nav"</tspan> <tspan fill="#ff4db8">role</tspan>=<tspan fill="#cfcf6a">"navigation"</tspan>&gt;</text>
-    <text x="200" y="270" fill="#5ee68a">&lt;ul&gt;</text>
-    <text x="240" y="320" fill="#ff4db8">&lt;li&gt;&lt;a <tspan fill="#ff4db8">href</tspan>=<tspan fill="#cfcf6a">"index.html"</tspan>&gt;<tspan fill="#fff">Home</tspan>&lt;/a&gt;&lt;/li&gt;</text>
-    <text x="240" y="370" fill="#ff4db8">&lt;li&gt;&lt;a <tspan fill="#ff4db8">href</tspan>=<tspan fill="#cfcf6a">"home-events.html"</tspan>&gt;<tspan fill="#fff">Events</tspan>&lt;/a&gt;&lt;/li&gt;</text>
-    <text x="240" y="420" fill="#ff4db8">&lt;li&gt;&lt;a <tspan fill="#ff4db8">href</tspan>=<tspan fill="#cfcf6a">"multi-col.html"</tspan>&gt;<tspan fill="#fff">Menu</tspan>&lt;/a&gt;&lt;/li&gt;</text>
-    <text x="240" y="470" fill="#5ee68a">&lt;li <tspan fill="#ff4db8">class</tspan>=<tspan fill="#cfcf6a">"has-children"</tspan>&gt;</text>
-    <text x="280" y="520" fill="#5ee68a">&lt;ul&gt;</text>
-    <text x="320" y="570" fill="#ff4db8">&lt;li&gt;&lt;a&gt;<tspan fill="#fff">Tall Button</tspan>&lt;/a&gt;&lt;/li&gt;</text>
-    <text x="320" y="620" fill="#ff4db8">&lt;li&gt;&lt;a&gt;<tspan fill="#fff">Image Logo</tspan>&lt;/a&gt;&lt;/li&gt;</text>
-    <text x="320" y="670" fill="#5ee68a">&lt;li <tspan fill="#ff4db8">class</tspan>=<tspan fill="#cfcf6a">"active"</tspan>&gt;<tspan fill="#fff">Tall Logo</tspan>&lt;/li&gt;</text>
-    <text x="280" y="720" fill="#5ee68a">&lt;/ul&gt;</text>
+    <text x="40" y="70" fill="#9fb4ff">&lt;!-- main-nav --&gt;</text>
+    <text x="40" y="130" fill="#5ee68a">&lt;nav <tspan fill="#ffc14d">class</tspan>=<tspan fill="#fff">"primary"</tspan>&gt;</text>
+    <text x="80" y="190" fill="#5ee68a">&lt;ul&gt;</text>
+    <text x="120" y="250" fill="#5ee68a">&lt;li&gt;&lt;a <tspan fill="#ffc14d">href</tspan>=<tspan fill="#fff">"/"</tspan>&gt;<tspan fill="#fff">Accueil</tspan>&lt;/a&gt;&lt;/li&gt;</text>
+    <text x="120" y="310" fill="#5ee68a">&lt;li <tspan fill="#ffc14d">class</tspan>=<tspan fill="#5eb6ff">"has-sub"</tspan>&gt;</text>
+    <text x="160" y="370" fill="#5eb6ff">&lt;a&gt;<tspan fill="#fff">Services</tspan>&lt;/a&gt;</text>
+    <text x="160" y="430" fill="#5ee68a">&lt;ul <tspan fill="#ffc14d">class</tspan>=<tspan fill="#5eb6ff">"submenu"</tspan>&gt;</text>
+    <text x="200" y="490" fill="#5ee68a">&lt;li&gt;<tspan fill="#fff">Web Design</tspan>&lt;/li&gt;</text>
+    <text x="200" y="550" fill="#5ee68a">&lt;li&gt;<tspan fill="#fff">Développement</tspan>&lt;/li&gt;</text>
+    <text x="160" y="610" fill="#5ee68a">&lt;/ul&gt;</text>
+    <text x="120" y="670" fill="#5ee68a">&lt;/li&gt;</text>
+    <text x="80" y="730" fill="#5ee68a">&lt;/ul&gt;</text>
   </g>
 </svg>

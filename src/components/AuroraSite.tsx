@@ -338,13 +338,11 @@ const MARKUP = `
       </div>
       <div class="lb-stage" id="lbStage">
         <img class="lb-img" id="lbImg" src="" alt="">
-        <span class="lb-hint" id="lbHint">Glissez pour pivoter · molette pour zoomer</span>
+        <span class="lb-hint" id="lbHint">Glissez pour incliner · molette pour zoomer</span>
       </div>
       <div class="lb-tools">
         <button class="tool" data-act="left" title="Pivoter à gauche"><svg viewBox="0 0 24 24"><path d="M9 5L4 10l5 5"/><path d="M4 10h11a5 5 0 0 1 5 5v0"/></svg><span>Gauche 90°</span></button>
         <button class="tool" data-act="right" title="Pivoter à droite"><svg viewBox="0 0 24 24"><path d="M15 5l5 5-5 5"/><path d="M20 10H9a5 5 0 0 0-5 5v0"/></svg><span>Droite 90°</span></button>
-        <button class="tool" data-act="up" title="Basculer vers le haut"><svg viewBox="0 0 24 24"><path d="M5 9l5-5 5 5"/><path d="M10 4v11a5 5 0 0 0 5 5"/></svg><span>Haut</span></button>
-        <button class="tool" data-act="down" title="Basculer vers le bas"><svg viewBox="0 0 24 24"><path d="M5 15l5 5 5-5"/><path d="M10 20V9a5 5 0 0 1 5-5"/></svg><span>Bas</span></button>
         <button class="tool reset" data-act="reset" title="Réinitialiser"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg><span>Reset</span></button>
       </div>
     </div>
@@ -611,24 +609,25 @@ export default function AuroraSite() {
       shots.forEach((sh) => {
         const im = sh.querySelector('img') as HTMLImageElement | null
         if (!im) return
-        im.addEventListener('error', function onerr() {
-          im.removeEventListener('error', onerr)
-          if (sh.dataset.fallback) im.src = sh.dataset.fallback
-        }, { signal: sig })
+        const applyFallback = () => {
+          if (sh.dataset.fallback && im.src !== sh.dataset.fallback) im.src = sh.dataset.fallback
+        }
+        im.addEventListener('error', applyFallback, { signal: sig })
+        // L'erreur peut survenir avant l'attache de l'écouteur (404 en cache) :
+        // si l'image est déjà cassée, on bascule tout de suite sur le repli SVG.
+        if (im.complete && im.naturalWidth === 0) applyFallback()
       })
       const lb = $('lb'), lbImg = $('lbImg') as HTMLImageElement | null, lbTitle = $('lbTitle')
       const lbClose = $('lbClose'), lbBack = $('lbBack'), stage = $('lbStage')
       if (!lb || !lbImg || !stage) return
       let lastFocus: HTMLElement | null = null, raf: number | null = null
+      const MAX_TILT = 18
       let trx = 0, try_ = 0, trz = 0, ts = 1, crx = 0, cry = 0, crz = 0, cs = 1
-      let vYi = 0, vXi = 0, dragging = false, lastPX = 0, lastPY = 0
+      let dragging = false, lastPX = 0, lastPY = 0
       const EASE_F = rm ? 1 : 0.16
       const clamp = (v: number, a: number, b: number) => (v < a ? a : v > b ? b : v)
       const loop = () => {
         if (killed) return
-        if (!dragging && !rm && (Math.abs(vYi) > 0.02 || Math.abs(vXi) > 0.02)) {
-          try_ += vYi; trx += vXi; vYi *= 0.94; vXi *= 0.94
-        }
         crx += (trx - crx) * EASE_F; cry += (try_ - cry) * EASE_F
         crz += (trz - crz) * EASE_F; cs += (ts - cs) * EASE_F
         lbImg.style.transform = `scale(${cs.toFixed(4)}) rotateX(${crx.toFixed(2)}deg) rotateY(${cry.toFixed(2)}deg) rotateZ(${crz.toFixed(2)}deg)`
@@ -636,7 +635,7 @@ export default function AuroraSite() {
       }
       const open = (sh: HTMLElement) => {
         const im = sh.querySelector('img') as HTMLImageElement | null
-        trx = try_ = trz = 0; crx = cry = crz = 0; ts = cs = 1; vYi = vXi = 0
+        trx = try_ = trz = 0; crx = cry = crz = 0; ts = cs = 1
         if (im) { lbImg.src = im.currentSrc || im.src; lbImg.alt = im.alt }
         if (lbTitle) lbTitle.textContent = sh.dataset.title || 'Aperçu'
         lb.classList.add('open')
@@ -660,7 +659,7 @@ export default function AuroraSite() {
         }, { signal: sig })
       })
       stage.addEventListener('pointerdown', (e) => {
-        dragging = true; lastPX = e.clientX; lastPY = e.clientY; vYi = vXi = 0
+        dragging = true; lastPX = e.clientX; lastPY = e.clientY
         stage.classList.add('grabbing'); lb.classList.add('grabbed')
         try { stage.setPointerCapture(e.pointerId) } catch { /* ignore */ }
       }, { signal: sig })
@@ -668,8 +667,8 @@ export default function AuroraSite() {
         if (!dragging) return
         const dx = e.clientX - lastPX, dy = e.clientY - lastPY
         lastPX = e.clientX; lastPY = e.clientY
-        try_ += dx * 0.45; trx -= dy * 0.45
-        vYi = dx * 0.45; vXi = -dy * 0.45
+        try_ = clamp(try_ + dx * 0.28, -MAX_TILT, MAX_TILT)
+        trx = clamp(trx - dy * 0.28, -MAX_TILT, MAX_TILT)
       }, { signal: sig })
       const endDrag = () => { dragging = false; stage.classList.remove('grabbing') }
       stage.addEventListener('pointerup', endDrag, { signal: sig })
@@ -681,9 +680,7 @@ export default function AuroraSite() {
           const a = btn.dataset.act
           if (a === 'left') trz -= 90
           else if (a === 'right') trz += 90
-          else if (a === 'up') trx += 90
-          else if (a === 'down') trx -= 90
-          else if (a === 'reset') { trx = try_ = trz = 0; ts = 1; vYi = vXi = 0 }
+          else if (a === 'reset') { trx = try_ = trz = 0; ts = 1 }
         }, { signal: sig })
       })
       lbClose?.addEventListener('click', close, { signal: sig })
@@ -693,9 +690,7 @@ export default function AuroraSite() {
         if (e.key === 'Escape') close()
         else if (e.key === 'ArrowLeft') trz -= 90
         else if (e.key === 'ArrowRight') trz += 90
-        else if (e.key === 'ArrowUp') trx += 90
-        else if (e.key === 'ArrowDown') trx -= 90
-        else if (e.key.toLowerCase() === 'r') { trx = try_ = trz = 0; ts = 1; vYi = vXi = 0 }
+        else if (e.key.toLowerCase() === 'r') { trx = try_ = trz = 0; ts = 1 }
       }, { signal: sig })
     })()
 
