@@ -353,11 +353,10 @@ const MARKUP = `
     <div class="frow">
       <a href="tel:+33782755924">07 82 75 59 24</a>
       <a href="mailto:jdwebdesign64@hotmail.com">jdwebdesign64@hotmail.com</a>
-      <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a>
-      <a href="https://behance.net" target="_blank" rel="noopener noreferrer">Behance</a>
+      <a href="/mentions-legales">Mentions légales</a>
+      <a href="/confidentialite">Confidentialité</a>
     </div>
-    <p class="fcopy">© 2025 JDesign · Jean-Denis Cuenin · Fait avec précision en France</p>
+    <p class="fcopy">© 2026 JDesign · Jean-Denis Cuenin · Fait avec précision en France</p>
   </footer>
 `
 
