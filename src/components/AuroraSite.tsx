@@ -126,6 +126,69 @@ const MARKUP = `
       </div>
     </section>
 
+    <section class="arts-sec" id="articles">
+      <div class="wrap">
+        <div class="arts-head rv">
+          <p class="tag">Contenu &amp; Rédaction</p>
+          <h2 class="h2">Vos produits <span class="shine">prennent vie</span>.</h2>
+          <p class="arts-tagline"><em>totalement personnalisable</em></p>
+          <p class="arts-sub">Je transforme vos textes en pages qui captivent, fidélisent et convertissent — lisibles sur tous les écrans.</p>
+        </div>
+        <div class="arts-grid">
+          <article class="acard rv">
+            <div class="acard-img ai-1">
+              <div class="acard-deco"><span class="ad-sym">✦</span><span class="ad-l"></span><span class="ad-l"></span><span class="ad-l ad-ls"></span></div>
+              <span class="acard-cat">Conseil</span>
+            </div>
+            <div class="acard-body">
+              <h3 class="acard-title">5 raisons d'avoir un site vitrine en 2026</h3>
+              <p class="acard-excerpt">Votre boutique physique est votre premier chez-vous. Votre site, c'est votre vitrine accessible 24h/24. Découvrez pourquoi c'est devenu indispensable.</p>
+              <div class="acard-meta"><span class="acard-date">Juin 2026 · 4 min</span><span class="acard-link">Lire →</span></div>
+            </div>
+          </article>
+          <article class="acard rv" data-d="1">
+            <div class="acard-img ai-2">
+              <div class="acard-deco"><span class="ad-sym">◉</span><span class="ad-l"></span><span class="ad-l"></span><span class="ad-l ad-ls"></span></div>
+              <span class="acard-cat">SEO</span>
+            </div>
+            <div class="acard-body">
+              <h3 class="acard-title">Comment le SEO local peut doubler votre clientèle</h3>
+              <p class="acard-excerpt">Apparaître en tête de Google pour votre activité locale peut changer radicalement votre quotidien. Voici les bases que j'applique pour chaque site.</p>
+              <div class="acard-meta"><span class="acard-date">Mai 2026 · 5 min</span><span class="acard-link">Lire →</span></div>
+            </div>
+          </article>
+          <article class="acard rv" data-d="2">
+            <div class="acard-img ai-3">
+              <div class="acard-deco"><span class="ad-sym">◈</span><span class="ad-l"></span><span class="ad-l"></span><span class="ad-l ad-ls"></span></div>
+              <span class="acard-cat">Design</span>
+            </div>
+            <div class="acard-body">
+              <h3 class="acard-title">Ce que vos visiteurs regardent en premier (et pourquoi ça change tout)</h3>
+              <p class="acard-excerpt">En moins de 3 secondes, un visiteur décide s'il reste ou s'en va. Un bon design ne se voit pas — il se ressent.</p>
+              <div class="acard-meta"><span class="acard-date">Avr. 2026 · 3 min</span><span class="acard-link">Lire →</span></div>
+            </div>
+          </article>
+        </div>
+        <div class="arts-feature rv">
+          <div class="af-media">
+            <div class="af-frame">
+              <video src="/video/burger.mp4" autoplay muted loop playsinline></video>
+              <div class="af-nowm"></div>
+            </div>
+          </div>
+          <div class="af-content">
+            <h3 class="af-title">Burger Maison</h3>
+            <p class="af-label">Ingrédients</p>
+            <p class="af-ingr">Bun's maison, salade, steaks boucher 130g, cheddar fumé, cornichons, oignons caramélisés, sauce maison.</p>
+            <p class="af-allerg"><em>Allergènes : gluten, sésame, lactose.</em></p>
+          </div>
+        </div>
+        <div class="arts-cta rv">
+          <a href="#contact" class="b-ghost">Donnez vie à vos contenus →</a>
+        </div>
+      </div>
+    </section>
+
     <section class="stats" aria-label="Chiffres clés">
       <div class="wrap stats-g">
         <div class="stat rv"><div class="n"><span class="cnt" data-t="14">0</span></div><p class="lab">Jours max pour livrer le site</p></div>
@@ -394,7 +457,7 @@ export default function AuroraSite() {
           requestAnimationFrame(cl)
         }
         cl()
-        qsa('a, button, .tile, .plan').forEach((el) => {
+        qsa('a, button, .tile, .plan, .acard').forEach((el) => {
           el.addEventListener('mouseenter', () => document.body.classList.add('cur-on'), { signal: sig })
           el.addEventListener('mouseleave', () => document.body.classList.remove('cur-on'), { signal: sig })
         })
