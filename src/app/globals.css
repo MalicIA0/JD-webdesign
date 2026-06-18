@@ -679,7 +679,33 @@ body.go .hero-meta { opacity: 1; }
 .af-allerg { font-size: 13px; color: var(--faint); font-style: italic; }
 .af-disclaimer { font-size: 11px; color: var(--faint); font-style: italic; margin-top: 12px; opacity: 0.7; }
 .af-nowm { position: absolute; bottom: 0; right: 0; width: 170px; height: 32px; background: #000; pointer-events: none; }
-@media (max-width: 860px) { .arts-feature { grid-template-columns: 1fr; gap: 30px; } }
+@media (max-width: 860px) { .arts-feature { grid-template-columns: 1fr; gap: 24px; } }
+
+/* ============================================================
+   MOBILE — Optimisations section produits (≤ 600px)
+   ============================================================ */
+@media (max-width: 600px) {
+  /* En-tête section */
+  .arts-sec { padding: 10vh 0; }
+  .arts-tagline { font-size: 12px; }
+  .arts-sub { font-size: 14.5px; margin-top: 12px; }
+  .arts-grid { margin-top: 5vh; gap: 14px; }
+  .arts-cta { margin-top: 4vh; }
+
+  /* Cartes articles */
+  .acard-img { height: 160px; }
+  .acard-body { padding: 18px 20px 18px; gap: 10px; }
+  .acard-title { font-size: 16px; }
+  .acard-excerpt { font-size: 13.5px; line-height: 1.65; }
+
+  /* Cartes vidéo produit */
+  .arts-feature { padding: 20px; gap: 16px; }
+  .af-title { font-size: 24px; margin-bottom: 14px; }
+  .af-label { font-size: 9px; margin-bottom: 10px; }
+  .af-ingr { font-size: 14.5px; line-height: 1.7; margin-bottom: 16px; }
+  .af-allerg { font-size: 12px; }
+  .af-disclaimer { font-size: 10.5px; margin-top: 10px; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
