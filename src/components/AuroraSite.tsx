@@ -142,7 +142,6 @@ const MARKUP = `
             <div class="acard-body">
               <h3 class="acard-title">5 raisons d'avoir un site vitrine en 2026</h3>
               <p class="acard-excerpt">Votre boutique physique est votre premier chez-vous. Votre site, c'est votre vitrine accessible 24h/24. Découvrez pourquoi c'est devenu indispensable.</p>
-              <div class="acard-meta"><span class="acard-date">Juin 2026 · 4 min</span><span class="acard-link">Lire →</span></div>
             </div>
           </article>
           <article class="acard rv" data-d="1">
@@ -153,7 +152,6 @@ const MARKUP = `
             <div class="acard-body">
               <h3 class="acard-title">Comment le SEO local peut doubler votre clientèle</h3>
               <p class="acard-excerpt">Apparaître en tête de Google pour votre activité locale peut changer radicalement votre quotidien. Voici les bases que j'applique pour chaque site.</p>
-              <div class="acard-meta"><span class="acard-date">Mai 2026 · 5 min</span><span class="acard-link">Lire →</span></div>
             </div>
           </article>
           <article class="acard rv" data-d="2">
@@ -164,7 +162,6 @@ const MARKUP = `
             <div class="acard-body">
               <h3 class="acard-title">Ce que vos visiteurs regardent en premier (et pourquoi ça change tout)</h3>
               <p class="acard-excerpt">En moins de 3 secondes, un visiteur décide s'il reste ou s'en va. Un bon design ne se voit pas — il se ressent.</p>
-              <div class="acard-meta"><span class="acard-date">Avr. 2026 · 3 min</span><span class="acard-link">Lire →</span></div>
             </div>
           </article>
         </div>
@@ -186,7 +183,6 @@ const MARKUP = `
           <div class="af-media">
             <div class="af-frame">
               <video src="/video/robe.mp4" autoplay muted loop playsinline></video>
-              <div class="af-nowm"></div>
             </div>
           </div>
           <div class="af-content">
