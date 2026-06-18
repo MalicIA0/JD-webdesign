@@ -31,7 +31,6 @@ const MARKUP = `
     </a>
     <a href="#services" class="lnk">Services</a>
     <a href="#tarifs" class="lnk">Tarifs</a>
-    <a href="tel:+33782755924" class="lnk">07 82 75 59 24</a>
     <a href="#contact" class="cta">Contact</a>
   </nav>
 
