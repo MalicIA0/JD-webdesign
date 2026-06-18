@@ -355,10 +355,6 @@ const MARKUP = `
             <p class="tag">Contact</p>
             <h2 class="h2">Votre prochain<br>projet <span class="shine">part d'ici</span>.</h2>
             <p class="csub">Vous avez une idée ? Je suis disponible pour de nouveaux projets. Réponse garantie en moins de 12h.</p>
-            <div class="dlinks">
-              <a href="mailto:jdwebdesign64@hotmail.com"><span class="ic">✉</span> jdwebdesign64@hotmail.com</a>
-              <a href="tel:+33782755924"><span class="ic">☎</span> 07 82 75 59 24</a>
-            </div>
           </div>
           <form class="cform" id="cform" novalidate>
             <input type="text" name="honeypot" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -413,12 +409,10 @@ const MARKUP = `
   <footer class="footer">
     <div class="fbrand" aria-hidden="true"><span class="fjd">JD</span><span class="fbd">Web Design</span></div>
     <div class="frow">
-      <a href="tel:+33782755924">07 82 75 59 24</a>
-      <a href="mailto:jdwebdesign64@hotmail.com">jdwebdesign64@hotmail.com</a>
       <a href="/mentions-legales">Mentions légales</a>
       <a href="/confidentialite">Confidentialité</a>
     </div>
-    <p class="fcopy">© 2026 JDesign · Jean-Denis Cuenin · Fait avec précision en France</p>
+    <p class="fcopy">© 2026 JDesign · Fait avec précision en France</p>
   </footer>
 `
 
