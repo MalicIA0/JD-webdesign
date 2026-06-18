@@ -182,6 +182,20 @@ const MARKUP = `
             <p class="af-allerg"><em>Allergènes : gluten, sésame, lactose.</em></p>
           </div>
         </div>
+        <div class="arts-feature rv">
+          <div class="af-media">
+            <div class="af-frame">
+              <video src="/video/robe.mp4" autoplay muted loop playsinline></video>
+              <div class="af-nowm"></div>
+            </div>
+          </div>
+          <div class="af-content">
+            <h3 class="af-title">Robe Été</h3>
+            <p class="af-label">Description</p>
+            <p class="af-ingr">Polyvalente et raffinée, cette robe à encolure en V est conçue pour sublimer la silhouette. Adaptée aussi bien aux sorties décontractées qu'aux occasions habillées, elle est confectionnée dans des matières respirantes qui allient confort et style au quotidien.</p>
+            <p class="af-allerg"><em>Matière : polyester · Taille : S au XL · Coloris : vert, beige, rouge.</em></p>
+          </div>
+        </div>
         <div class="arts-cta rv">
           <a href="#contact" class="b-ghost">Donnez vie à vos contenus →</a>
         </div>
