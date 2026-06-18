@@ -184,6 +184,7 @@ const MARKUP = `
           <div class="af-media">
             <div class="af-frame">
               <video src="/video/robe.mp4" autoplay muted loop playsinline></video>
+              <div class="af-nowm af-nowm-w"></div>
             </div>
             <p class="af-disclaimer"><em>* ces articles ne sont pas à vendre, ce sont une démonstration de ce que vous pouvez faire.</em></p>
           </div>

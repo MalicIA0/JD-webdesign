@@ -679,6 +679,7 @@ body.go .hero-meta { opacity: 1; }
 .af-allerg { font-size: 13px; color: var(--faint); font-style: italic; }
 .af-disclaimer { font-size: 11px; color: var(--faint); font-style: italic; margin-top: 12px; opacity: 0.7; }
 .af-nowm { position: absolute; bottom: 0; right: 0; width: 170px; height: 32px; background: #000; pointer-events: none; }
+.af-nowm-w { background: #fff; }
 @media (max-width: 860px) { .arts-feature { grid-template-columns: 1fr; gap: 24px; } }
 
 /* ============================================================
