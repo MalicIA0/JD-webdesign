@@ -171,6 +171,7 @@ const MARKUP = `
               <video src="/video/burger.mp4" autoplay muted loop playsinline></video>
               <div class="af-nowm"></div>
             </div>
+            <p class="af-disclaimer"><em>* ces articles ne sont pas à vendre, ce sont une démonstration de ce que vous pouvez faire.</em></p>
           </div>
           <div class="af-content">
             <h3 class="af-title">Burger Maison</h3>
@@ -184,6 +185,7 @@ const MARKUP = `
             <div class="af-frame">
               <video src="/video/robe.mp4" autoplay muted loop playsinline></video>
             </div>
+            <p class="af-disclaimer"><em>* ces articles ne sont pas à vendre, ce sont une démonstration de ce que vous pouvez faire.</em></p>
           </div>
           <div class="af-content">
             <h3 class="af-title">Robe Été</h3>
