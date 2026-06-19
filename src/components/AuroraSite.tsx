@@ -25,12 +25,12 @@ const MARKUP = `
   <div class="progress" id="prog" aria-hidden="true"></div>
 
   <div class="header-logo" aria-hidden="true">
-    <img src="/img/logo-v2.png" alt="" class="header-logo-img">
+    <img src="/img/logo-v3.png" alt="" class="header-logo-img">
   </div>
 
   <nav class="nav" id="nav" aria-label="Navigation principale">
     <a href="#" class="brand" aria-label="JD Web Design — Accueil">
-      <img src="/img/logo-v2.png" alt="JD Web Design" class="brand-logo">
+      <img src="/img/logo-v3.png" alt="JD Web Design" class="brand-logo">
     </a>
     <a href="#services" class="lnk">Services</a>
     <a href="#tarifs" class="lnk">Tarifs</a>
@@ -445,7 +445,7 @@ const MARKUP = `
   </div>
 
   <footer class="footer">
-    <div class="fbrand" aria-hidden="true"><img src="/img/logo-v2.png" alt="" class="footer-logo"></div>
+    <div class="fbrand" aria-hidden="true"><img src="/img/logo-v3.png" alt="" class="footer-logo"></div>
     <div class="frow">
       <a href="/mentions-legales">Mentions légales</a>
       <a href="/confidentialite">Confidentialité</a>
