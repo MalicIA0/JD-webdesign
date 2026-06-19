@@ -335,7 +335,7 @@ const MARKUP = `
             <h3>Sur Mesure</h3>
             <div class="crea">
               <p class="lbl">Création</p>
-              <p><span class="v">Devis</span><span class="meta">· Étude personnalisée</span></p>
+              <p><span class="v">Devis</span><span class="meta">· Livraison en 3 semaines</span></p>
             </div>
             <div class="mois">
               <span class="amt-custom">Sur devis</span>
