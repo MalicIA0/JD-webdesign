@@ -326,6 +326,29 @@ const MARKUP = `
             </ul>
             <a href="#contact" class="b-grad">Démarrer avec Pro</a>
           </article>
+
+          <article class="plan custom rv tilt" data-d="2">
+            <span class="reco custom-badge">✦ Haut de gamme</span>
+            <p class="pl">Plan</p>
+            <h3>Sur Mesure</h3>
+            <div class="crea">
+              <p class="lbl">Création</p>
+              <p><span class="v">Devis</span><span class="meta">· Étude personnalisée</span></p>
+            </div>
+            <div class="mois">
+              <span class="amt-custom">Sur devis</span>
+              <p class="note">accompagnement haut de gamme, sans limite</p>
+            </div>
+            <ul class="feats">
+              <li><span class="c">✓</span> Inclut tous les services du plan Pro</li>
+              <li><span class="c">✓</span> Architecture et fonctionnalités 100% sur mesure</li>
+              <li><span class="c">✓</span> Identité de marque premium complète</li>
+              <li><span class="c">✓</span> Stratégie digitale et marketing dédiée</li>
+              <li><span class="c">✓</span> Accompagnement prioritaire illimité</li>
+              <li><span class="c">✓</span> Interlocuteur unique du début à la fin</li>
+            </ul>
+            <a href="#contact" class="b-ghost">Demander un devis sur mesure</a>
+          </article>
         </div>
 
         <p class="plans-note rv">Résiliation à tout moment · Aucuns frais cachés · Hébergement &amp; nom de domaine inclus la 1ère année</p>
