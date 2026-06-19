@@ -272,13 +272,6 @@ const MARKUP = `
           <p class="plans-sub">Sans engagement. Résiliation à tout moment. Hébergement &amp; domaine inclus la 1ère année.</p>
         </div>
 
-        <div class="bill rv" role="group" aria-label="Facturation">
-          <span class="o on" id="om">Mensuel</span>
-          <button class="bsw" id="bsw" role="switch" aria-checked="false" aria-label="Basculer en annuel"></button>
-          <span class="o" id="oa">Annuel</span>
-          <span class="bchip">−20%</span>
-        </div>
-
         <div class="plans">
           <article class="plan rv tilt">
             <p class="pl">Plan</p>
@@ -288,7 +281,7 @@ const MARKUP = `
               <p><span class="v">1000€</span><span class="meta">· Livraison en 14 jours</span></p>
             </div>
             <div class="mois">
-              <span class="amt pr" data-m="100" data-a="100">100€</span><span class="per">/ mois</span>
+              <span class="amt">100€</span><span class="per">/ mois</span>
               <p class="note">sans engagement</p>
             </div>
             <ul class="feats">
@@ -311,7 +304,7 @@ const MARKUP = `
               <p><span class="v">1900€</span><span class="meta">· Livraison en 14 jours</span></p>
             </div>
             <div class="mois">
-              <span class="amt pr" data-m="190" data-a="152">190€</span><span class="per">/ mois</span>
+              <span class="amt">190€</span><span class="per">/ mois</span>
               <p class="note">sans engagement</p>
             </div>
             <ul class="feats">
@@ -664,20 +657,6 @@ export default function AuroraSite() {
         }, { signal: sig })
         card.addEventListener('mouseleave', () => { card.style.transform = '' }, { signal: sig })
       })
-    }
-
-    // ---------- Toggle tarifs ----------
-    const bsw = $('bsw'), om = $('om'), oa = $('oa')
-    if (bsw) {
-      let an = false
-      bsw.addEventListener('click', () => {
-        an = !an
-        bsw.classList.toggle('an', an)
-        bsw.setAttribute('aria-checked', String(an))
-        om?.classList.toggle('on', !an); oa?.classList.toggle('on', an)
-        qsa('.pr').forEach((el) => { el.textContent = `${an ? el.dataset.a : el.dataset.m}€` })
-        qsa('.mois .note').forEach((el) => { el.textContent = an ? 'sans engagement · facturation annuelle' : 'sans engagement' })
-      }, { signal: sig })
     }
 
     // ---------- Témoignages ----------
