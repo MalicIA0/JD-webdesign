@@ -168,6 +168,9 @@ const MARKUP = `
             </div>
           </article>
         </div>
+        <div class="arts-divider rv">
+          <p class="arts-divider-text">Exemple d'animation pour vos produits, quels qu'ils soient</p>
+        </div>
         <div class="arts-feature rv">
           <div class="af-media">
             <div class="af-frame">
