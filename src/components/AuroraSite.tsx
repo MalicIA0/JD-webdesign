@@ -285,10 +285,10 @@ const MARKUP = `
             <h3>Économique</h3>
             <div class="crea">
               <p class="lbl">Création</p>
-              <p><span class="v">500€</span><span class="meta">· Livraison en 14 jours</span></p>
+              <p><span class="v">1000€</span><span class="meta">· Livraison en 14 jours</span></p>
             </div>
             <div class="mois">
-              <span class="amt pr" data-m="90" data-a="72">90€</span><span class="per">/ mois</span>
+              <span class="amt pr" data-m="100" data-a="100">100€</span><span class="per">/ mois</span>
               <p class="note">sans engagement</p>
             </div>
             <ul class="feats">
@@ -297,8 +297,7 @@ const MARKUP = `
               <li><span class="c">✓</span> SEO de base</li>
               <li><span class="c">✓</span> Nom de domaine</li>
               <li><span class="c">✓</span> Hébergement</li>
-              <li><span class="c">✓</span> Mises à jour de contenu</li>
-              <li><span class="c">✓</span> Débrief mensuel</li>
+              <li><span class="c">✓</span> 1 mise à jour de contenu par mois</li>
             </ul>
             <a href="#contact" class="b-ghost">Démarrer avec Économique</a>
           </article>
@@ -309,20 +308,20 @@ const MARKUP = `
             <h3>Pro</h3>
             <div class="crea">
               <p class="lbl">Création</p>
-              <p><span class="v">800€</span><span class="meta">· Livraison en 14 jours</span></p>
+              <p><span class="v">1900€</span><span class="meta">· Livraison en 14 jours</span></p>
             </div>
             <div class="mois">
-              <span class="amt pr" data-m="130" data-a="104">130€</span><span class="per">/ mois</span>
+              <span class="amt pr" data-m="190" data-a="152">190€</span><span class="per">/ mois</span>
               <p class="note">sans engagement</p>
             </div>
             <ul class="feats">
               <li><span class="c">✓</span> Inclut tous les services du plan Économique</li>
               <li><span class="c">✓</span> Référencement (SEO) premium</li>
               <li><span class="c">✓</span> Stratégie de contenu</li>
-              <li><span class="c">✓</span> Chatbot IA personnalisé</li>
-              <li><span class="c">✓</span> Animations du site</li>
+              <li><span class="c">✓</span> Chatbot traditionnel</li>
+              <li><span class="c">✓</span> 2 animations de site</li>
               <li><span class="c">✓</span> Création d'un logo</li>
-              <li><span class="c">✓</span> Mises à jour illimitées</li>
+              <li><span class="c">✓</span> Mises à jour 3 fois par mois</li>
               <li><span class="c">✓</span> Support 7j/7</li>
               <li><span class="c">✓</span> Dashboard que vous contrôlez</li>
               <li><span class="c">✓</span> Choix entre deux maquettes</li>
