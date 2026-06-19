@@ -113,22 +113,11 @@ button { font-family: inherit; cursor: pointer; }
 }
 .nav.hide { transform: translateX(-50%) translateY(-130%); }
 .nav .brand {
-  display: flex; align-items: center; gap: 11px;
+  display: flex; align-items: center;
   padding: 6px 16px 6px 10px;
 }
-.nav .brand .jd {
-  font-family: var(--script); font-weight: 700;
-  font-size: 32px; line-height: 0.9; padding-bottom: 3px;
-  background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;
-}
-.nav .brand .bd {
-  display: flex; gap: 6px; line-height: 1;
-  font-family: var(--m); font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
-  color: var(--muted);
-  padding-left: 11px; border-left: 1px solid var(--stroke);
-}
-.nav .brand .bd b { font-weight: 500; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-@media (max-width: 420px) { .nav .brand .bd { display: none; } }
+.nav .brand-logo { height: 30px; width: auto; display: block; }
+@media (max-width: 420px) { .nav .brand-logo { height: 24px; } }
 .nav a.lnk {
   font-size: 13.5px; color: var(--muted); padding: 9px 16px; border-radius: 99px;
   transition: color 0.25s, background 0.25s; white-space: nowrap;
@@ -593,19 +582,8 @@ body.go .hero-meta { opacity: 1; }
 
 /* ---------- Footer ---------- */
 .footer { padding: 0 0 6vh; text-align: center; }
-.fbrand { display: flex; flex-direction: column; align-items: center; gap: 6px; margin-bottom: 5vh; user-select: none; }
-.fbrand .fjd {
-  font-family: var(--script); font-weight: 700; line-height: 0.9;
-  font-size: clamp(80px, 17vw, 260px);
-  background: linear-gradient(120deg, var(--cyan), var(--violet) 55%, var(--magenta));
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-  filter: drop-shadow(0 12px 60px rgba(139,124,255,0.25));
-}
-.fbrand .fbd {
-  font-family: var(--m); font-weight: 500; text-transform: uppercase;
-  font-size: clamp(12px, 2vw, 20px); letter-spacing: 0.55em; padding-left: 0.55em;
-  color: var(--muted);
-}
+.fbrand { display: flex; justify-content: center; margin-bottom: 5vh; user-select: none; }
+.footer-logo { width: clamp(220px, 30vw, 460px); height: auto; filter: drop-shadow(0 12px 60px rgba(139,124,255,0.25)); }
 .frow { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px 36px; font-size: 13.5px; color: var(--muted); }
 .frow a:hover { color: var(--cyan); }
 .fcopy { margin-top: 26px; font-family: var(--m); font-size: 11.5px; color: var(--faint); }
