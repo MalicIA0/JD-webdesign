@@ -323,7 +323,7 @@ const MARKUP = `
               <li><span class="c">✓</span> Création d'un logo</li>
               <li><span class="c">✓</span> Mises à jour 3 fois par mois</li>
               <li><span class="c">✓</span> Support 7j/7</li>
-              <li><span class="c">✓</span> Dashboard que vous contrôlez</li>
+              <li><span class="c">✓</span> Rapport analytique remis le 30 du mois</li>
               <li><span class="c">✓</span> Choix entre deux maquettes</li>
             </ul>
             <a href="#contact" class="b-grad">Démarrer avec Pro</a>
