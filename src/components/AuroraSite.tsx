@@ -308,10 +308,10 @@ const MARKUP = `
             <h3>Pro</h3>
             <div class="crea">
               <p class="lbl">Création</p>
-              <p><span class="v">1900€</span><span class="meta">· Livraison en 14 jours</span></p>
+              <p><span class="v">1500€ TTC</span><span class="meta">· Livraison en 14 jours</span></p>
             </div>
             <div class="mois">
-              <span class="amt">190€</span><span class="per">/ mois</span>
+              <span class="amt">150€</span><span class="per">TTC / mois</span>
               <p class="note">sans engagement</p>
             </div>
             <ul class="feats">
@@ -392,7 +392,7 @@ const MARKUP = `
               <label>Budget *</label>
               <div class="bgrp" id="bgrp">
                 <button type="button" data-v="1000€">1000€</button>
-                <button type="button" data-v="1900€">1900€</button>
+                <button type="button" data-v="1500€">1500€</button>
                 <button type="button" data-v="Sur devis">Sur devis</button>
               </div>
             </div>
