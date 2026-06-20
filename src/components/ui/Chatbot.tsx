@@ -14,11 +14,17 @@ const QUICK_REPLIES = [
 
 export default function Chatbot() {
   const [open, setOpen] = useState(false)
+  const [showTeaser, setShowTeaser] = useState(false)
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    const t = setTimeout(() => setShowTeaser(true), 3000)
+    return () => clearTimeout(t)
+  }, [])
 
   useEffect(() => {
     if (open && messages.length === 0) {
@@ -27,7 +33,7 @@ export default function Chatbot() {
         content: 'Bonjour ! 👋 Je suis l\'assistant de JDesign. Comment puis-je vous aider ?',
       }])
     }
-    if (open) inputRef.current?.focus()
+    if (open) { setShowTeaser(false); inputRef.current?.focus() }
   }, [open])
 
   useEffect(() => {
@@ -199,6 +205,32 @@ export default function Chatbot() {
                 </svg>
               </button>
             </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Bulle d'accroche proactive */}
+      <AnimatePresence>
+        {showTeaser && !open && (
+          <motion.div
+            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 10, scale: 0.95 }}
+            transition={{ duration: 0.3, ease: EASE }}
+            className="relative max-w-[230px] rounded-sm px-4 py-3 pr-7 text-sm shadow-2xl cursor-pointer"
+            style={{ backgroundColor: '#131A2E', border: '1px solid var(--border-subtle)', color: '#EDF0FF' }}
+            onClick={() => setOpen(true)}
+          >
+            <button
+              onClick={(e) => { e.stopPropagation(); setShowTeaser(false) }}
+              className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full flex items-center justify-center text-muted hover:text-off-white transition-colors"
+              aria-label="Fermer la suggestion"
+            >
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
+            </button>
+            <p className="leading-relaxed">👋 Je suis votre assistant, avez-vous besoin d&apos;aide ?</p>
           </motion.div>
         )}
       </AnimatePresence>
