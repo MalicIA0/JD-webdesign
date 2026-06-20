@@ -686,6 +686,9 @@ body.go .hero-meta { opacity: 1; }
 .arts-divider-text::before, .arts-divider-text::after {
   content: ''; width: 60px; height: 1px; background: var(--stroke-2);
 }
+.arts-divider-sub {
+  margin-top: 12px; font-size: 14.5px; font-style: italic; color: var(--faint);
+}
 
 .arts-feature {
   display: grid; grid-template-columns: 1fr 1fr; gap: 52px; align-items: center;

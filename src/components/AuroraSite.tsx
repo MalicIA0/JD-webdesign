@@ -170,6 +170,7 @@ const MARKUP = `
         </div>
         <div class="arts-divider rv">
           <p class="arts-divider-text">Exemple d'animation pour vos produits, quels qu'ils soient</p>
+          <p class="arts-divider-sub">Plusieurs produits, plusieurs styles. Chacun son goût.</p>
         </div>
         <div class="arts-feature burger-card rv">
           <div class="af-media">
