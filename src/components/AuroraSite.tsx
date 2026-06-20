@@ -391,9 +391,9 @@ const MARKUP = `
             <div class="cf">
               <label>Budget *</label>
               <div class="bgrp" id="bgrp">
-                <button type="button" data-v="500€">500€</button>
-                <button type="button" data-v="800€">800€</button>
-                <button type="button" data-v="Autre">Autre</button>
+                <button type="button" data-v="1000€">1000€</button>
+                <button type="button" data-v="1900€">1900€</button>
+                <button type="button" data-v="Sur devis">Sur devis</button>
               </div>
             </div>
             <div class="cf">

@@ -161,7 +161,20 @@ button { font-family: inherit; cursor: pointer; }
   transition: box-shadow 0.3s, transform 0.3s var(--ease);
 }
 .nav .cta:hover { box-shadow: 0 6px 34px rgba(139,124,255,0.7); transform: translateY(-1px); }
-@media (max-width: 720px) { .nav a.lnk { display: none; } }
+@media (max-width: 640px) {
+  .nav {
+    top: 72px; left: 18px; right: 18px;
+    flex-direction: column; align-items: stretch; gap: 4px;
+    padding: 10px; border-radius: 20px; max-width: none;
+    transform: translateY(-10px) scale(0.97);
+    background: #07090F; backdrop-filter: none; -webkit-backdrop-filter: none;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  }
+  .nav.open { transform: none; }
+  .nav .brand { justify-content: center; padding: 10px; }
+  .nav a.lnk { text-align: center; padding: 13px 16px; }
+  .nav .cta { text-align: center; padding: 14px 20px; }
+}
 
 /* ---------- Helpers ---------- */
 .wrap { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
