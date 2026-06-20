@@ -109,7 +109,7 @@ const MARKUP = `
       <div class="wrap">
         <div class="gallery-head rv">
           <p class="tag">En coulisses</p>
-          <h2 class="h2">Du <span class="shine">code</span> propre, livré.</h2>
+          <h2 class="h2">Des <span class="shine">images</span> modulables en 1 clic pour votre confort.</h2>
         </div>
         <div class="gallery">
           <figure class="shot rv" data-src="/img/shot-1.jpg" data-fallback="/img/shot-1.svg" data-title="Composant — structure HTML">
