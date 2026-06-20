@@ -43,8 +43,8 @@ const MARKUP = `
       <div class="hero-in">
         <p class="tag">Freelance en design &amp; développement web</p>
         <h1>
-          <span class="l"><span>Et si on vous reconnaissait,</span></span>
-          <span class="l"><span>par votre <em class="shine" style="font-style:normal">site</em> ?</span></span>
+          <span class="l"><span>Donnez à votre business</span></span>
+          <span class="l"><span>le <em class="shine" style="font-style:normal">site</em> qu'il mérite.</span></span>
           <span class="l"><span><span class="tickbox" id="tick"><span class="on">Design.</span><span>Code.</span><span>Craft.</span><span>Vision.</span></span></span></span>
         </h1>
         <p class="hero-sub">Freelance spécialisé en design et développement web. Création de sites internets — élégants, uniques, fonctionnels, une seconde vitrine accessible en un clic.</p>
