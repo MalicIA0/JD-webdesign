@@ -685,6 +685,21 @@ body.go .hero-meta { opacity: 1; }
 .af-nowm-w { background: #fff; }
 @media (max-width: 860px) { .arts-feature { grid-template-columns: 1fr; gap: 24px; } }
 
+/* ---------- Carte burger : style fiche menu (fond beige) ---------- */
+.burger-content {
+  background: #F0E4D3; border-radius: 18px;
+  padding: clamp(26px, 3vw, 38px);
+}
+.burger-title {
+  background: none; -webkit-background-clip: unset; background-clip: unset;
+  color: #1A1410; font-weight: 800;
+}
+.burger-star { color: #1A1410; font-weight: 800; }
+.burger-price { color: #1A1410; font-weight: 800; }
+.burger-label { color: #1A1410; text-decoration: underline; }
+.burger-ingr { color: #3A2E22; }
+.burger-allerg { color: #6B5C49; }
+
 /* ============================================================
    MOBILE — Optimisations section produits (≤ 600px)
    ============================================================ */

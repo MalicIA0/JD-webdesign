@@ -171,7 +171,7 @@ const MARKUP = `
         <div class="arts-divider rv">
           <p class="arts-divider-text">Exemple d'animation pour vos produits, quels qu'ils soient</p>
         </div>
-        <div class="arts-feature rv">
+        <div class="arts-feature burger-card rv">
           <div class="af-media">
             <div class="af-frame">
               <video src="/video/burger.mp4" autoplay muted loop playsinline></video>
@@ -179,11 +179,11 @@ const MARKUP = `
             </div>
             <p class="af-disclaimer"><em>* ces articles ne sont pas à vendre, ce sont une démonstration de ce que vous pouvez faire.</em></p>
           </div>
-          <div class="af-content">
-            <h3 class="af-title">Burger Maison</h3>
-            <p class="af-label">Ingrédients</p>
-            <p class="af-ingr">Bun's maison, salade, steaks boucher 130g, cheddar fumé, cornichons, oignons caramélisés, sauce maison.</p>
-            <p class="af-allerg"><em>Allergènes : gluten, sésame, lactose.</em></p>
+          <div class="af-content burger-content">
+            <h3 class="af-title burger-title">Burger<span class="burger-star">*</span> Maison <span class="burger-price">18€</span></h3>
+            <p class="af-label burger-label">Ingrédients</p>
+            <p class="af-ingr burger-ingr">Bun's maison, salade, steaks boucher 130g, cheddar fumé, cornichons, oignons caramélisés, sauce maison.</p>
+            <p class="af-allerg burger-allerg"><em>Allergènes : gluten, sésame, lactose.</em></p>
           </div>
         </div>
         <div class="arts-feature rv">
