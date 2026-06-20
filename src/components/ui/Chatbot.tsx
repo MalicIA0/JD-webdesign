@@ -220,12 +220,13 @@ export default function Chatbot() {
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
             transition={{ duration: 0.3, ease: EASE }}
             className="relative max-w-[230px] rounded-sm px-4 py-3 pr-7 text-sm shadow-2xl cursor-pointer"
-            style={{ backgroundColor: '#131A2E', border: '1px solid var(--border-subtle)', color: '#EDF0FF' }}
+            style={{ backgroundColor: '#FFFFFF', border: '1px solid #E5E4ED', color: '#1A1A2E' }}
             onClick={() => setOpen(true)}
           >
             <button
               onClick={(e) => { e.stopPropagation(); setShowTeaser(false) }}
-              className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full flex items-center justify-center text-muted hover:text-off-white transition-colors"
+              className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full flex items-center justify-center transition-colors"
+              style={{ color: '#9B98AC' }}
               aria-label="Fermer la suggestion"
             >
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
