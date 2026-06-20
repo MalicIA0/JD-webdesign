@@ -82,15 +82,15 @@ export default function Chatbot() {
             style={{
               width: 340,
               maxHeight: 520,
-              backgroundColor: '#0B0E20',
-              border: '1px solid var(--border-subtle)',
+              backgroundColor: '#FFFFFF',
+              border: '1px solid #E5E4ED',
               boxShadow: '0 24px 60px -20px rgba(23,20,16,0.3)',
             }}
           >
             {/* Header */}
             <div
               className="flex items-center justify-between px-4 py-3"
-              style={{ borderBottom: '1px solid var(--border-subtle)' }}
+              style={{ borderBottom: '1px solid #ECEBF2' }}
             >
               <div className="flex items-center gap-2.5">
                 <div className="relative">
@@ -102,20 +102,21 @@ export default function Chatbot() {
                   </div>
                   <span
                     className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-green-400 border-2"
-                    style={{ borderColor: '#0B0E20' }}
+                    style={{ borderColor: '#FFFFFF' }}
                   />
                 </div>
                 <div>
-                  <p className="text-xs font-medium text-off-white">Assistant JDesign</p>
-                  <p className="text-xs text-green-400 flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-green-400 inline-block" />
+                  <p className="text-xs font-medium" style={{ color: '#1A1A2E' }}>Assistant JDesign</p>
+                  <p className="text-xs text-green-500 flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-green-500 inline-block" />
                     En ligne
                   </p>
                 </div>
               </div>
               <button
                 onClick={() => setOpen(false)}
-                className="text-muted hover:text-off-white transition-colors p-1"
+                className="transition-colors p-1"
+                style={{ color: '#9B98AC' }}
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M18 6L6 18M6 6l12 12" />
@@ -135,7 +136,7 @@ export default function Chatbot() {
                     style={
                       msg.role === 'user'
                         ? { backgroundColor: '#8B7CFF', color: '#FFF8EE' }
-                        : { backgroundColor: '#131A2E', color: '#EDF0FF', border: '1px solid var(--border-subtle)' }
+                        : { backgroundColor: '#F1F0F7', color: '#1A1A2E', border: '1px solid #ECEBF2' }
                     }
                   >
                     {msg.content}
@@ -147,14 +148,14 @@ export default function Chatbot() {
                 <div className="flex justify-start">
                   <div
                     className="px-4 py-3 rounded-sm"
-                    style={{ backgroundColor: '#131A2E', border: '1px solid var(--border-subtle)' }}
+                    style={{ backgroundColor: '#F1F0F7', border: '1px solid #ECEBF2' }}
                   >
                     <div className="flex gap-1 items-center h-3">
                       {[0, 1, 2].map((i) => (
                         <span
                           key={i}
-                          className="w-1.5 h-1.5 rounded-full bg-muted"
-                          style={{ animation: `pulse 1.2s ease-in-out ${i * 0.2}s infinite` }}
+                          className="w-1.5 h-1.5 rounded-full"
+                          style={{ backgroundColor: '#9B98AC', animation: `pulse 1.2s ease-in-out ${i * 0.2}s infinite` }}
                         />
                       ))}
                     </div>
@@ -169,8 +170,8 @@ export default function Chatbot() {
                     <button
                       key={r}
                       onClick={() => send(r)}
-                      className="text-left text-xs px-3 py-2 rounded-sm text-muted hover:text-off-white transition-colors"
-                      style={{ border: '1px solid var(--border-subtle)', backgroundColor: 'transparent' }}
+                      className="text-left text-xs px-3 py-2 rounded-sm transition-colors"
+                      style={{ border: '1px solid #ECEBF2', backgroundColor: 'transparent', color: '#5B5970' }}
                     >
                       {r} →
                     </button>
@@ -184,7 +185,7 @@ export default function Chatbot() {
             {/* Input */}
             <div
               className="flex items-center gap-2 p-3"
-              style={{ borderTop: '1px solid var(--border-subtle)' }}
+              style={{ borderTop: '1px solid #ECEBF2' }}
             >
               <input
                 ref={inputRef}
@@ -193,7 +194,8 @@ export default function Chatbot() {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => { if (e.key === 'Enter') send(input) }}
                 placeholder="Votre message..."
-                className="flex-1 bg-transparent text-sm text-off-white placeholder-muted outline-none"
+                className="flex-1 bg-transparent text-sm outline-none placeholder:text-gray-400"
+                style={{ color: '#1A1A2E' }}
               />
               <button
                 onClick={() => send(input)}
