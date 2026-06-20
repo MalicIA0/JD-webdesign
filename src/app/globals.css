@@ -39,6 +39,9 @@
   --b: var(--font-inter), 'Inter', sans-serif;
   --m: var(--font-jetbrains), 'JetBrains Mono', monospace;
   --script: var(--font-dancing), 'Dancing Script', cursive;
+  --serif: var(--font-playfair), 'Playfair Display', serif;
+  --gold: #C9A876;
+  --gold-light: #E8D4A8;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -699,6 +702,47 @@ body.go .hero-meta { opacity: 1; }
 .burger-label { color: #1A1410; text-decoration: underline; }
 .burger-ingr { color: #3A2E22; }
 .burger-allerg { color: #6B5C49; }
+
+/* ---------- Carte robe : style éditorial luxe (noir + or) ---------- */
+.robe-card {
+  background: radial-gradient(ellipse 120% 100% at 50% 0%, rgba(201,168,118,0.08), transparent 60%), #0A0908;
+  border: 1px solid rgba(201,168,118,0.28);
+}
+.robe-frame {
+  border: 1px solid rgba(201,168,118,0.4);
+  box-shadow: 0 28px 90px -20px rgba(0,0,0,0.8), 0 0 50px -10px rgba(201,168,118,0.18);
+}
+.robe-frame::before { background: linear-gradient(135deg, var(--gold-light), var(--gold) 60%, #8A6F46); opacity: 0.7; }
+.robe-disclaimer { color: rgba(201,168,118,0.55); }
+.robe-content { text-align: center; }
+.robe-eyebrow {
+  font-family: var(--m); font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 14px;
+}
+.robe-title {
+  background: none; -webkit-background-clip: unset; background-clip: unset;
+  font-family: var(--serif); font-style: italic; font-weight: 600;
+  font-size: clamp(34px, 4vw, 54px); letter-spacing: 0.01em;
+  color: var(--gold-light);
+  text-shadow: 0 0 40px rgba(201,168,118,0.25);
+  margin-bottom: 22px;
+}
+.robe-label {
+  font-family: var(--m); font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 18px;
+}
+.robe-ingr {
+  font-family: var(--serif); font-style: normal; font-weight: 500;
+  font-size: 17px; line-height: 1.9; letter-spacing: 0.01em;
+  color: #E9E3D8; margin: 0 auto 26px; max-width: 46ch;
+}
+.robe-allerg {
+  display: inline-block; font-family: var(--m); font-size: 11px; letter-spacing: 0.08em;
+  font-style: normal; color: rgba(201,168,118,0.75);
+  padding-top: 18px; border-top: 1px solid rgba(201,168,118,0.28);
+}
+.robe-allerg em { font-style: normal; }
+@media (max-width: 860px) { .robe-content { text-align: center; } }
 
 /* ============================================================
    MOBILE — Optimisations section produits (≤ 600px)

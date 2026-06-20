@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Sora, Inter, JetBrains_Mono, Dancing_Script } from 'next/font/google'
+import { Sora, Inter, JetBrains_Mono, Dancing_Script, Playfair_Display } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
 
@@ -28,6 +28,14 @@ const dancingScript = Dancing_Script({
   subsets: ['latin'],
   weight: ['600', '700'],
   variable: '--font-dancing',
+  display: 'swap',
+})
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['500', '600', '700', '800'],
+  style: ['normal', 'italic'],
+  variable: '--font-playfair',
   display: 'swap',
 })
 
@@ -77,7 +85,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="fr"
-      className={`${sora.variable} ${inter.variable} ${jetbrainsMono.variable} ${dancingScript.variable}`}
+      className={`${sora.variable} ${inter.variable} ${jetbrainsMono.variable} ${dancingScript.variable} ${playfair.variable}`}
     >
       <body className="antialiased">
         {process.env.NEXT_PUBLIC_GA_ID && (

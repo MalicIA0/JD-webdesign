@@ -188,19 +188,20 @@ const MARKUP = `
             <p class="af-allerg burger-allerg"><em>Allergènes : gluten, sésame, lactose.</em></p>
           </div>
         </div>
-        <div class="arts-feature rv">
+        <div class="arts-feature robe-card rv">
           <div class="af-media">
-            <div class="af-frame">
+            <div class="af-frame robe-frame">
               <video src="/video/robe.mp4" autoplay muted loop playsinline></video>
               <div class="af-nowm af-nowm-w"></div>
             </div>
-            <p class="af-disclaimer"><em>* ces articles ne sont pas à vendre, ce sont une démonstration de ce que vous pouvez faire.</em></p>
+            <p class="af-disclaimer robe-disclaimer"><em>* ces articles ne sont pas à vendre, ce sont une démonstration de ce que vous pouvez faire.</em></p>
           </div>
-          <div class="af-content">
-            <h3 class="af-title">Robe Été</h3>
-            <p class="af-label">Description</p>
-            <p class="af-ingr">Polyvalente et raffinée, cette robe à encolure en V est conçue pour sublimer la silhouette. Adaptée aussi bien aux sorties décontractées qu'aux occasions habillées, elle est confectionnée dans des matières respirantes qui allient confort et style au quotidien.</p>
-            <p class="af-allerg"><em>Matière : polyester · Taille : S au XL · Coloris : vert, beige, rouge.</em></p>
+          <div class="af-content robe-content">
+            <p class="robe-eyebrow">Collection Été</p>
+            <h3 class="af-title robe-title">Robe Été</h3>
+            <p class="af-label robe-label">— Description —</p>
+            <p class="af-ingr robe-ingr">Polyvalente et raffinée, cette robe à encolure en V est conçue pour sublimer la silhouette. Adaptée aussi bien aux sorties décontractées qu'aux occasions habillées, elle est confectionnée dans des matières respirantes qui allient confort et style au quotidien.</p>
+            <p class="af-allerg robe-allerg"><em>Matière : polyester · Taille : S au XL · Coloris : vert, beige, rouge.</em></p>
           </div>
         </div>
         <div class="arts-cta rv">
