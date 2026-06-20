@@ -513,26 +513,23 @@ body.go .hero-meta { opacity: 1; }
 }
 
 /* ============================================================
-   TÉMOIGNAGES
+   RÉALISATIONS
    ============================================================ */
 .voices { padding: 14vh 0; text-align: center; }
-.vbox { position: relative; max-width: 860px; margin: 7vh auto 0; min-height: 300px; }
-.vq {
-  position: absolute; inset: 0; padding: 46px 40px;
-  border-radius: 26px; background: var(--glass); border: 1px solid var(--stroke);
-  backdrop-filter: blur(18px);
-  opacity: 0; transform: translateY(26px) scale(0.97); pointer-events: none;
-  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
-  display: flex; flex-direction: column; justify-content: center; gap: 22px;
+.portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1080px; margin: 7vh auto 0; }
+.portfolio-slot {
+  aspect-ratio: 4 / 3; border-radius: 22px;
+  border: 1.5px dashed var(--stroke-2); background: var(--glass);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+  color: var(--faint); transition: border-color 0.3s, color 0.3s;
 }
-.vq.on { opacity: 1; transform: none; pointer-events: auto; position: relative; }
-.vq .st { color: var(--cyan); letter-spacing: 7px; font-size: 15px; text-shadow: 0 0 14px rgba(94,230,255,0.6); }
-.vq blockquote { font-family: var(--d); font-weight: 500; font-size: clamp(20px, 2.6vw, 30px); line-height: 1.4; letter-spacing: -0.01em; }
-.vq .who { font-family: var(--m); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
-.vq .who b { color: var(--txt); font-weight: 500; }
-.vdots { display: flex; justify-content: center; gap: 10px; margin-top: 4vh; }
-.vdots button { width: 34px; height: 4px; border: none; border-radius: 3px; background: var(--stroke-2); transition: background 0.3s, width 0.3s var(--ease); }
-.vdots button.on { background: var(--grad); width: 52px; }
+.portfolio-slot:hover { border-color: rgba(139,124,255,0.4); color: var(--muted); }
+.portfolio-slot .ps-ic {
+  width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 22px; line-height: 1; border: 1px solid var(--stroke-2); color: var(--muted);
+}
+.portfolio-slot p { font-family: var(--m); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+@media (max-width: 760px) { .portfolio-grid { grid-template-columns: 1fr; } }
 
 /* ============================================================
    CONTACT

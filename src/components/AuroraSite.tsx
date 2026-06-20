@@ -356,31 +356,14 @@ const MARKUP = `
       </div>
     </section>
 
-    <section class="voices rv" aria-label="Témoignages">
+    <section class="voices rv" aria-label="Réalisations">
       <div class="wrap">
-        <p class="tag">Ils témoignent</p>
-        <h2 class="h2">Ce qu'ils en <span class="shine">disent</span>.</h2>
-        <div class="vbox" id="vbox">
-          <div class="vq on">
-            <p class="st">★★★★★</p>
-            <blockquote>Encadrement complet, a su être à mon écoute pour valoriser mon activité.</blockquote>
-            <p class="who"><b>Laetitia L.</b> — Laetitia Hypnothérapeute</p>
-          </div>
-          <div class="vq">
-            <p class="st">★★★★★</p>
-            <blockquote>Livré en avance, sans un seul bug. Rare. L'interface est devenue notre meilleur argument de vente.</blockquote>
-            <p class="who"><b>Lucas B.</b></p>
-          </div>
-          <div class="vq">
-            <p class="st">★★★★★</p>
-            <blockquote>L'identité qu'on a créée ensemble parle mieux de nous que n'importe quel discours commercial.</blockquote>
-            <p class="who"><b>Camille V.</b></p>
-          </div>
-        </div>
-        <div class="vdots" id="vdots" role="tablist">
-          <button class="on" aria-label="Témoignage 1"></button>
-          <button aria-label="Témoignage 2"></button>
-          <button aria-label="Témoignage 3"></button>
+        <p class="tag">Réalisations</p>
+        <h2 class="h2">Ils m'ont fait <span class="shine">confiance</span>.</h2>
+        <div class="portfolio-grid">
+          <div class="portfolio-slot"><span class="ps-ic">+</span><p>Projet à venir</p></div>
+          <div class="portfolio-slot"><span class="ps-ic">+</span><p>Projet à venir</p></div>
+          <div class="portfolio-slot"><span class="ps-ic">+</span><p>Projet à venir</p></div>
         </div>
       </div>
     </section>
@@ -663,22 +646,6 @@ export default function AuroraSite() {
         }, { signal: sig })
         card.addEventListener('mouseleave', () => { card.style.transform = '' }, { signal: sig })
       })
-    }
-
-    // ---------- Témoignages ----------
-    const vqs = qsa('.vq'), vds = qsa('#vdots button')
-    if (vqs.length) {
-      let vi = 0, vPause = false
-      const goV = (i: number) => {
-        vqs[vi].classList.remove('on'); vds[vi]?.classList.remove('on')
-        vi = i % vqs.length
-        vqs[vi].classList.add('on'); vds[vi]?.classList.add('on')
-      }
-      vds.forEach((b, i) => b.addEventListener('click', () => { goV(i); vPause = true }, { signal: sig }))
-      const vbox = $('vbox')
-      vbox?.addEventListener('mouseenter', () => { vPause = true }, { signal: sig })
-      vbox?.addEventListener('mouseleave', () => { vPause = false }, { signal: sig })
-      intervals.push(setInterval(() => { if (!vPause && !rm) goV(vi + 1) }, 5200))
     }
 
     // ---------- Galerie + micro-fenêtre rotative ----------
