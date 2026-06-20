@@ -725,6 +725,7 @@ body.go .hero-meta { opacity: 1; }
   font-size: clamp(34px, 4vw, 54px); letter-spacing: 0.01em;
   color: var(--gold-light);
   text-shadow: 0 0 40px rgba(201,168,118,0.25);
+  text-decoration: underline; text-decoration-color: rgba(201,168,118,0.6); text-underline-offset: 10px;
   margin-bottom: 22px;
 }
 .robe-label {

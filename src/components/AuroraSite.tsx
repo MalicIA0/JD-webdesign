@@ -198,7 +198,7 @@ const MARKUP = `
           </div>
           <div class="af-content robe-content">
             <p class="robe-eyebrow">Collection Été</p>
-            <h3 class="af-title robe-title">Robe Été</h3>
+            <h3 class="af-title robe-title">Robe de Saison</h3>
             <p class="af-label robe-label">— Description —</p>
             <p class="af-ingr robe-ingr">Polyvalente et raffinée, cette robe à encolure en V est conçue pour sublimer la silhouette. Adaptée aussi bien aux sorties décontractées qu'aux occasions habillées, elle est confectionnée dans des matières respirantes qui allient confort et style au quotidien.</p>
             <p class="af-allerg robe-allerg"><em>Matière : polyester · Taille : S au XL · Coloris : vert, beige, rouge.</em></p>
