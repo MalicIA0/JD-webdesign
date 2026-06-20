@@ -578,6 +578,18 @@ body.go .hero-meta { opacity: 1; }
 
 /* ---------- Footer ---------- */
 .footer { padding: 0 0 6vh; text-align: center; }
+.fsocial { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 5vh; }
+.fsocial-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--m); font-size: 12.5px; letter-spacing: 0.08em;
+  color: var(--muted); padding: 11px 20px; border-radius: 99px;
+  background: var(--glass); border: 1px solid var(--stroke);
+  transition: color 0.25s, border-color 0.25s, transform 0.25s var(--ease);
+}
+.fsocial-link:hover { color: var(--txt); border-color: rgba(94,230,255,0.4); transform: translateY(-2px); }
+.fsocial-link .fsocial-ic { color: var(--cyan); }
+.fsocial-link.ig { padding: 11px; color: var(--violet); }
+.fsocial-link.ig:hover { color: var(--magenta); border-color: rgba(255,106,213,0.4); }
 .fbrand { display: flex; justify-content: center; margin-bottom: 5vh; user-select: none; }
 .footer-logo { width: clamp(440px, 60vw, 920px); max-width: 100%; height: auto; filter: drop-shadow(0 12px 60px rgba(139,124,255,0.25)); }
 .frow { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px 36px; font-size: 13.5px; color: var(--muted); }

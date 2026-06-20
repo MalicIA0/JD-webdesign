@@ -427,6 +427,18 @@ const MARKUP = `
   </div>
 
   <footer class="footer">
+    <div class="fsocial" aria-label="Réseaux sociaux">
+      <a href="#" class="fsocial-link" aria-label="Avis TripAdvisor" target="_blank" rel="noopener">
+        <span class="fsocial-ic">★</span> TripAdvisor
+      </a>
+      <a href="#" class="fsocial-link ig" aria-label="Instagram" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8">
+          <rect x="2.5" y="2.5" width="19" height="19" rx="6"/>
+          <circle cx="12" cy="12" r="4.3"/>
+          <circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/>
+        </svg>
+      </a>
+    </div>
     <div class="fbrand" aria-hidden="true"><img src="/img/logo-v4.png" alt="" class="footer-logo"></div>
     <div class="frow">
       <a href="/mentions-legales">Mentions légales</a>
