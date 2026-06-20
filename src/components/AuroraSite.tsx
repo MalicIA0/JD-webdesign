@@ -28,6 +28,10 @@ const MARKUP = `
     <img src="/img/logo-v4.png" alt="" class="header-logo-img">
   </div>
 
+  <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav">
+    <span class="nav-toggle-bars" aria-hidden="true"><span class="bar"></span><span class="bar"></span><span class="bar"></span></span>
+  </button>
+
   <nav class="nav" id="nav" aria-label="Navigation principale">
     <a href="#" class="brand" aria-label="JD Web Design — Accueil">
       <img src="/img/logo-v4.png" alt="JD Web Design" class="brand-logo">
@@ -467,6 +471,28 @@ export default function AuroraSite() {
     }
     const tLoad = setTimeout(showSite, rm ? 50 : 500)
 
+    // ---------- Menu déployable ----------
+    const navToggle = $('navToggle'), navEl = $('nav')
+    if (navToggle && navEl) {
+      const closeNav = () => {
+        navEl.classList.remove('open')
+        navToggle.classList.remove('open')
+        navToggle.setAttribute('aria-expanded', 'false')
+      }
+      navToggle.addEventListener('click', () => {
+        const willOpen = !navEl.classList.contains('open')
+        navEl.classList.toggle('open', willOpen)
+        navToggle.classList.toggle('open', willOpen)
+        navToggle.setAttribute('aria-expanded', String(willOpen))
+      }, { signal: sig })
+      document.addEventListener('click', (e) => {
+        const t = e.target as Node
+        if (navEl.classList.contains('open') && !navEl.contains(t) && !navToggle.contains(t)) closeNav()
+      }, { signal: sig })
+      qsa('.nav a').forEach((a) => a.addEventListener('click', closeNav, { signal: sig }))
+      document.addEventListener('keydown', (e) => { if ((e as KeyboardEvent).key === 'Escape') closeNav() }, { signal: sig })
+    }
+
     // ---------- Curseur lumineux ----------
     if (window.matchMedia('(pointer: fine)').matches && !rm) {
       const g = document.querySelector('.glowcur') as HTMLElement | null
@@ -583,7 +609,7 @@ export default function AuroraSite() {
     const ct = $('ctrack'); if (ct) ct.innerHTML += ct.innerHTML
 
     // ---------- Scroll : progression, nav, deck, zigzag ----------
-    const nav = $('nav'), prog = $('prog')
+    const prog = $('prog')
     const flowline = $('flowline'), flowfill = $('flowfill')
     const dcards = qsa('.dcard'), fsteps = qsa('.fstep')
     let lastY = 0, tickQ = false
@@ -591,7 +617,6 @@ export default function AuroraSite() {
       const y = window.scrollY
       const dh = document.documentElement.scrollHeight - window.innerHeight
       if (prog) prog.style.width = `${dh > 0 ? (y / dh) * 100 : 0}%`
-      if (nav) nav.classList.toggle('hide', y > lastY && y > 360)
       lastY = y
       dcards.forEach((c, i) => {
         const next = dcards[i + 1]; if (!next) return

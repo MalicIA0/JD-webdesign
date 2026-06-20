@@ -106,19 +106,43 @@ button { font-family: inherit; cursor: pointer; }
 .header-logo { position: relative; z-index: 170; text-align: center; padding: 80px 24px 0; }
 .header-logo-img { display: block; margin: 0 auto; width: clamp(440px, 60vw, 920px); max-width: 100%; height: auto; filter: drop-shadow(0 12px 60px rgba(139,124,255,0.25)); }
 
-/* ---------- Nav îlot ---------- */
+/* ---------- Bouton menu (hamburger) ---------- */
+.nav-toggle {
+  position: fixed; top: 18px; left: 18px; z-index: 190;
+  width: 46px; height: 46px; border-radius: 50%;
+  background: rgba(9, 11, 22, 0.55); border: 1px solid var(--stroke);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.3s, background 0.3s;
+}
+.nav-toggle:hover { border-color: rgba(139,124,255,0.45); }
+.nav-toggle-bars { position: relative; width: 18px; height: 13px; display: block; }
+.nav-toggle .bar {
+  position: absolute; left: 0; width: 18px; height: 2px; border-radius: 2px;
+  background: var(--txt); transition: transform 0.35s var(--ease), opacity 0.25s, top 0.35s var(--ease);
+}
+.nav-toggle .bar:nth-child(1) { top: 0; }
+.nav-toggle .bar:nth-child(2) { top: 5.5px; }
+.nav-toggle .bar:nth-child(3) { top: 11px; }
+.nav-toggle.open .bar:nth-child(1) { top: 5.5px; transform: rotate(45deg); }
+.nav-toggle.open .bar:nth-child(2) { opacity: 0; }
+.nav-toggle.open .bar:nth-child(3) { top: 5.5px; transform: rotate(-45deg); }
+
+/* ---------- Nav îlot (déployable) ---------- */
 .nav {
-  position: fixed; top: 18px; right: 18px;
+  position: fixed; top: 18px; left: 74px;
   z-index: 180; display: flex; align-items: center; gap: 6px;
   padding: 8px; border-radius: 99px;
   background: rgba(9, 11, 22, 0.55);
   border: 1px solid var(--stroke);
   backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
   box-shadow: 0 12px 40px rgba(0,0,0,0.45);
-  transition: transform 0.45s var(--ease), top 0.3s;
-  max-width: calc(100vw - 24px);
+  opacity: 0; transform: translateX(-14px) scale(0.96); pointer-events: none;
+  transition: opacity 0.3s var(--ease), transform 0.35s var(--ease);
+  max-width: calc(100vw - 100px);
 }
-.nav.hide { transform: translateY(-130%); }
+.nav.open { opacity: 1; transform: none; pointer-events: auto; }
 .nav .brand {
   display: flex; align-items: center;
   padding: 6px 16px 6px 10px;
