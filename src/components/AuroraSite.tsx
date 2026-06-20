@@ -36,9 +36,9 @@ const MARKUP = `
     <a href="#" class="brand" aria-label="JD Web Design — Accueil">
       <img src="/img/logo-v4.png" alt="JD Web Design" class="brand-logo">
     </a>
-    <a href="#services" class="lnk">Services</a>
+    <a href="#services" class="lnk">Voir mes services</a>
     <a href="#tarifs" class="lnk">Tarifs</a>
-    <a href="#contact" class="cta">Contact</a>
+    <a href="#contact" class="cta">Démarrer un projet (devis gratuit)</a>
   </nav>
 
   <main id="main">
@@ -52,10 +52,6 @@ const MARKUP = `
           <span class="l"><span><span class="tickbox" id="tick"><span class="on">Développement.</span><span>Performance.</span><span>Identitée.</span><span>Style.</span></span></span></span>
         </h1>
         <p class="hero-sub">Freelance spécialisé en design et développement web. Création de sites internets — élégants, uniques, fonctionnels, une seconde vitrine accessible en un clic.</p>
-        <div class="hero-ctas">
-          <a href="#contact" class="b-grad">Démarrer un projet (devis gratuit) <span>→</span></a>
-          <a href="#services" class="b-ghost">Voir mes services</a>
-        </div>
         <div class="hero-meta">
           <span class="meta-chip"><b>14 j</b> max pour livrer le site</span>
           <span class="meta-chip"><b>100%</b> Personnalisable</span>

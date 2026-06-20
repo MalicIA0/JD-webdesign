@@ -208,9 +208,6 @@ body.go .hero h1 .l:nth-child(3) > span { transform: none; filter: none; opacity
 
 .hero-sub { max-width: 600px; margin: 0 auto 44px; color: var(--muted); font-size: 17.5px; opacity: 0; transform: translateY(18px); transition: all 0.9s var(--ease) 0.5s; }
 body.go .hero-sub { opacity: 1; transform: none; }
-.hero-ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; opacity: 0; transform: translateY(18px); transition: all 0.9s var(--ease) 0.65s; }
-body.go .hero-ctas { opacity: 1; transform: none; }
-
 .b-grad {
   position: relative; display: inline-flex; align-items: center; gap: 10px;
   padding: 17px 32px; border-radius: 99px; font-weight: 600; font-size: 15px;
@@ -807,7 +804,7 @@ body.go .hero-meta { opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   html { scroll-behavior: auto; }
-  .rv, .hero h1 .l > span, .hero-sub, .hero-ctas, .hero-meta { opacity: 1 !important; transform: none !important; filter: none !important; }
+  .rv, .hero h1 .l > span, .hero-sub, .hero-meta { opacity: 1 !important; transform: none !important; filter: none !important; }
 }
 
 /* ---------- Pages légales (mentions / confidentialité) ---------- */
