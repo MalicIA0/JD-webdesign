@@ -108,7 +108,7 @@ button { font-family: inherit; cursor: pointer; }
 
 /* ---------- Nav îlot ---------- */
 .nav {
-  position: fixed; top: 18px; left: 50%; transform: translateX(-50%);
+  position: fixed; top: 18px; right: 18px;
   z-index: 180; display: flex; align-items: center; gap: 6px;
   padding: 8px; border-radius: 99px;
   background: rgba(9, 11, 22, 0.55);
@@ -118,7 +118,7 @@ button { font-family: inherit; cursor: pointer; }
   transition: transform 0.45s var(--ease), top 0.3s;
   max-width: calc(100vw - 24px);
 }
-.nav.hide { transform: translateX(-50%) translateY(-130%); }
+.nav.hide { transform: translateY(-130%); }
 .nav .brand {
   display: flex; align-items: center;
   padding: 6px 16px 6px 10px;
