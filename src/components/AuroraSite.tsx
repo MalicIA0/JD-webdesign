@@ -8,6 +8,8 @@ import { useEffect } from 'react'
  * Le contenu est 100% statique et de confiance (aucune donnée utilisateur),
  * donc l'injection HTML est sûre ici.
  */
+const LOGO_MARK = `<img src="/img/logo-jdesigner.png" alt="" class="brand-logo-img">`
+
 const MARKUP = `
   <a class="skip-link" href="#main">Aller au contenu</a>
 
@@ -24,8 +26,8 @@ const MARKUP = `
   <div class="dotcur" aria-hidden="true"></div>
   <div class="progress" id="prog" aria-hidden="true"></div>
 
-  <div class="header-logo" aria-hidden="true">
-    <img src="/img/logo-v4.png" alt="" class="header-logo-img">
+  <div class="header-logo header-logo-mark rv" aria-hidden="true">
+    <span class="logo-wipe">${LOGO_MARK}</span>
   </div>
 
   <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav">
@@ -33,8 +35,8 @@ const MARKUP = `
   </button>
 
   <nav class="nav" id="nav" aria-label="Navigation principale">
-    <a href="#" class="brand" aria-label="JD Web Design — Accueil">
-      <img src="/img/logo-v4.png" alt="JD Web Design" class="brand-logo">
+    <a href="#" class="brand brand-mark" aria-label="JDesigner-web — Accueil">
+      ${LOGO_MARK}
     </a>
     <a href="#services" class="lnk">Voir mes services</a>
     <a href="#tarifs" class="lnk">Tarifs</a>
@@ -441,7 +443,7 @@ const MARKUP = `
         </svg>
       </a>
     </div>
-    <div class="fbrand" aria-hidden="true"><img src="/img/logo-v4.png" alt="" class="footer-logo"></div>
+    <div class="fbrand footer-logo-mark rv" aria-hidden="true"><span class="logo-wipe">${LOGO_MARK}</span></div>
     <div class="frow">
       <a href="/mentions-legales">Mentions légales</a>
       <a href="/confidentialite">Confidentialité</a>
