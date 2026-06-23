@@ -102,9 +102,10 @@ button { font-family: inherit; cursor: pointer; }
 
 .progress { position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: var(--grad); z-index: 200; box-shadow: 0 0 12px rgba(139,124,255,0.8); }
 
-/* ---------- Logo d'en-tête (au-dessus de la nav) ---------- */
-.header-logo { position: relative; z-index: 170; text-align: center; padding: 80px 24px 0; }
-.header-logo-mark .brand-logo-img { width: clamp(360px, 50vw, 760px); max-width: 100%; height: auto; display: block; margin: 0 auto; filter: drop-shadow(0 12px 60px rgba(226,35,26,0.2)); }
+/* ---------- Logo d'en-tête (barre fixe, toujours visible) ---------- */
+.topbar-logo { position: fixed; top: 14px; left: 50%; transform: translateX(-50%); z-index: 175; pointer-events: none; }
+.topbar-logo .brand-logo-img { height: 38px; width: auto; display: block; filter: drop-shadow(0 6px 20px rgba(226,35,26,0.25)); }
+@media (max-width: 640px) { .topbar-logo .brand-logo-img { height: 26px; } }
 
 /* ---------- Bouton menu (hamburger) ---------- */
 .nav-toggle {

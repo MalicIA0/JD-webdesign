@@ -26,7 +26,7 @@ const MARKUP = `
   <div class="dotcur" aria-hidden="true"></div>
   <div class="progress" id="prog" aria-hidden="true"></div>
 
-  <div class="header-logo header-logo-mark rv" aria-hidden="true">
+  <div class="topbar-logo rv" aria-hidden="true">
     <span class="logo-wipe">${LOGO_MARK}</span>
   </div>
 
