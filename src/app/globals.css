@@ -102,10 +102,10 @@ button { font-family: inherit; cursor: pointer; }
 
 .progress { position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: var(--grad); z-index: 200; box-shadow: 0 0 12px rgba(139,124,255,0.8); }
 
-/* ---------- Logo d'en-tête (barre fixe, toujours visible) ---------- */
-.topbar-logo { position: fixed; top: 12px; left: 50%; transform: translateX(-50%); z-index: 175; pointer-events: none; }
-.topbar-logo .brand-logo-img { height: 46px; width: auto; display: block; filter: drop-shadow(0 6px 20px rgba(226,35,26,0.25)); }
-@media (max-width: 640px) { .topbar-logo { top: 9px; } .topbar-logo .brand-logo-img { height: 32px; } }
+/* ---------- Logo d'en-tête (defile avec la page, disparait au scroll) ---------- */
+.topbar-logo { position: absolute; top: 16px; left: 50%; transform: translateX(-50%); z-index: 175; pointer-events: none; }
+.topbar-logo .brand-logo-img { height: 64px; width: auto; display: block; filter: drop-shadow(0 6px 20px rgba(226,35,26,0.25)); }
+@media (max-width: 640px) { .topbar-logo { top: 12px; } .topbar-logo .brand-logo-img { height: 44px; } }
 
 /* ---------- Bouton menu (hamburger) ---------- */
 .nav-toggle {
