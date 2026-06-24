@@ -529,7 +529,7 @@ export default function AuroraSite() {
       type Star = { x: number; y: number; z: number; vx: number; vy: number; r: number; c: string; tw: number }
       let stars: Star[] = []
       const mouse = { x: -9999, y: -9999 }
-      const COLORS = ['237,240,255', '94,230,255', '139,124,255']
+      const COLORS = ['240,235,221', '212,175,106', '245,166,35']
       const build = () => {
         W = hero.clientWidth; H = hero.clientHeight
         cv.width = W * DPR; cv.height = H * DPR
@@ -569,7 +569,7 @@ export default function AuroraSite() {
             const o = stars[j], dx = s.x - o.x, dy = s.y - o.y, d2 = dx * dx + dy * dy
             if (d2 < LINK * LINK) {
               const a = (1 - Math.sqrt(d2) / LINK) * 0.14
-              ctx.strokeStyle = `rgba(139,124,255,${a.toFixed(3)})`
+              ctx.strokeStyle = `rgba(245,166,35,${a.toFixed(3)})`
               ctx.lineWidth = 0.7
               ctx.beginPath(); ctx.moveTo(s.x, s.y); ctx.lineTo(o.x, o.y); ctx.stroke()
             }
@@ -577,7 +577,7 @@ export default function AuroraSite() {
           const mdx = s.x - mouse.x, mdy = s.y - mouse.y, md2 = mdx * mdx + mdy * mdy
           if (md2 < 26000) {
             const ma = (1 - md2 / 26000) * 0.5
-            ctx.strokeStyle = `rgba(94,230,255,${ma.toFixed(3)})`
+            ctx.strokeStyle = `rgba(212,175,106,${ma.toFixed(3)})`
             ctx.lineWidth = 0.8
             ctx.beginPath(); ctx.moveTo(s.x, s.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke()
           }
