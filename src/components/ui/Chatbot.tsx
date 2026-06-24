@@ -243,7 +243,9 @@ export default function Chatbot() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setOpen(!open)}
-        className="relative w-14 h-14 rounded-full bg-lime text-[#FFF8EE] flex items-center justify-center shadow-lg"
+        className={`relative flex items-center justify-center shadow-lg bg-lime text-[#FFF8EE] ${
+          open ? 'w-14 h-14 rounded-full' : 'h-14 px-5 rounded-full'
+        }`}
         aria-label={open ? 'Fermer le chat' : 'Ouvrir le chat'}
       >
         {/* Online badge */}
@@ -265,16 +267,16 @@ export default function Chatbot() {
               <path d="M18 6L6 18M6 6l12 12" />
             </motion.svg>
           ) : (
-            <motion.svg
-              key="chat"
-              initial={{ rotate: 90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: -90, opacity: 0 }}
+            <motion.span
+              key="chat-text"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
+              className="text-sm font-semibold whitespace-nowrap"
             >
-              <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
-            </motion.svg>
+              Besoin d&apos;aides, c&apos;est pas ici !
+            </motion.span>
           )}
         </AnimatePresence>
       </motion.button>
