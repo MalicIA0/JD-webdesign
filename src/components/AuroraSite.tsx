@@ -8,8 +8,8 @@ import { useEffect } from 'react'
  * Le contenu est 100% statique et de confiance (aucune donnée utilisateur),
  * donc l'injection HTML est sûre ici.
  */
-const LOGO_MARK = `<img src="/img/logo-jdesigner.png" alt="" class="brand-logo-img">`
-const LOGO_MARK_TOPBAR = `<img src="/img/logo-jdesigner-topbar.png" alt="" class="brand-logo-img">`
+const LOGO_MARK = `<img src="/img/logo-jdesigner.webp" alt="" class="brand-logo-img" width="1500" height="1000" loading="lazy">`
+const LOGO_MARK_TOPBAR = `<img src="/img/logo-jdesigner-topbar.webp" alt="" class="brand-logo-img" width="700" height="169">`
 
 const MARKUP = `
   <a class="skip-link" href="#main">Aller au contenu</a>
@@ -20,7 +20,7 @@ const MARKUP = `
   </div>
 
   <div class="sky" aria-hidden="true">
-    <div class="blob a"></div><div class="blob b"></div><div class="blob c"></div>
+    <div class="sweep a"></div><div class="sweep b"></div>
   </div>
   <div class="grain" aria-hidden="true"></div>
   <div class="glowcur" aria-hidden="true"></div>
@@ -115,16 +115,16 @@ const MARKUP = `
           <h2 class="h2">Des <span class="shine">images</span> modulables en 1 clic pour votre confort.</h2>
         </div>
         <div class="gallery">
-          <figure class="shot rv" data-src="/img/shot-1.jpg" data-fallback="/img/shot-1.svg" data-title="Composant — structure HTML">
-            <img src="/img/shot-1.jpg" alt="Aperçu de code : structure HTML d'un composant" loading="lazy">
+          <figure class="shot rv" data-src="/img/shot-1.webp" data-fallback="/img/shot-1.svg" data-title="Composant — structure HTML">
+            <img src="/img/shot-1.webp" width="900" height="563" alt="Aperçu de code : structure HTML d'un composant" loading="lazy">
             <figcaption class="ov"><span class="nm">01 — Structure HTML</span><span class="zoom">⤢</span></figcaption>
           </figure>
-          <figure class="shot rv" data-d="1" data-src="/img/shot-2.jpg" data-fallback="/img/shot-2.svg" data-title="E-commerce — grille produits">
-            <img src="/img/shot-2.jpg" alt="Aperçu de code : grille de produits e-commerce" loading="lazy">
+          <figure class="shot rv" data-d="1" data-src="/img/shot-2.webp" data-fallback="/img/shot-2.svg" data-title="E-commerce — grille produits">
+            <img src="/img/shot-2.webp" width="900" height="600" alt="Aperçu de code : grille de produits e-commerce" loading="lazy">
             <figcaption class="ov"><span class="nm">02 — Grille produits</span><span class="zoom">⤢</span></figcaption>
           </figure>
-          <figure class="shot rv" data-d="2" data-src="/img/shot-3.jpg" data-fallback="/img/shot-3.svg" data-title="Navigation — menu multi-niveaux">
-            <img src="/img/shot-3.jpg" alt="Aperçu de code : navigation multi-niveaux" loading="lazy">
+          <figure class="shot rv" data-d="2" data-src="/img/shot-3.webp" data-fallback="/img/shot-3.svg" data-title="Navigation — menu multi-niveaux">
+            <img src="/img/shot-3.webp" width="900" height="505" alt="Aperçu de code : navigation multi-niveaux" loading="lazy">
             <figcaption class="ov"><span class="nm">03 — Navigation</span><span class="zoom">⤢</span></figcaption>
           </figure>
         </div>
@@ -178,7 +178,7 @@ const MARKUP = `
         <div class="arts-feature burger-card rv">
           <div class="af-media">
             <div class="af-frame">
-              <video src="/video/burger.mp4" autoplay muted loop playsinline></video>
+              <video data-src="/video/burger.mp4" muted loop playsinline preload="none" aria-hidden="true"></video>
               <div class="af-nowm"></div>
             </div>
             <p class="af-disclaimer"><em>* ces articles ne sont pas à vendre, ce sont une démonstration de ce que vous pouvez faire.</em></p>
@@ -195,7 +195,7 @@ const MARKUP = `
         <div class="arts-feature robe-card rv">
           <div class="af-media">
             <div class="af-frame robe-frame">
-              <video src="/video/robe.mp4" autoplay muted loop playsinline></video>
+              <video data-src="/video/robe.mp4" muted loop playsinline preload="none" aria-hidden="true"></video>
               <div class="af-nowm af-nowm-w"></div>
             </div>
             <p class="af-disclaimer robe-disclaimer"><em>* ces articles ne sont pas à vendre, ce sont une démonstration de ce que vous pouvez faire.</em></p>
@@ -288,10 +288,10 @@ const MARKUP = `
             <h3>Économique</h3>
             <div class="crea">
               <p class="lbl">Création</p>
-              <p><span class="v">1000€</span><span class="meta">· Livraison en 14 jours</span></p>
+              <p><span class="v">1000€ TTC</span><span class="meta">· Livraison en 14 jours</span></p>
             </div>
             <div class="mois">
-              <span class="amt">100€</span><span class="per">/ mois</span>
+              <span class="amt">100€</span><span class="per">TTC / mois</span>
               <p class="note">sans engagement</p>
             </div>
             <ul class="feats">
@@ -529,7 +529,7 @@ export default function AuroraSite() {
       type Star = { x: number; y: number; z: number; vx: number; vy: number; r: number; c: string; tw: number }
       let stars: Star[] = []
       const mouse = { x: -9999, y: -9999 }
-      const COLORS = ['237,240,255', '94,230,255', '139,124,255']
+      const COLORS = ['240,235,221', '212,175,106', '245,166,35']
       const build = () => {
         W = hero.clientWidth; H = hero.clientHeight
         cv.width = W * DPR; cv.height = H * DPR
@@ -569,7 +569,7 @@ export default function AuroraSite() {
             const o = stars[j], dx = s.x - o.x, dy = s.y - o.y, d2 = dx * dx + dy * dy
             if (d2 < LINK * LINK) {
               const a = (1 - Math.sqrt(d2) / LINK) * 0.14
-              ctx.strokeStyle = `rgba(139,124,255,${a.toFixed(3)})`
+              ctx.strokeStyle = `rgba(245,166,35,${a.toFixed(3)})`
               ctx.lineWidth = 0.7
               ctx.beginPath(); ctx.moveTo(s.x, s.y); ctx.lineTo(o.x, o.y); ctx.stroke()
             }
@@ -577,7 +577,7 @@ export default function AuroraSite() {
           const mdx = s.x - mouse.x, mdy = s.y - mouse.y, md2 = mdx * mdx + mdy * mdy
           if (md2 < 26000) {
             const ma = (1 - md2 / 26000) * 0.5
-            ctx.strokeStyle = `rgba(94,230,255,${ma.toFixed(3)})`
+            ctx.strokeStyle = `rgba(212,175,106,${ma.toFixed(3)})`
             ctx.lineWidth = 0.8
             ctx.beginPath(); ctx.moveTo(s.x, s.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke()
           }
@@ -643,6 +643,20 @@ export default function AuroraSite() {
       es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target) } })
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' })
     qsa('.rv').forEach((el) => io.observe(el)); observers.push(io)
+
+    // ---------- Vidéos produits : chargement + lecture différés au scroll ----------
+    const vio = new IntersectionObserver((es) => {
+      es.forEach((e) => {
+        const v = e.target as HTMLVideoElement
+        if (e.isIntersecting) {
+          if (!v.src && v.dataset.src) { v.src = v.dataset.src; v.load() }
+          v.play().catch(() => {})
+        } else {
+          v.pause()
+        }
+      })
+    }, { threshold: 0.2 })
+    qsa('.af-frame video').forEach((v) => vio.observe(v)); observers.push(vio)
 
     // ---------- Compteurs ----------
     const cio = new IntersectionObserver((es) => {

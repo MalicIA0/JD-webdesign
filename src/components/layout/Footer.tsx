@@ -70,7 +70,7 @@ export default function Footer() {
               </a>
             </div>
             <p className="text-xs text-muted-dark text-center">
-              © 2025 {BRAND} · Jean-Denis Cuenin · Fait avec précision en France
+              © 2025 {BRAND} · Fait avec précision en France
             </p>
           </div>
         </div>

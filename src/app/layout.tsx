@@ -3,9 +3,11 @@ import { Sora, Inter, JetBrains_Mono, Dancing_Script, Playfair_Display } from 'n
 import Script from 'next/script'
 import './globals.css'
 
+// Sora n'est plus utilisée que pour l'avatar "JD" du chatbot (font-bold) ;
+// un seul poids est charge pour ne pas gaspiller de bande passante.
 const sora = Sora({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '800'],
+  weight: ['700'],
   variable: '--font-sora',
   display: 'swap',
 })
@@ -19,14 +21,15 @@ const inter = Inter({
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
-  weight: ['400', '500'],
+  weight: ['400'],
   variable: '--font-jetbrains',
   display: 'swap',
 })
 
+// Utilisée uniquement pour le texte "JD" du préchargeur (font-weight:700).
 const dancingScript = Dancing_Script({
   subsets: ['latin'],
-  weight: ['600', '700'],
+  weight: ['700'],
   variable: '--font-dancing',
   display: 'swap',
 })
@@ -53,7 +56,7 @@ export const metadata: Metadata = {
     'freelance France',
     'site web 500€',
   ],
-  authors: [{ name: 'Jean-Denis Cuenin', url: 'https://jd-webdesign-nine.vercel.app' }],
+  authors: [{ name: 'JDesign', url: 'https://jd-webdesign-nine.vercel.app' }],
   metadataBase: new URL('https://jd-webdesign-nine.vercel.app'),
   alternates: {
     canonical: '/',

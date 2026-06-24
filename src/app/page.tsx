@@ -9,7 +9,6 @@ const jsonLd = {
   url: 'https://jd-webdesign-nine.vercel.app',
   telephone: '+33782755924',
   email: 'jdwebdesign64@hotmail.com',
-  founder: { '@type': 'Person', name: 'Jean-Denis Cuenin' },
   address: {
     '@type': 'PostalAddress',
     addressCountry: 'FR',

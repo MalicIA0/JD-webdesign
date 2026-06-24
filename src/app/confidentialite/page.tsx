@@ -15,14 +15,14 @@ export default function Confidentialite() {
       <p className="updated">Dernière mise à jour : 16 juin 2026</p>
 
       <p>
-        La présente politique explique comment <strong>JDesign</strong> (Jean-Denis Cuenin) collecte
+        La présente politique explique comment <strong>JDesign</strong> collecte
         et traite vos données personnelles dans le respect du Règlement général sur la protection
         des données (RGPD) et de la loi « Informatique et Libertés ».
       </p>
 
       <h2>1. Responsable du traitement</h2>
       <p>
-        Le responsable du traitement est <strong>Jean-Denis Cuenin</strong>, joignable à
+        Le responsable du traitement est <strong>JDesign</strong>, joignable à
         l&apos;adresse <a href="mailto:jdwebdesign64@hotmail.com">jdwebdesign64@hotmail.com</a>.
       </p>
 
@@ -43,7 +43,7 @@ export default function Confidentialite() {
 
       <h2>4. Destinataires et sous-traitants</h2>
       <p>
-        Vos données sont destinées à Jean-Denis Cuenin uniquement. Elles ne sont jamais vendues. Pour
+        Vos données sont destinées à JDesign uniquement. Elles ne sont jamais vendues. Pour
         fonctionner, le site s&apos;appuie sur des prestataires techniques (sous-traitants) :
       </p>
       <ul>
