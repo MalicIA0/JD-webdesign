@@ -191,7 +191,7 @@ export const TESTIMONIALS = [
   },
 ]
 
-export const CHATBOT_SYSTEM_PROMPT = `Tu es l'assistant virtuel de JDesign, le studio freelance de Jean-Denis Cuenin.
+export const CHATBOT_SYSTEM_PROMPT = `Tu es l'assistant virtuel de JDesign, studio freelance de design et développement web.
 Réponds toujours en français, de manière professionnelle mais chaleureuse.
 Sois concis (3-4 phrases max par réponse).
 

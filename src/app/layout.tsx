@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     'freelance France',
     'site web 500€',
   ],
-  authors: [{ name: 'Jean-Denis Cuenin', url: 'https://jd-webdesign-nine.vercel.app' }],
+  authors: [{ name: 'JDesign', url: 'https://jd-webdesign-nine.vercel.app' }],
   metadataBase: new URL('https://jd-webdesign-nine.vercel.app'),
   alternates: {
     canonical: '/',

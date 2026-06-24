@@ -47,7 +47,7 @@ export async function POST(request: Request) {
     const apiKey = process.env.ANTHROPIC_API_KEY
     if (!apiKey) {
       return NextResponse.json({
-        content: "Je ne suis pas disponible pour le moment. Contactez Jean-Denis directement à jdwebdesign64@hotmail.com ou au 07 82 75 59 24.",
+        content: "Je ne suis pas disponible pour le moment. Contactez-nous directement à jdwebdesign64@hotmail.com ou au 07 82 75 59 24.",
       })
     }
 
