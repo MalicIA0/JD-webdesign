@@ -9,6 +9,7 @@ import { useEffect } from 'react'
  * donc l'injection HTML est sûre ici.
  */
 const LOGO_MARK = `<img src="/img/logo-jdesigner.png" alt="" class="brand-logo-img">`
+const LOGO_MARK_TOPBAR = `<img src="/img/logo-jdesigner-topbar.png" alt="" class="brand-logo-img">`
 
 const MARKUP = `
   <a class="skip-link" href="#main">Aller au contenu</a>
@@ -26,8 +27,8 @@ const MARKUP = `
   <div class="dotcur" aria-hidden="true"></div>
   <div class="progress" id="prog" aria-hidden="true"></div>
 
-  <div class="topbar-logo rv" aria-hidden="true">
-    <span class="logo-wipe">${LOGO_MARK}</span>
+  <div class="topbar-logo" id="topbarLogo" aria-hidden="true">
+    <span class="logo-wipe">${LOGO_MARK_TOPBAR}</span>
   </div>
 
   <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav">
@@ -468,6 +469,7 @@ export default function AuroraSite() {
     const showSite = () => {
       $('loader')?.classList.add('done')
       document.body.classList.add('go')
+      $('topbarLogo')?.classList.add('in')
     }
     const tLoad = setTimeout(showSite, rm ? 50 : 500)
 
