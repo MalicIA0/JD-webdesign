@@ -220,8 +220,8 @@ body.go .hero h1 .l:nth-child(1) > span { transform: none; filter: none; opacity
 body.go .hero h1 .l:nth-child(2) > span { transform: none; filter: none; opacity: 1; transition-delay: 0.16s; }
 body.go .hero h1 .l:nth-child(3) > span { transform: none; filter: none; opacity: 1; transition-delay: 0.27s; }
 
-.tickbox { display: inline-grid; overflow: hidden; height: 1.08em; vertical-align: baseline; }
-.tickbox span { grid-area: 1/1; line-height: 1.08; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; transform: translateY(110%); opacity: 0; transition: transform 0.55s var(--ease), opacity 0.35s; }
+.tickbox { display: inline-grid; overflow: hidden; height: 1.32em; vertical-align: baseline; padding-bottom: 0.12em; }
+.tickbox span { grid-area: 1/1; line-height: 1.32; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; transform: translateY(110%); opacity: 0; transition: transform 0.55s var(--ease), opacity 0.35s; }
 .tickbox span.on { transform: none; opacity: 1; }
 .tickbox span.out { transform: translateY(-110%); opacity: 0; }
 
@@ -293,7 +293,8 @@ body.go .hero-meta { opacity: 1; }
 .dcard:nth-child(2) { top: 17vh; }
 .dcard:nth-child(3) { top: 20vh; }
 .dnum {
-  font-family: var(--d); font-weight: 800; font-size: clamp(60px, 9vw, 150px); line-height: 0.85;
+  display: inline-block;
+  font-family: var(--d); font-weight: 800; font-size: clamp(60px, 9vw, 150px); line-height: 1.05;
   background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;
   opacity: 0.9;
 }
