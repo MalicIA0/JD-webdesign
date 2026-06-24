@@ -288,10 +288,10 @@ const MARKUP = `
             <h3>Économique</h3>
             <div class="crea">
               <p class="lbl">Création</p>
-              <p><span class="v">1000€</span><span class="meta">· Livraison en 14 jours</span></p>
+              <p><span class="v">1000€ TTC</span><span class="meta">· Livraison en 14 jours</span></p>
             </div>
             <div class="mois">
-              <span class="amt">100€</span><span class="per">/ mois</span>
+              <span class="amt">100€</span><span class="per">TTC / mois</span>
               <p class="note">sans engagement</p>
             </div>
             <ul class="feats">

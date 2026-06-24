@@ -275,7 +275,7 @@ export default function Chatbot() {
               transition={{ duration: 0.2 }}
               className="text-sm font-semibold whitespace-nowrap"
             >
-              Besoin d&apos;aides, c&apos;est pas ici !
+              Besoin d&apos;aides, Par ici
             </motion.span>
           )}
         </AnimatePresence>
