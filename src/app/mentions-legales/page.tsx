@@ -16,8 +16,7 @@ export default function MentionsLegales() {
 
       <h2>1. Éditeur du site</h2>
       <p>
-        Le présent site est édité par <strong>Jean-Denis Cuenin</strong>, entrepreneur individuel
-        exerçant sous l&apos;enseigne <strong>JDesign</strong>.
+        Le présent site est édité par <strong>JDesign</strong>, entrepreneur individuel.
       </p>
       <ul>
         <li>Statut juridique : <span className="todo">micro-entreprise — à confirmer</span></li>
@@ -29,7 +28,7 @@ export default function MentionsLegales() {
       </ul>
 
       <h2>2. Directeur de la publication</h2>
-      <p>Le directeur de la publication est <strong>Jean-Denis Cuenin</strong>.</p>
+      <p>Le directeur de la publication est <strong>JDesign</strong>.</p>
 
       <h2>3. Hébergement</h2>
       <p>
@@ -40,7 +39,7 @@ export default function MentionsLegales() {
       <h2>4. Propriété intellectuelle</h2>
       <p>
         L&apos;ensemble des éléments composant ce site (textes, visuels, code, charte graphique,
-        logo) est, sauf mention contraire, la propriété exclusive de Jean-Denis Cuenin / JDesign.
+        logo) est, sauf mention contraire, la propriété exclusive de JDesign.
         Toute reproduction, représentation ou diffusion, totale ou partielle, sans autorisation
         écrite préalable, est interdite et constituerait une contrefaçon au sens des articles
         L.335-2 et suivants du Code de la propriété intellectuelle.
