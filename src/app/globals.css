@@ -58,15 +58,16 @@ button { font-family: inherit; cursor: pointer; }
 .skip-link { position: absolute; left: -9999px; z-index: 999; background: var(--violet); color: #fff; padding: 10px 18px; }
 .skip-link:focus { left: 12px; top: 12px; }
 
-/* ---------- Aurores d'arrière-plan ---------- */
-.sky { position: fixed; inset: 0; z-index: -2; overflow: hidden; background: radial-gradient(ellipse 120% 90% at 50% -20%, #0B0E20 0%, var(--bg) 60%); }
-.blob { position: absolute; border-radius: 50%; filter: blur(110px); opacity: 0.5; will-change: transform; }
-.blob.a { width: 55vw; height: 55vw; top: -22vw; left: -10vw; background: radial-gradient(circle, rgba(212,175,106,0.20), transparent 65%); animation: float-a 26s ease-in-out infinite alternate; }
-.blob.b { width: 48vw; height: 48vw; top: 10vh; right: -16vw; background: radial-gradient(circle, rgba(245,166,35,0.22), transparent 65%); animation: float-b 32s ease-in-out infinite alternate; }
-.blob.c { width: 42vw; height: 42vw; bottom: -20vh; left: 22vw; background: radial-gradient(circle, rgba(226,35,26,0.13), transparent 65%); animation: float-c 38s ease-in-out infinite alternate; }
-@keyframes float-a { to { transform: translate(10vw, 8vh) scale(1.15); } }
-@keyframes float-b { to { transform: translate(-8vw, 14vh) scale(0.92); } }
-@keyframes float-c { to { transform: translate(-12vw, -10vh) scale(1.2); } }
+/* ---------- Fond : balayage métallique ---------- */
+.sky { position: fixed; inset: 0; z-index: -2; overflow: hidden; background: radial-gradient(ellipse 120% 90% at 50% -20%, #0F0C09 0%, var(--bg) 60%); }
+.sweep { position: absolute; top: -30%; left: -70%; width: 240%; height: 160%; pointer-events: none; will-change: transform; }
+.sweep.a { background: linear-gradient(115deg, transparent 42%, rgba(212,175,106,0.16) 50%, transparent 58%); animation: metalsweep 19s ease-in-out infinite; }
+.sweep.b { background: linear-gradient(115deg, transparent 44%, rgba(245,166,35,0.11) 50%, transparent 56%); animation: metalsweep 19s ease-in-out infinite; animation-delay: -9.5s; }
+@keyframes metalsweep {
+  0%   { transform: translateX(-22%) rotate(0deg); }
+  50%  { transform: translateX(22%) rotate(0deg); }
+  100% { transform: translateX(-22%) rotate(0deg); }
+}
 .grain {
   position: fixed; inset: 0; z-index: 120; pointer-events: none; opacity: 0.02;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");

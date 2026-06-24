@@ -20,7 +20,7 @@ const MARKUP = `
   </div>
 
   <div class="sky" aria-hidden="true">
-    <div class="blob a"></div><div class="blob b"></div><div class="blob c"></div>
+    <div class="sweep a"></div><div class="sweep b"></div>
   </div>
   <div class="grain" aria-hidden="true"></div>
   <div class="glowcur" aria-hidden="true"></div>
