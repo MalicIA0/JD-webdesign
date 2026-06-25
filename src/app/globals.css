@@ -197,7 +197,7 @@ button { font-family: inherit; cursor: pointer; }
 .rv[data-d="3"] { transition-delay: 0.3s; }
 
 /* Révélation du logo de gauche à droite (balayage) */
-.logo-wipe { display: inline-block; clip-path: inset(0 100% 0 0); transition: clip-path 1.6s var(--ease); }
+.logo-wipe { display: inline-block; clip-path: inset(0 100% 0 0); transition: clip-path 2.6s var(--ease); }
 .rv.in .logo-wipe, .topbar-logo.in .logo-wipe { clip-path: inset(0 0 0 0); }
 
 /* ============================================================
@@ -289,9 +289,9 @@ body.go .hero-meta { opacity: 1; }
   box-shadow: 0 30px 80px -30px rgba(0,0,0,0.7);
   will-change: transform;
 }
-.dcard:nth-child(1) { top: 14vh; }
-.dcard:nth-child(2) { top: 17vh; }
-.dcard:nth-child(3) { top: 20vh; }
+.dcard:nth-child(1) { top: 14vh; background: linear-gradient(135deg, rgba(212,175,106,0.10) 0%, rgba(245,166,35,0.22) 100%), linear-gradient(150deg, #0d1124, #0a0c18); }
+.dcard:nth-child(2) { top: 17vh; background: linear-gradient(135deg, rgba(245,166,35,0.18) 0%, rgba(226,35,26,0.14) 100%), linear-gradient(150deg, #0d1124, #0a0c18); }
+.dcard:nth-child(3) { top: 20vh; background: linear-gradient(135deg, rgba(226,35,26,0.12) 0%, rgba(212,175,106,0.18) 100%), linear-gradient(150deg, #0d1124, #0a0c18); }
 .dnum {
   display: inline-block;
   font-family: var(--d); font-weight: 800; font-size: clamp(60px, 9vw, 150px); line-height: 1.05;
