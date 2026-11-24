@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JDesign — Analytics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <style>
+    :root {
+      --bg:      #05060D;
+      --surface: #090B16;
+      --raised:  #0D1124;
+      --lime:    #8B7CFF;   /* accent principal (violet) — nom gardé pour compat */
+      --cyan:    #5EE6FF;
+      --magenta: #FF6AD5;
+      --white:   #EDF0FF;
+      --muted:   #9BA3C7;
+      --border:  rgba(237,240,255,0.10);
+      --lime-dim:rgba(139,124,255,0.08);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--white); font-family: 'DM Sans', sans-serif; min-height: 100vh; }
+
+    /* ── SETUP MODAL ── */
+    #setup-overlay {
+      position: fixed; inset: 0; z-index: 999;
+      background: rgba(9,9,11,0.96);
+      display: flex; align-items: center; justify-content: center;
+      padding: 1.5rem;
+    }
+    #setup-overlay.hidden { display: none; }
+    .setup-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 1.5rem;
+      padding: 2.5rem;
+      max-width: 540px; width: 100%;
+    }
+    .setup-box h2 { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800; margin-bottom: .5rem; }
+    .setup-box p  { color: var(--muted); font-size: .9rem; line-height: 1.6; margin-bottom: 1.75rem; }
+    .setup-step { display: flex; gap: .75rem; align-items: flex-start; margin-bottom: 1rem; }
+    .step-num {
+      flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%;
+      background: var(--lime-dim); border: 1px solid rgba(139,124,255,.2);
+      color: var(--lime); font-size: .75rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step-text { font-size: .85rem; color: var(--muted); line-height: 1.5; }
+    .step-text a { color: var(--lime); text-decoration: underline; }
+    .step-text code { background: var(--raised); padding: .1rem .4rem; border-radius: .3rem; font-size: .8rem; color: var(--white); }
+    .setup-input-group { margin-top: 1.5rem; display: flex; flex-direction: column; gap: .75rem; }
+    .setup-input-group label { font-size: .78rem; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
+    .setup-input-group input {
+      width: 100%; background: var(--raised); border: 1px solid var(--border);
+      border-radius: .75rem; padding: .75rem 1rem;
+      color: var(--white); font-family: 'DM Sans', sans-serif; font-size: .9rem;
+      outline: none; transition: border-color .2s;
+    }
+    .setup-input-group input:focus { border-color: rgba(139,124,255,.4); }
+    .btn-setup {
+      margin-top: 1.25rem; width: 100%;
+      background: var(--lime); color: #05060D;
+      font-weight: 700; font-size: 1rem;
+      padding: .9rem; border: none; border-radius: 999px;
+      cursor: pointer; transition: opacity .2s;
+      display: flex; align-items: center; justify-content: center; gap: .6rem;
+    }
+    .btn-setup:hover { opacity: .88; }
+    .skip-link { display: block; text-align: center; margin-top: 1rem; font-size: .82rem; color: var(--muted); cursor: pointer; }
+    .skip-link:hover { color: var(--white); }
+
+    /* ── LAYOUT ── */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(9,9,11,0.9); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .header-logo { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800; }
+    .header-logo span { color: var(--lime); }
+    .header-right { display: flex; align-items: center; gap: 1rem; }
+    .site-pill {
+      display: flex; align-items: center; gap: .5rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 999px; padding: .35rem .85rem;
+      font-size: .78rem; color: var(--muted);
+    }
+    .site-pill .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--lime); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(139,124,255,.4)} 50%{box-shadow:0 0 0 5px rgba(139,124,255,0)} }
+    .color-pill {
+      display: flex; align-items: center; gap: .5rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 999px; padding: .35rem .6rem .35rem .4rem;
+      font-size: .75rem; color: var(--muted); font-family: 'DM Sans', monospace;
+    }
+    .color-pill .swatch {
+      width: 18px; height: 18px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.15);
+      flex-shrink: 0;
+    }
+    .btn-reconnect {
+      font-size: .78rem; color: var(--muted); cursor: pointer;
+      background: none; border: 1px solid var(--border);
+      border-radius: 999px; padding: .35rem .85rem;
+      transition: color .2s, border-color .2s;
+    }
+    .btn-reconnect:hover { color: var(--white); border-color: rgba(255,255,255,.2); }
+
+    /* Period selector */
+    .period-bar {
+      padding: 1.25rem 2rem;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .period-bar h1 { font-family: 'Syne', sans-serif; font-size: 1.35rem; font-weight: 800; }
+    .period-tabs { display: flex; gap: .4rem; }
+    .period-tab {
+      font-size: .8rem; padding: .35rem .9rem; border-radius: 999px; cursor: pointer;
+      border: 1px solid var(--border); background: none; color: var(--muted);
+      transition: .2s;
+    }
+    .period-tab.active { background: var(--lime); color: #05060D; border-color: var(--lime); font-weight: 700; }
+    .period-tab:hover:not(.active) { color: var(--white); border-color: rgba(255,255,255,.2); }
+
+    main { padding: 2rem; max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem; }
+
+    /* ── KPI CARDS ── */
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .kpi-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 1.25rem; padding: 1.5rem;
+      transition: border-color .3s;
+    }
+    .kpi-card:hover { border-color: rgba(139,124,255,.2); }
+    .kpi-label { font-size: .75rem; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; margin-bottom: .6rem; }
+    .kpi-value { font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800; line-height: 1; }
+    .kpi-delta { font-size: .8rem; margin-top: .4rem; }
+    .kpi-delta.up   { color: var(--lime); }
+    .kpi-delta.down { color: #f87171; }
+    .kpi-delta.flat { color: var(--muted); }
+
+    /* ── CHART CARDS ── */
+    .chart-row { display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; }
+    .chart-row.equal { grid-template-columns: 1fr 1fr; }
+    .chart-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 1.25rem; padding: 1.5rem;
+    }
+    .chart-card h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 800; margin-bottom: 1.25rem; }
+    .chart-wrap { position: relative; height: 220px; }
+
+    /* ── TABLES ── */
+    .table-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .table-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 1.25rem; padding: 1.5rem;
+    }
+    .table-card h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 800; margin-bottom: 1rem; }
+    .table-item {
+      display: flex; align-items: center; gap: .75rem;
+      padding: .6rem 0; border-bottom: 1px solid var(--border);
+    }
+    .table-item:last-child { border-bottom: none; }
+    .table-bar-wrap { flex: 1; height: 4px; background: var(--raised); border-radius: 2px; overflow: hidden; }
+    .table-bar { height: 100%; background: var(--lime); border-radius: 2px; transition: width .8s cubic-bezier(.16,1,.3,1); }
+    .table-name { font-size: .85rem; flex: 0 0 40%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .table-val  { font-size: .82rem; color: var(--muted); flex-shrink: 0; width: 50px; text-align: right; }
+
+    /* ── EMPTY / ERROR STATE ── */
+    .state-msg {
+      text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: .9rem;
+    }
+    .state-msg a { color: var(--lime); text-decoration: underline; cursor: pointer; }
+
+    /* ── LOADING ── */
+    .skeleton {
+      background: linear-gradient(90deg, var(--raised) 25%, #161B3A 50%, var(--raised) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+      border-radius: .5rem;
+    }
+    @keyframes shimmer { from{background-position:200% 0} to{background-position:-200% 0} }
+
+    /* ── MAP ── */
+    .map-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 1.25rem;
+      padding: 1.5rem; overflow: hidden;
+    }
+    .map-card h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 800; margin-bottom: 1.25rem; }
+    #visitor-map { height: 380px; border-radius: .75rem; overflow: hidden; }
+    .leaflet-container { background: #0A0C18 !important; }
+    .leaflet-tile { filter: invert(1) hue-rotate(180deg) brightness(0.85) saturate(0.6); }
+    .leaflet-control-zoom a { background: var(--surface) !important; color: var(--white) !important; border-color: var(--border) !important; }
+    .map-legend { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1rem; }
+    .legend-item { display: flex; align-items: center; gap: .5rem; font-size: .8rem; color: var(--muted); }
+    .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .map-tooltip {
+      background: var(--surface) !important; border: 1px solid var(--border) !important;
+      color: var(--white) !important; font-size: .8rem; padding: .4rem .7rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,.5);
+    }
+    .map-tooltip::before { display: none !important; }
+
+    /* ── DEMOGRAPHICS NOTE ── */
+    .demo-note {
+      font-size: .78rem; color: var(--muted); margin-top: .5rem;
+      padding: .5rem .75rem; background: var(--raised); border-radius: .5rem;
+      border-left: 2px solid rgba(139,124,255,.3);
+    }
+
+    /* ── PAGESPEED ── */
+    .ps-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .ps-inner { display: flex; align-items: flex-start; gap: 1.5rem; flex-wrap: wrap; }
+    .ps-gauge { display: flex; flex-direction: column; align-items: center; gap: .5rem; flex-shrink: 0; }
+    .ps-gauge svg { width: 90px; height: 90px; }
+    .ps-gauge-label { font-size: .72rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+    .ps-vitals { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; }
+    .ps-vital { background: var(--raised); border-radius: .6rem; padding: .65rem .75rem; }
+    .ps-vital-val { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 800; }
+    .ps-vital-name { font-size: .68rem; color: var(--muted); margin-top: .15rem; }
+
+    /* ── SEARCH CONSOLE ── */
+    .sc-head-row { display: flex; gap: .6rem; padding-bottom: .5rem; border-bottom: 1px solid var(--border); margin-bottom: .25rem; font-size: .7rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+    .sc-row { display: flex; align-items: center; gap: .6rem; padding: .55rem 0; border-bottom: 1px solid var(--border); }
+    .sc-row:last-child { border-bottom: none; }
+    .sc-query { font-size: .83rem; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .sc-num { font-size: .78rem; color: var(--muted); flex-shrink: 0; width: 48px; text-align: right; }
+    .sc-pos { font-size: .78rem; font-weight: 600; flex-shrink: 0; width: 38px; text-align: right; }
+    .sc-connect-note { font-size: .78rem; color: var(--muted); margin-top: .75rem; padding: .55rem .75rem; background: var(--raised); border-radius: .5rem; border-left: 2px solid rgba(139,124,255,.4); }
+    .sc-connect-note a { color: var(--lime); text-decoration: underline; cursor: pointer; }
+
+    @media (max-width: 768px) {
+      .chart-row, .chart-row.equal, .table-row, .ps-row { grid-template-columns: 1fr; }
+      main { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     SETUP MODAL
+     ============================================================ -->
+<div id="setup-overlay">
+  <div class="setup-box">
+    <h2>Connecter Google Analytics 4</h2>
+    <p>Entre simplement ton ID de propriété GA4 ci-dessous, puis clique Se connecter.</p>
+
+    <div class="setup-input-group">
+      <div>
+        <label>ID de propriété GA4</label>
+        <input type="text" id="input-property" placeholder="381234567" />
+      </div>
+    </div>
+
+    <div style="margin-top:1rem;">
+      <button type="button" onclick="toggleAdvanced()" style="background:none;border:none;color:var(--muted);font-size:.78rem;cursor:pointer;padding:0;display:flex;align-items:center;gap:.4rem;">
+        <span id="advanced-arrow">▶</span> Paramètres avancés (Client ID Google Cloud)
+      </button>
+    </div>
+    <div id="advanced-panel" style="display:none;margin-top:.75rem;">
+      <div class="setup-input-group">
+        <div>
+          <div class="step-text" style="margin-bottom:.6rem;">Va sur <a href="https://console.cloud.google.com" target="_blank">console.cloud.google.com</a> → active <strong>"Google Analytics Data API"</strong> + <strong>"Search Console API"</strong> → <strong>Identifiants → Créer un ID client OAuth 2.0</strong> (Application Web) → ajoute l'URL de ce dashboard dans les origines autorisées.</div>
+          <label>Client ID Google Cloud</label>
+          <input type="text" id="input-client" placeholder="123456789-xxx.apps.googleusercontent.com" />
+        </div>
+      </div>
+    </div>
+    <input type="hidden" id="input-sc-url" />
+    <button class="btn-setup" onclick="connectGoogle()">
+      <svg width="18" height="18" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+      Se connecter avec Google
+    </button>
+    <span class="skip-link" onclick="useDemoData()">Voir avec des données de démonstration →</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<header>
+  <div class="header-logo">J<span>Design</span> <span style="color:var(--muted);font-family:'DM Sans';font-weight:400;font-size:.85rem;">Analytics</span></div>
+  <div class="header-right">
+    <div class="site-pill">
+      <span class="dot"></span>
+      jd-webdesign-nine.vercel.app
+    </div>
+    <div class="color-pill" title="Couleurs de marque du site : violet / cyan / magenta">
+      <span class="swatch" style="background:linear-gradient(135deg,#8B7CFF,#5EE6FF,#FF6AD5)"></span>
+      #8B7CFF
+    </div>
+    <button class="btn-reconnect" onclick="showSetup()">⚙ Paramètres</button>
+  </div>
+</header>
+
+<!-- ============================================================
+     PERIOD SELECTOR
+     ============================================================ -->
+<div class="period-bar">
+  <h1 id="dash-title">Vue d'ensemble</h1>
+  <div class="period-tabs">
+    <button class="period-tab active" onclick="setPeriod(7,this)">7 jours</button>
+    <button class="period-tab" onclick="setPeriod(30,this)">30 jours</button>
+    <button class="period-tab" onclick="setPeriod(90,this)">90 jours</button>
+  </div>
+</div>
+
+<!-- ============================================================
+     MAIN DASHBOARD
+     ============================================================ -->
+<main>
+
+  <!-- KPIs -->
+  <div class="kpi-grid">
+    <div class="kpi-card"><div class="kpi-label">Visiteurs uniques</div><div class="kpi-value" id="kpi-visitors">—</div><div class="kpi-delta" id="kpi-visitors-d"></div></div>
+    <div class="kpi-card"><div class="kpi-label">Pages vues</div><div class="kpi-value" id="kpi-pageviews">—</div><div class="kpi-delta" id="kpi-pageviews-d"></div></div>
+    <div class="kpi-card"><div class="kpi-label">Sessions</div><div class="kpi-value" id="kpi-sessions">—</div><div class="kpi-delta" id="kpi-sessions-d"></div></div>
+    <div class="kpi-card"><div class="kpi-label">Taux de rebond</div><div class="kpi-value" id="kpi-bounce">—</div><div class="kpi-delta" id="kpi-bounce-d"></div></div>
+  </div>
+
+  <!-- Conversions -->
+  <div class="kpi-grid">
+    <div class="kpi-card"><div class="kpi-label">Clics Contact</div><div class="kpi-value" id="kpi-contact">—</div></div>
+    <div class="kpi-card"><div class="kpi-label">Taux de conversion</div><div class="kpi-value" id="kpi-conv">—</div></div>
+    <div class="kpi-card"><div class="kpi-label">Top événement</div><div class="kpi-value" id="kpi-topevent" style="font-size:.95rem;word-break:break-all;line-height:1.3;margin-top:.15rem;">—</div></div>
+    <div class="kpi-card"><div class="kpi-label">Événements totaux</div><div class="kpi-value" id="kpi-events">—</div></div>
+  </div>
+
+  <!-- Charts -->
+  <div class="chart-row">
+    <div class="chart-card">
+      <h3>Visiteurs & Pages vues</h3>
+      <div class="chart-wrap"><canvas id="chart-timeseries"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <h3>Appareils</h3>
+      <div class="chart-wrap"><canvas id="chart-devices"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Tables trafic -->
+  <div class="table-row">
+    <div class="table-card">
+      <h3>Pages les plus visitées</h3>
+      <div id="table-pages"><div class="state-msg">Chargement…</div></div>
+    </div>
+    <div class="table-card">
+      <h3>Sources de trafic</h3>
+      <div id="table-referrers"><div class="state-msg">Chargement…</div></div>
+    </div>
+  </div>
+
+  <!-- Carte des visiteurs -->
+  <div class="map-card">
+    <h3>📍 Visiteurs en France — par ville</h3>
+    <div id="visitor-map"></div>
+    <div class="map-legend" id="map-legend"></div>
+  </div>
+
+  <!-- Pays + navigateurs -->
+  <div class="table-row">
+    <div class="table-card">
+      <h3>Pays</h3>
+      <div id="table-countries"><div class="state-msg">Chargement…</div></div>
+    </div>
+    <div class="table-card">
+      <h3>Navigateurs</h3>
+      <div id="table-browsers"><div class="state-msg">Chargement…</div></div>
+    </div>
+  </div>
+
+  <!-- Démographie -->
+  <div class="chart-row equal">
+    <div class="chart-card">
+      <h3>👥 Tranches d'âge</h3>
+      <div class="chart-wrap" id="age-wrap">
+        <canvas id="chart-age"></canvas>
+      </div>
+      <p class="demo-note" id="age-note" style="display:none"></p>
+    </div>
+    <div class="chart-card">
+      <h3>⚥ Genre</h3>
+      <div class="chart-wrap" id="gender-wrap">
+        <canvas id="chart-gender"></canvas>
+      </div>
+      <p class="demo-note" id="gender-note" style="display:none"></p>
+    </div>
+  </div>
+
+
+  <!-- PageSpeed -->
+  <div class="ps-row">
+    <div class="chart-card">
+      <h3>⚡ PageSpeed — Mobile</h3>
+      <div class="ps-inner" id="ps-mobile"><div class="state-msg">Analyse en cours…</div></div>
+    </div>
+    <div class="chart-card">
+      <h3>⚡ PageSpeed — Desktop</h3>
+      <div class="ps-inner" id="ps-desktop"><div class="state-msg">Analyse en cours…</div></div>
+    </div>
+  </div>
+
+  <!-- Search Console -->
+  <div class="table-row">
+    <div class="table-card">
+      <h3>🔍 Mots-clés Google</h3>
+      <div id="sc-keywords"><div class="state-msg">Chargement…</div></div>
+      <p class="sc-connect-note" id="sc-kw-note" style="display:none"></p>
+    </div>
+    <div class="table-card">
+      <h3>🔍 Pages dans Google</h3>
+      <div id="sc-pages"><div class="state-msg">Chargement…</div></div>
+      <p class="sc-connect-note" id="sc-pg-note" style="display:none"></p>
+    </div>
+  </div>
+
+</main>
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script>
+  // ── Config ──
+  let PROPERTY_ID = '', CLIENT_ID = '', SC_SITE_URL = '', ACCESS_TOKEN = '', PERIOD = 7;
+  let tsChart = null, devChart = null, ageChart = null, genderChart = null;
+  let psLoaded = false;
+
+  // ── Init ──
+  window.addEventListener('DOMContentLoaded', () => {
+    PROPERTY_ID  = localStorage.getItem('ga4_property')  || '';
+    CLIENT_ID    = localStorage.getItem('ga4_client_id') || '';
+    SC_SITE_URL  = 'https://jd-webdesign-nine.vercel.app/';
+    ACCESS_TOKEN = sessionStorage.getItem('ga4_token')   || '';
+
+    // Pré-remplir les champs dès le chargement
+    document.getElementById('input-property').value = PROPERTY_ID;
+    document.getElementById('input-client').value   = CLIENT_ID;
+    document.getElementById('input-sc-url').value   = SC_SITE_URL;
+
+    // Ouvrir la section avancée automatiquement si le Client ID n'est pas encore configuré
+    if (!CLIENT_ID) openAdvanced();
+
+    if (PROPERTY_ID && ACCESS_TOKEN) {
+      document.getElementById('setup-overlay').classList.add('hidden');
+      loadAll();
+    }
+  });
+
+  function connectGoogle() {
+    PROPERTY_ID = document.getElementById('input-property').value.trim();
+    CLIENT_ID   = document.getElementById('input-client').value.trim();
+    SC_SITE_URL = 'https://jd-webdesign-nine.vercel.app/';
+
+    if (!PROPERTY_ID) {
+      document.getElementById('input-property').focus();
+      alert('Merci d\'entrer ton ID de propriété GA4 (ex: 381234567).');
+      return;
+    }
+    if (!CLIENT_ID) {
+      openAdvanced();
+      document.getElementById('input-client').focus();
+      alert('Merci d\'entrer ton Client ID Google Cloud dans la section "Paramètres avancés" ci-dessus.');
+      return;
+    }
+    localStorage.setItem('ga4_property',  PROPERTY_ID);
+    localStorage.setItem('ga4_client_id', CLIENT_ID);
+
+    if (typeof google === 'undefined') {
+      alert('Le script Google n\'est pas encore chargé. Attends 2 secondes et réessaie.');
+      return;
+    }
+    const tc = google.accounts.oauth2.initTokenClient({
+      client_id: CLIENT_ID,
+      scope: 'https://www.googleapis.com/auth/analytics.readonly https://www.googleapis.com/auth/webmasters.readonly',
+      callback: (resp) => {
+        if (resp.error) { alert('Erreur Google : ' + resp.error); return; }
+        ACCESS_TOKEN = resp.access_token;
+        sessionStorage.setItem('ga4_token', ACCESS_TOKEN);
+        document.getElementById('setup-overlay').classList.add('hidden');
+        loadAll();
+      },
+    });
+    tc.requestAccessToken();
+  }
+
+  function showSetup() {
+    document.getElementById('input-property').value = PROPERTY_ID;
+    document.getElementById('input-client').value   = CLIENT_ID;
+    document.getElementById('input-sc-url').value   = SC_SITE_URL;
+    document.getElementById('setup-overlay').classList.remove('hidden');
+  }
+
+  function openAdvanced() {
+    document.getElementById('advanced-panel').style.display = 'block';
+    document.getElementById('advanced-arrow').textContent = '▼';
+  }
+  function toggleAdvanced() {
+    const panel = document.getElementById('advanced-panel');
+    const open  = panel.style.display !== 'none';
+    panel.style.display = open ? 'none' : 'block';
+    document.getElementById('advanced-arrow').textContent = open ? '▶' : '▼';
+  }
+
+  function useDemoData() {
+    PROPERTY_ID = 'demo'; ACCESS_TOKEN = 'demo';
+    document.getElementById('setup-overlay').classList.add('hidden');
+    loadAll();
+  }
+
+  function setPeriod(days, btn) {
+    PERIOD = days;
+    document.querySelectorAll('.period-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    loadAll();
+  }
+
+  // ── GA4 Data API ──
+  async function fetchGA4(dimensions, metrics, limit = 10, orderByMetric = null, dimensionFilter = null) {
+    if (ACCESS_TOKEN === 'demo') return null;
+    const startDate = PERIOD === 7 ? '7daysAgo' : PERIOD === 30 ? '30daysAgo' : '90daysAgo';
+    const body = {
+      dateRanges: [{ startDate, endDate: 'today' }],
+      metrics: metrics.map(m => ({ name: m })),
+      limit,
+    };
+    if (dimensions && dimensions.length) body.dimensions = dimensions.map(d => ({ name: d }));
+    if (orderByMetric) body.orderBys = [{ metric: { metricName: orderByMetric }, desc: true }];
+    if (dimensionFilter) body.dimensionFilter = dimensionFilter;
+
+    try {
+      const res = await fetch(
+        `https://analyticsdata.googleapis.com/v1beta/properties/${PROPERTY_ID}:runReport`,
+        {
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${ACCESS_TOKEN}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        }
+      );
+      if (res.status === 401) {
+        ACCESS_TOKEN = ''; sessionStorage.removeItem('ga4_token');
+        alert('Session expirée. Reconnecte-toi.');
+        showSetup(); return null;
+      }
+      if (!res.ok) return null;
+      return await res.json();
+    } catch { return null; }
+  }
+
+  // ── Demo data ──
+  function demoTimeseries(days) {
+    const labels = [], visitors = [], pageviews = [];
+    const now = new Date();
+    for (let i = days - 1; i >= 0; i--) {
+      const d = new Date(now); d.setDate(d.getDate() - i);
+      labels.push(d.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit' }));
+      const v = 15 + Math.round(Math.random() * 60 + Math.sin(i * 0.5) * 10);
+      visitors.push(v); pageviews.push(v + Math.round(Math.random() * 40));
+    }
+    return { labels, visitors, pageviews };
+  }
+
+  const DEMO = {
+    kpis: { visitors: 342, pageviews: 891, sessions: 412, bounce: 58 },
+    pages:     [{ name: '/', value: 412 }, { name: '/#services', value: 187 }, { name: '/#tarifs', value: 143 }, { name: '/#contact', value: 89 }],
+    referrers: [{ name: 'Direct', value: 210 }, { name: 'google', value: 98 }, { name: 'instagram.com', value: 34 }, { name: 'linkedin.com', value: 22 }],
+    countries: [{ name: 'France', value: 280 }, { name: 'Belgium', value: 31 }, { name: 'Switzerland', value: 18 }, { name: 'Canada', value: 9 }],
+    browsers:  [{ name: 'Chrome', value: 198 }, { name: 'Safari', value: 102 }, { name: 'Firefox', value: 28 }, { name: 'Edge', value: 14 }],
+    devices:   { Mobile: 56, Desktop: 38, Tablet: 6 },
+    age:       [{ name: '18-24', value: 42 }, { name: '25-34', value: 118 }, { name: '35-44', value: 94 }, { name: '45-54', value: 56 }, { name: '55-64', value: 24 }, { name: '65+', value: 8 }],
+    gender:    { male: 156, female: 186 },
+    cities: [
+      { name: 'Paris', value: 134 }, { name: 'Lyon', value: 42 }, { name: 'Marseille', value: 31 },
+      { name: 'Bordeaux', value: 18 }, { name: 'Toulouse', value: 16 }, { name: 'Nantes', value: 14 },
+      { name: 'Lille', value: 11 }, { name: 'Strasbourg', value: 8 }, { name: 'Rennes', value: 7 },
+      { name: 'Nice', value: 6 },
+    ],
+    conversions: { contact: 47, convRate: '13.7', topEvent: 'click_contact', totalEvents: 1243 },
+    scKeywords: [
+      { label: 'web designer freelance',    clicks: 45, impressions: 312, position: 3.2 },
+      { label: 'création site vitrine',     clicks: 28, impressions: 210, position: 4.8 },
+      { label: 'jdesign web',              clicks: 19, impressions:  45, position: 1.4 },
+      { label: 'designer site internet',   clicks: 12, impressions: 189, position: 7.1 },
+      { label: 'tarif site web freelance', clicks:  8, impressions: 134, position: 9.3 },
+    ],
+    scPages: [
+      { label: '/',          clicks: 78, impressions: 520, position: 3.1 },
+      { label: '/#services', clicks: 32, impressions: 210, position: 5.4 },
+      { label: '/#tarifs',   clicks: 21, impressions: 145, position: 6.8 },
+      { label: '/#contact',  clicks: 15, impressions:  98, position: 8.2 },
+    ],
+    pagespeed: {
+      mobile:  { score: 74, fcp: '1.8 s', lcp: '3.2 s', cls: '0.05', tbt: '210 ms' },
+      desktop: { score: 91, fcp: '0.6 s', lcp: '1.1 s', cls: '0.02', tbt:  '80 ms' },
+    },
+  };
+
+  // ── Parsers GA4 ──
+  function parseGA4KPIs(data) {
+    if (!data?.rows?.[0]) return null;
+    const v = data.rows[0].metricValues;
+    return {
+      visitors: parseInt(v[0]?.value || 0),
+      pageviews: parseInt(v[1]?.value || 0),
+      sessions:  parseInt(v[2]?.value || 0),
+      bounce:    Math.round(parseFloat(v[3]?.value || 0) * 100),
+    };
+  }
+
+  function parseGA4Timeseries(data) {
+    if (!data?.rows) return null;
+    const sorted = [...data.rows].sort((a, b) =>
+      a.dimensionValues[0].value.localeCompare(b.dimensionValues[0].value)
+    );
+    return {
+      labels:    sorted.map(r => { const d = r.dimensionValues[0].value; return `${d.slice(6,8)}/${d.slice(4,6)}`; }),
+      visitors:  sorted.map(r => parseInt(r.metricValues[0].value)),
+      pageviews: sorted.map(r => parseInt(r.metricValues[1].value)),
+    };
+  }
+
+  function parseGA4List(data, limit = 5) {
+    if (!data?.rows) return null;
+    return data.rows.slice(0, limit).map(r => ({
+      name:  r.dimensionValues?.[0]?.value || '—',
+      value: parseInt(r.metricValues?.[0]?.value || 0),
+    }));
+  }
+
+  function parseGA4Devices(data) {
+    if (!data?.rows) return null;
+    const out = {};
+    data.rows.forEach(r => {
+      const d = r.dimensionValues[0].value;
+      const label = d === 'desktop' ? 'Desktop' : d === 'mobile' ? 'Mobile' : 'Tablet';
+      out[label] = parseInt(r.metricValues[0].value);
+    });
+    return out;
+  }
+
+  function parseGA4Demographics(data) {
+    if (!data?.rows) return null;
+    return data.rows.map(r => ({
+      name:  r.dimensionValues?.[0]?.value || '—',
+      value: parseInt(r.metricValues?.[0]?.value || 0),
+    }));
+  }
+
+  // ── Map ──
+  const CITY_COORDS = {
+    'Paris': [48.857, 2.347], 'Lyon': [45.750, 4.833], 'Marseille': [43.296, 5.370],
+    'Toulouse': [43.604, 1.444], 'Nice': [43.710, 7.262], 'Nantes': [47.218, -1.553],
+    'Strasbourg': [48.573, 7.752], 'Montpellier': [43.611, 3.877], 'Bordeaux': [44.837, -0.579],
+    'Lille': [50.629, 3.057], 'Rennes': [48.117, -1.678], 'Grenoble': [45.188, 5.724],
+    'Rouen': [49.443, 1.099], 'Toulon': [43.124, 5.928], 'Saint-Étienne': [45.434, 4.390],
+    'Dijon': [47.322, 5.041], 'Angers': [47.473, -0.554], 'Brest': [48.390, -4.486],
+    'Clermont-Ferrand': [45.778, 3.087], 'Le Mans': [48.006, 0.199], 'Nîmes': [43.836, 4.360],
+    'Orléans': [47.903, 1.909], 'Reims': [49.258, 4.031], 'Caen': [49.182, -0.371],
+    'Amiens': [49.894, 2.302], 'Metz': [49.120, 6.177], 'Nancy': [48.692, 6.184],
+    'Le Havre': [49.493, 0.107], 'Perpignan': [42.697, 2.895], 'Limoges': [45.835, 1.262],
+    'Aix-en-Provence': [43.529, 5.447], 'Besançon': [47.238, 6.024], 'Tours': [47.394, 0.689],
+    'Villeurbanne': [45.772, 4.889], 'Pau': [43.296, -0.371], 'Boulogne-sur-Mer': [50.727, 1.614],
+  };
+
+  let leafletMap = null;
+  const markerLayers = [];
+
+  function initMap() {
+    if (leafletMap) return;
+    leafletMap = L.map('visitor-map', { center: [46.5, 2.5], zoom: 6, zoomControl: true, scrollWheelZoom: false, attributionControl: false });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 14 }).addTo(leafletMap);
+  }
+
+  function drawMap(cities) {
+    initMap();
+    markerLayers.forEach(m => leafletMap.removeLayer(m));
+    markerLayers.length = 0;
+    if (!cities?.length) return;
+    const max = Math.max(...cities.map(c => c.value));
+    const colors = ['#8B7CFF', '#5EE6FF', '#FF6AD5', '#9BA3C7', '#5A6080'];
+    cities.forEach((c, i) => {
+      const coords = CITY_COORDS[c.name];
+      if (!coords) return;
+      const radius = 8 + (c.value / max) * 28;
+      const color  = colors[Math.min(i, colors.length - 1)];
+      const circle = L.circleMarker(coords, { radius, color, fillColor: color, fillOpacity: 0.4, weight: 2, opacity: 0.9 }).addTo(leafletMap);
+      circle.bindTooltip(`<strong>${c.name}</strong><br>${c.value} visiteur${c.value > 1 ? 's' : ''}`, { className: 'map-tooltip', sticky: true });
+      markerLayers.push(circle);
+    });
+    const legend = document.getElementById('map-legend');
+    legend.innerHTML = cities.slice(0, 5).map((c, i) => `
+      <div class="legend-item">
+        <div class="legend-dot" style="background:${colors[Math.min(i, colors.length-1)]}"></div>
+        ${c.name} — <strong style="color:var(--white)">${c.value}</strong>
+      </div>`).join('');
+  }
+
+  // ── Load all ──
+  async function loadAll() {
+    const isDemo = (PROPERTY_ID === 'demo');
+
+    // KPIs
+    const kpiRaw = isDemo ? DEMO.kpis : parseGA4KPIs(await fetchGA4([], ['activeUsers','screenPageViews','sessions','bounceRate'])) || DEMO.kpis;
+    setKpi('visitors',  fmt(kpiRaw.visitors));
+    setKpi('pageviews', fmt(kpiRaw.pageviews));
+    setKpi('sessions',  fmt(kpiRaw.sessions));
+    setKpi('bounce',    kpiRaw.bounce + '%');
+
+    // Timeseries
+    const ts = isDemo ? demoTimeseries(PERIOD) : parseGA4Timeseries(await fetchGA4(['date'], ['activeUsers','screenPageViews'], PERIOD * 2)) || demoTimeseries(PERIOD);
+    drawTimeseries(ts);
+
+    // Devices
+    const devRaw = isDemo ? DEMO.devices : parseGA4Devices(await fetchGA4(['deviceCategory'], ['activeUsers'])) || DEMO.devices;
+    drawDevices(devRaw);
+
+    // Tables — en parallèle
+    const [pagesRaw, referrersRaw, countriesRaw, browsersRaw] = await Promise.all([
+      isDemo ? DEMO.pages     : Promise.resolve(parseGA4List(await fetchGA4(['pagePath'],         ['screenPageViews'], 5, 'screenPageViews'))),
+      isDemo ? DEMO.referrers : Promise.resolve(parseGA4List(await fetchGA4(['sessionSource'],    ['sessions'],        5, 'sessions'))),
+      isDemo ? DEMO.countries : Promise.resolve(parseGA4List(await fetchGA4(['country'],          ['activeUsers'],     10, 'activeUsers'))),
+      isDemo ? DEMO.browsers  : Promise.resolve(parseGA4List(await fetchGA4(['browser'],          ['activeUsers'],     5, 'activeUsers'))),
+    ]);
+
+    drawTable('table-pages',     pagesRaw     || DEMO.pages,     'Pages');
+    drawTable('table-referrers', referrersRaw || DEMO.referrers, 'Source');
+    drawTable('table-countries', countriesRaw || DEMO.countries, 'Pays');
+    drawTable('table-browsers',  browsersRaw  || DEMO.browsers,  'Navigateur');
+
+    // Carte : villes françaises
+    const franceFilter = { filter: { fieldName: 'country', stringFilter: { matchType: 'EXACT', value: 'France' } } };
+    const citiesRaw = isDemo
+      ? DEMO.cities
+      : parseGA4List(await fetchGA4(['city'], ['activeUsers'], 15, 'activeUsers', franceFilter));
+    drawMap(citiesRaw || DEMO.cities);
+
+    // Démographie
+    const ageRaw    = isDemo ? DEMO.age    : parseGA4Demographics(await fetchGA4(['userAgeBracket'], ['activeUsers'], 10, 'activeUsers'));
+    const genderRaw = isDemo ? DEMO.gender : (() => {
+      const raw = parseGA4Demographics(fetchGA4(['userGender'], ['activeUsers'], 5));
+      if (!raw) return null;
+      const out = {};
+      raw.forEach(r => { out[r.name] = r.value; });
+      return out;
+    })();
+
+    drawAge(ageRaw, isDemo);
+    drawGender(isDemo ? DEMO.gender : (genderRaw || null), isDemo);
+
+    // Conversions
+    await loadConversions(isDemo, kpiRaw.sessions);
+
+    // PageSpeed (une seule fois, ne dépend pas de la période)
+    loadPageSpeed(isDemo);
+
+    // Search Console
+    const [scKwRaw, scPgRaw] = await Promise.all([
+      isDemo ? DEMO.scKeywords : fetchSC('query', 8),
+      isDemo ? DEMO.scPages   : fetchSC('page',  8),
+    ]);
+    drawSCTable('sc-keywords', 'sc-kw-note', scKwRaw || DEMO.scKeywords, isDemo || !SC_SITE_URL);
+    drawSCTable('sc-pages',    'sc-pg-note', scPgRaw || DEMO.scPages,    isDemo || !SC_SITE_URL);
+  }
+
+  // ── Render helpers ──
+  function fmt(n) {
+    n = Number(n);
+    if (n >= 1000) return (n / 1000).toFixed(1) + 'k';
+    return String(n);
+  }
+
+  function setKpi(id, value, delta, invertDelta = false) {
+    document.getElementById('kpi-' + id).textContent = value;
+    const el = document.getElementById('kpi-' + id + '-d');
+    if (!el) return;
+    if (delta === undefined) { el.textContent = ''; return; }
+    const positive = invertDelta ? delta < 0 : delta > 0;
+    const cls  = delta === 0 ? 'flat' : positive ? 'up' : 'down';
+    const sign = delta > 0 ? '+' : '';
+    el.className = 'kpi-delta ' + cls;
+    el.textContent = sign + delta + '% vs période précédente';
+  }
+
+  function drawTimeseries({ labels, visitors, pageviews }) {
+    const ctx = document.getElementById('chart-timeseries').getContext('2d');
+    if (tsChart) tsChart.destroy();
+    tsChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [
+          { label: 'Visiteurs', data: visitors, borderColor: '#8B7CFF', backgroundColor: 'rgba(139,124,255,0.08)', fill: true, tension: 0.4, pointRadius: 3, pointBackgroundColor: '#8B7CFF' },
+          { label: 'Pages vues', data: pageviews, borderColor: 'rgba(94,230,255,0.7)', backgroundColor: 'transparent', borderDash: [5,3], tension: 0.4, pointRadius: 0 },
+        ],
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { labels: { color: '#9BA3C7', font: { family: 'DM Sans', size: 11 } } } },
+        scales: {
+          x: { ticks: { color: '#9BA3C7', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.05)' } },
+          y: { ticks: { color: '#9BA3C7', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.05)' }, beginAtZero: true },
+        },
+      },
+    });
+  }
+
+  function drawDevices(devs) {
+    const ctx = document.getElementById('chart-devices').getContext('2d');
+    if (devChart) devChart.destroy();
+    devChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: Object.keys(devs),
+        datasets: [{ data: Object.values(devs), backgroundColor: ['#8B7CFF','#5EE6FF','#FF6AD5'], borderColor: '#090B16', borderWidth: 3 }],
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position: 'bottom', labels: { color: '#9BA3C7', font: { family: 'DM Sans', size: 11 }, padding: 12 } } },
+        cutout: '65%',
+      },
+    });
+  }
+
+  function drawAge(data, isDemo) {
+    const note = document.getElementById('age-note');
+    if (!data || !data.length) {
+      note.style.display = 'block';
+      note.textContent = 'Données insuffisantes. Active "Google Signals" dans GA4 → Admin → Collecte de données, et attends d\'avoir plus de 100 visiteurs.';
+      document.getElementById('chart-age').style.display = 'none';
+      return;
+    }
+    if (isDemo) {
+      note.style.display = 'block';
+      note.textContent = '⚠ Données de démonstration — connecte GA4 pour voir tes vraies tranches d\'âge.';
+    } else {
+      note.style.display = 'none';
+    }
+    document.getElementById('chart-age').style.display = 'block';
+    const ctx = document.getElementById('chart-age').getContext('2d');
+    if (ageChart) ageChart.destroy();
+    ageChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: data.map(d => d.name),
+        datasets: [{ data: data.map(d => d.value), backgroundColor: 'rgba(139,124,255,0.65)', borderColor: '#8B7CFF', borderWidth: 1, borderRadius: 4 }],
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { ticks: { color: '#9BA3C7', font: { size: 11 } }, grid: { display: false } },
+          y: { ticks: { color: '#9BA3C7', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.05)' }, beginAtZero: true },
+        },
+      },
+    });
+  }
+
+  function drawGender(data, isDemo) {
+    const note = document.getElementById('gender-note');
+    if (!data) {
+      note.style.display = 'block';
+      note.textContent = 'Données insuffisantes. Active "Google Signals" dans GA4.';
+      document.getElementById('chart-gender').style.display = 'none';
+      return;
+    }
+    if (isDemo) {
+      note.style.display = 'block';
+      note.textContent = '⚠ Données de démonstration.';
+    } else {
+      note.style.display = 'none';
+    }
+    document.getElementById('chart-gender').style.display = 'block';
+    const ctx = document.getElementById('chart-gender').getContext('2d');
+    if (genderChart) genderChart.destroy();
+    const labels = Object.keys(data).map(k => k === 'male' ? 'Homme' : k === 'female' ? 'Femme' : k);
+    genderChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels,
+        datasets: [{ data: Object.values(data), backgroundColor: ['#8B7CFF','#FF6AD5'], borderColor: '#090B16', borderWidth: 3 }],
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position: 'bottom', labels: { color: '#9BA3C7', font: { family: 'DM Sans', size: 11 }, padding: 12 } } },
+        cutout: '65%',
+      },
+    });
+  }
+
+  // ── PageSpeed ──
+  async function fetchPS(strategy) {
+    try {
+      const res = await fetch(
+        `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent('https://jd-webdesign-nine.vercel.app/')}&strategy=${strategy}`
+      );
+      if (!res.ok) return null;
+      const j = await res.json();
+      const lr = j.lighthouseResult;
+      return {
+        score: Math.round(lr.categories.performance.score * 100),
+        fcp:   lr.audits['first-contentful-paint']?.displayValue   || '—',
+        lcp:   lr.audits['largest-contentful-paint']?.displayValue || '—',
+        cls:   lr.audits['cumulative-layout-shift']?.displayValue  || '—',
+        tbt:   lr.audits['total-blocking-time']?.displayValue      || '—',
+      };
+    } catch { return null; }
+  }
+
+  function drawPS(elId, data) {
+    const el = document.getElementById(elId);
+    if (!data) { el.innerHTML = '<div class="state-msg">Impossible de charger.</div>'; return; }
+    const circ = 2 * Math.PI * 38;
+    const dash = (data.score / 100) * circ;
+    const color = data.score >= 90 ? '#8B7CFF' : data.score >= 50 ? '#5EE6FF' : '#FF6568';
+    el.innerHTML = `
+      <div class="ps-gauge">
+        <svg viewBox="0 0 88 88" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="44" cy="44" r="38" fill="none" stroke="var(--raised)" stroke-width="8"/>
+          <circle cx="44" cy="44" r="38" fill="none" stroke="${color}" stroke-width="8"
+            stroke-dasharray="${dash.toFixed(1)} ${circ.toFixed(1)}"
+            stroke-linecap="round" transform="rotate(-90 44 44)"/>
+          <text x="44" y="50" text-anchor="middle" font-family="Syne,sans-serif" font-size="20" font-weight="800" fill="${color}">${data.score}</text>
+        </svg>
+        <span class="ps-gauge-label">Score /100</span>
+      </div>
+      <div class="ps-vitals">
+        <div class="ps-vital"><div class="ps-vital-val">${data.fcp}</div><div class="ps-vital-name">FCP</div></div>
+        <div class="ps-vital"><div class="ps-vital-val">${data.lcp}</div><div class="ps-vital-name">LCP</div></div>
+        <div class="ps-vital"><div class="ps-vital-val">${data.cls}</div><div class="ps-vital-name">CLS</div></div>
+        <div class="ps-vital"><div class="ps-vital-val">${data.tbt}</div><div class="ps-vital-name">TBT</div></div>
+      </div>`;
+  }
+
+  async function loadPageSpeed(isDemo) {
+    if (psLoaded) return;
+    psLoaded = true;
+    if (isDemo) {
+      drawPS('ps-mobile',  DEMO.pagespeed.mobile);
+      drawPS('ps-desktop', DEMO.pagespeed.desktop);
+      return;
+    }
+    const [mob, desk] = await Promise.all([fetchPS('mobile'), fetchPS('desktop')]);
+    drawPS('ps-mobile',  mob  || DEMO.pagespeed.mobile);
+    drawPS('ps-desktop', desk || DEMO.pagespeed.desktop);
+  }
+
+  // ── Search Console ──
+  async function fetchSC(dimension, limit = 8) {
+    if (!ACCESS_TOKEN || ACCESS_TOKEN === 'demo' || !SC_SITE_URL) return null;
+    const end   = new Date().toISOString().slice(0, 10);
+    const start = new Date(Date.now() - PERIOD * 86400000).toISOString().slice(0, 10);
+    try {
+      const res = await fetch(
+        `https://www.googleapis.com/webmasters/v3/sites/${encodeURIComponent(SC_SITE_URL)}/searchAnalytics/query`,
+        {
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${ACCESS_TOKEN}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ startDate: start, endDate: end, dimensions: [dimension], rowLimit: limit }),
+        }
+      );
+      if (!res.ok) return null;
+      const j = await res.json();
+      return j.rows?.map(r => ({ label: r.keys[0], clicks: r.clicks, impressions: r.impressions, position: r.position })) || null;
+    } catch { return null; }
+  }
+
+  function drawSCTable(containerId, noteId, rows, isDemo) {
+    const el   = document.getElementById(containerId);
+    const note = document.getElementById(noteId);
+    if (!rows || !rows.length) {
+      el.innerHTML = '<div class="state-msg">—</div>';
+      if (note) { note.style.display = 'block'; note.innerHTML = 'Entre l\'URL de ta propriété Search Console dans <a onclick="showSetup()">⚙ Paramètres</a>.'; }
+      return;
+    }
+    if (note) {
+      note.style.display = isDemo ? 'block' : 'none';
+      if (isDemo) note.textContent = '⚠ Données de démonstration — entre ton URL Search Console dans les Paramètres.';
+    }
+    const label = containerId === 'sc-keywords' ? 'Requête' : 'Page';
+    el.innerHTML = `
+      <div class="sc-head-row">
+        <span class="sc-query">${label}</span>
+        <span class="sc-num">Clics</span>
+        <span class="sc-num">Impr.</span>
+        <span class="sc-pos">Pos.</span>
+      </div>
+      ${rows.map(r => {
+        const c = r.position <= 3 ? '#8B7CFF' : r.position <= 10 ? '#5EE6FF' : '#9BA3C7';
+        return `<div class="sc-row">
+          <span class="sc-query" title="${r.label}">${r.label}</span>
+          <span class="sc-num">${r.clicks}</span>
+          <span class="sc-num">${fmt(r.impressions)}</span>
+          <span class="sc-pos" style="color:${c}">#${r.position.toFixed(1)}</span>
+        </div>`;
+      }).join('')}`;
+  }
+
+  // ── Conversions ──
+  async function loadConversions(isDemo, sessions) {
+    let conv;
+    if (isDemo) {
+      conv = DEMO.conversions;
+    } else {
+      const data = await fetchGA4(['eventName'], ['eventCount'], 20, 'eventCount');
+      if (data?.rows) {
+        const contactKeys = ['contact', 'form_submit', 'generate_lead', 'lead'];
+        let contact = 0, totalEvents = 0, topEvent = '—';
+        data.rows.forEach((r, i) => {
+          const name  = r.dimensionValues[0].value;
+          const count = parseInt(r.metricValues[0].value);
+          totalEvents += count;
+          if (i === 0) topEvent = name;
+          if (contactKeys.some(k => name.toLowerCase().includes(k))) contact += count;
+        });
+        const convRate = sessions > 0 ? ((contact / sessions) * 100).toFixed(1) : '—';
+        conv = { contact, convRate, topEvent, totalEvents };
+      } else {
+        conv = DEMO.conversions;
+      }
+    }
+    document.getElementById('kpi-contact').textContent  = conv.contact;
+    document.getElementById('kpi-conv').textContent     = conv.convRate + '%';
+    document.getElementById('kpi-topevent').textContent = conv.topEvent;
+    document.getElementById('kpi-events').textContent   = fmt(conv.totalEvents);
+  }
+
+  function drawTable(containerId, items, colLabel) {
+    const el = document.getElementById(containerId);
+    if (!items || !items.length) { el.innerHTML = '<div class="state-msg">Aucune donnée disponible.</div>'; return; }
+    const max = Math.max(...items.map(i => i.value));
+    el.innerHTML = items.map(item => `
+      <div class="table-item">
+        <span class="table-name" title="${item.name}">${item.name}</span>
+        <div class="table-bar-wrap"><div class="table-bar" style="width:${Math.round(item.value/max*100)}%"></div></div>
+        <span class="table-val">${fmt(item.value)}</span>
+      </div>`).join('');
+  }
+</script>
+
+</body>
+</html>
